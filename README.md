@@ -1,6 +1,6 @@
 # Flutter Sharks (Group 9) 🌊🦈🦈🌊
 
-Este é o nosso App financeiro feito pelo Flutter Sharks!
+Este é o App financeiro feito pelo Flutter Sharks!
 
 <div align="center">
 <img width="600" height="500" src="web/icons/sharks_3.png"/>
