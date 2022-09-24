@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+<img align="center" width="500" height="300" src="web/icons/flutter_sahrks.png"/>
 
 A few resources to get you started if this is your first Flutter project:
 
