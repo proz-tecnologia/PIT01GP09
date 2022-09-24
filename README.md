@@ -5,7 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 <div align="center">
-<img width="700" height="600" src="web/icons/sharks_3.png"/>
+<img width="600" height="600" src="web/icons/sharks_3.png"/>
 </div>
 
 A few resources to get you started if this is your first Flutter project:
