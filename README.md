@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-<img align="center" width="500" height="300" src="web/icons/flutter_sahrks.png"/>
+<img align="center" width="400" height="500" src="web/icons/flutter_sharks.png"/>
 
 A few resources to get you started if this is your first Flutter project:
 
