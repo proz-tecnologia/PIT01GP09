@@ -1,4 +1,4 @@
-# test
+# Flutter Sharks (Group 9) 🦈🦈
 
 A new Flutter project.
 
