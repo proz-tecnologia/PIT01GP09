@@ -1,10 +1,10 @@
-# test
+# Flutter Sharks (Group 9) 🌊🦈🦈🌊
 
-A new Flutter project.
+Este é o App de controle de finanças pessoais feito pelo Flutter Sharks!
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
+<div align="center">
+<img width="600" height="500" src="web/icons/sharks_3.png"/>
+</div>
 
 A few resources to get you started if this is your first Flutter project:
 
