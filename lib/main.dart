@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Título trocado teste',
+      title: 'Alteração exemplo',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       home: const HomePage(),
