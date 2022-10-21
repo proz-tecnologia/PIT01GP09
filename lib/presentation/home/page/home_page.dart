@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 
-import 'resources/strings.dart';
+import '../../../resources/strings.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -25,12 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.30,
-                  width: MediaQuery.of(context).size.width,
-                  color: AppColors.blueLight,
-                  child: Text(Strings.balance),
-                ),
+                const CardGradientWidget(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -52,13 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: MediaQuery.of(context).size.height * 0.30,
                   width: MediaQuery.of(context).size.width,
                   color: AppColors.amberPeach,
-                  child: Text(Strings.titleGraphics),
+                  child: const Text(Strings.titleGraphics),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.30,
                   width: MediaQuery.of(context).size.width,
                   color: AppColors.grayTwo,
-                  child: Text(Strings.financialEducation),
+                  child: const Text(Strings.financialEducation),
                 ),
               ],
             ),
