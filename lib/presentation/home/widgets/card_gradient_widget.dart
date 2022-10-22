@@ -22,19 +22,23 @@ class CardGradientWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
+          Stack(
+            alignment: AlignmentDirectional.centerEnd,
             children: [
-              SizedBox(
-                width: screenWidth * 0.7791,
-                height: screenHeight * 0.0924,
-                child: const Text(
-                  'Setembro',
-                  textAlign: TextAlign.justify,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: screenWidth,
+                  height: screenHeight * 0.0840,
+                  child: const Text(
+                    'Setembro 🔽',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
               SizedBox(
-                width: screenWidth * 0.2232,
-                height: screenHeight * 0.0924,
+                width: screenWidth * 0.2093,
+                height: screenHeight * 0.0840,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
