@@ -31,4 +31,16 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: Colors.white,
   );
+
+  static const balance = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+  static const greeting = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 }
