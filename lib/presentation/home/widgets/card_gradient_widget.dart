@@ -15,6 +15,8 @@ class CardGradientWidget extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Container(
+      width: screenWidth,
+      height: screenHeight * 0.2577,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
@@ -30,37 +32,32 @@ class CardGradientWidget extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-          top: screenHeight * 0.0149,
-          left: screenWidth * 0.0372,
-          right: screenWidth * 0.0372,
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 16,
+          right: 16,
         ),
         child: Column(
           children: [
             Stack(
               alignment: AlignmentDirectional.centerEnd,
               children: [
-                SizedBox(
-                  width: screenWidth * 0.9302,
-                  height: screenHeight * 0.0625,
-                  child: const MonthPicker(),
+                const SizedBox(
+                  width: 400,
+                  height: 67,
+                  child: MonthPicker(),
                 ),
-                SizedBox(
-                  width: screenWidth * 0.1512,
-                  height: screenHeight * 0.0607,
-                  child: const Profile(),
-                ),
+                const Profile(),
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  top: screenHeight * 0.0149, bottom: screenHeight * 0.0074),
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: Stack(
                 alignment: AlignmentDirectional.topStart,
                 children: [
                   SizedBox(
-                    width: screenWidth * 0.9302,
-                    height: screenHeight * 0.1633,
+                    width: 400,
+                    height: 175,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,15 +68,15 @@ class CardGradientWidget extends StatelessWidget {
                         ),
                         Image.asset(
                           'assets/images/pig-and-coins.png',
-                          width: screenWidth * 0.5791,
-                          height: screenHeight * 0.1195,
+                          width: 249,
+                          height: 128,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    width: screenWidth * 0.4139,
-                    height: screenHeight * 0.1195,
+                    width: 178,
+                    height: 128,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,9 +86,7 @@ class CardGradientWidget extends StatelessWidget {
                           style: AppTextStyles.example2,
                         ),
                         const CurrentBalance(),
-                        EarnPoints(
-                            screenWidth: screenWidth,
-                            screenHeight: screenHeight),
+                        const EarnPoints(),
                       ],
                     ),
                   ),

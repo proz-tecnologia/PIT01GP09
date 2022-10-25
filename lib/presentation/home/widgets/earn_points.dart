@@ -6,12 +6,7 @@ import '../../../resources/colors.dart';
 class EarnPoints extends StatelessWidget {
   const EarnPoints({
     Key? key,
-    required this.screenWidth,
-    required this.screenHeight,
   }) : super(key: key);
-
-  final double screenWidth;
-  final double screenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +14,19 @@ class EarnPoints extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       children: [
         Container(
-          width: screenWidth * 0.3442,
-          height: screenHeight * 0.0280,
+          width: 148,
+          height: 30,
           alignment: AlignmentDirectional.centerEnd,
           decoration: BoxDecoration(
             border: Border.all(
               color: AppColors.whiteSnow,
-              width: screenWidth * 0.0070,
+              width: 3,
             ),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Container(
-            width: screenWidth * 0.2930,
-            height: screenHeight * 0.0215,
+            width: 126,
+            height: 23,
             alignment: AlignmentDirectional.center,
             child: const Text(
               Strings.earnPoints,
@@ -39,10 +34,10 @@ class EarnPoints extends StatelessWidget {
             ),
           ),
         ),
-        CircleAvatar(
-          radius: screenWidth * 0.0523,
+        const CircleAvatar(
+          radius: 22.5,
           backgroundColor: AppColors.whiteSnow,
-          child: const Icon(
+          child: Icon(
             Icons.emoji_events,
             color: AppColors.amberPeach,
           ),
