@@ -17,11 +17,12 @@ class MonthPicker extends StatelessWidget {
         Text(
           Strings.month,
           textAlign: TextAlign.center,
-          style: AppTextStyles.example2,
+          style: AppTextStyles.month,
         ),
         Icon(
           Icons.keyboard_arrow_up,
           color: AppColors.whiteSnow,
+          size: 30,
         )
       ],
     );

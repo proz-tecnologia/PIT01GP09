@@ -11,7 +11,7 @@ class CurrentBalance extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Text(
       Strings.currentBalance,
-      style: AppTextStyles.balance,
+      style: AppTextStyles.currentBalance,
     );
   }
 }
