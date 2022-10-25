@@ -12,11 +12,7 @@ class CardGradientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      width: screenWidth,
-      height: screenHeight * 0.2577,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
@@ -41,17 +37,17 @@ class CardGradientWidget extends StatelessWidget {
           children: [
             Stack(
               alignment: AlignmentDirectional.centerEnd,
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   width: 400,
                   height: 67,
                   child: MonthPicker(),
                 ),
-                const Profile(),
+                Profile(),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 8),
+              padding: const EdgeInsets.only(top: 16, bottom: 1),
               child: Stack(
                 alignment: AlignmentDirectional.topStart,
                 children: [
@@ -80,13 +76,13 @@ class CardGradientWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           Strings.balance,
-                          style: AppTextStyles.example2,
+                          style: AppTextStyles.balance,
                         ),
-                        const CurrentBalance(),
-                        const EarnPoints(),
+                        CurrentBalance(),
+                        EarnPoints(),
                       ],
                     ),
                   ),

@@ -32,14 +32,26 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static const month = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
+
   static const balance = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
+
+  static const currentBalance = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
 
   static const greeting = TextStyle(
-    fontSize: 12.0,
+    fontSize: 18.0,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
