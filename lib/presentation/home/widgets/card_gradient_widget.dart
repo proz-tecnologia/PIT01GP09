@@ -47,7 +47,7 @@ class CardGradientWidget extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 8),
+              padding: const EdgeInsets.only(top: 16, bottom: 1),
               child: Stack(
                 alignment: AlignmentDirectional.topStart,
                 children: [
