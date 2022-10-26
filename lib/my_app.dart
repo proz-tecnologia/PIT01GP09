@@ -14,11 +14,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: const MyHomePage(title: 'SOMAi Finance'),
       initialRoute: '/home',
       routes: {
-        '/home': (context) => MyHomePage(title: 'SOMAi Finance'),
-        '/help_home': (context) => PrintHomePageFigma(),
+        '/home': (context) => const MyHomePage(title: 'SOMAi Finance'),
+        '/help_home': (context) => const PrintHomePageFigma(),
         '/homeT': (context) => Home(),
       },
     );
