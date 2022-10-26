@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../resources/colors.dart';
-import '../../../resources/strings.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class CardChartWidget extends StatefulWidget {
   const CardChartWidget({super.key});
@@ -17,30 +13,31 @@ class _CardChartWidgetState extends State<CardChartWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const Padding(
+          padding: EdgeInsets.only(left: 16, bottom: 20),
+          child: Text(
+            'Gráficos',
+            style: TextStyle(
+              color: AppColors.blackSwan,
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
         Container(
-          height: MediaQuery.of(context).size.width * 0.8,
-          width: MediaQuery.of(context).size.width,
-          color: AppColors.graySuperLight,
+          margin: const EdgeInsets.only(left: 12),
+          height: 222,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: const Text('Gráficos'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      loadChart(context),
-                      loadChart(context),
-                      loadChart(context),
-                    ],
-                  ),
+                  loadChart(context),
+                  loadChart(context),
+                  loadChart(context),
                 ],
               ),
             ],
@@ -50,18 +47,18 @@ class _CardChartWidgetState extends State<CardChartWidget> {
     );
   }
 
-  loadChart(context) {
+  Widget loadChart(context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8, right: 20),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.width * 0.55,
+        width: 314,
+        height: 222,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(20),
           color: AppColors.whiteSnow,
         ),
-        child: Center(
-          child: CircularProgressIndicator(),
+        child: const Center(
+          child: Text('Gráfico'),
         ),
       ),
     );
