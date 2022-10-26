@@ -15,55 +15,71 @@ class _CardFinancialStatementWidgetState
     extends State<CardFinancialStatementWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 70,
-      color: AppColors.graySuperLight,
-      // child: const Text(Strings.titleGraphics),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.45,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              height: 60,
               decoration: BoxDecoration(
                   color: AppColors.whiteSnow,
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(20)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text(Strings.income),
+                  Text(
+                    Strings.income,
+                    style: TextStyle(
+                      color: AppColors.grayDark,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(height: 7),
                   Text(
                     'RS 20.250,30',
                     style: TextStyle(
                       color: AppColors.greenVibrant,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.45,
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Container(
+              height: 60,
               decoration: BoxDecoration(
                   color: AppColors.whiteSnow,
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(20)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text(Strings.expenses),
+                  Text(
+                    Strings.expenses,
+                    style: TextStyle(
+                      color: AppColors.grayDark,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(height: 7),
                   Text(
                     '14.975,90',
                     style: TextStyle(
-                      color: AppColors.redWine,
-                    ),
+                        color: AppColors.redWine,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
