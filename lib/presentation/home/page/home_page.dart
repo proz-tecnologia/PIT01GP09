@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test/presentation/home/widgets/card_chart_widget.dart';
+import 'package:test/presentation/home/widgets/card_education_widget.dart';
+import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
 import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
-
-import '../../../resources/strings.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -14,55 +15,55 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currentIndex = 0;
+
+  void onItemPressed(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.graySuperLight,
         body: Center(
           child: ListView(
             children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CardGradientWidget(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: const [
-                          Text(Strings.income),
-                          Text(Strings.balance)
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          Text(Strings.expenses),
-                          Text(Strings.balance),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.30,
-                    width: MediaQuery.of(context).size.width,
-                    color: AppColors.amberPeach,
-                    child: const Text(Strings.titleGraphics),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.30,
-                    width: MediaQuery.of(context).size.width,
-                    color: AppColors.grayTwo,
-                    child: const Text(Strings.financialEducation),
-                  ),
+                children: const [
+                  CardGradientWidget(),
+                  CardFinancialStatementWidget(),
+                  CardChartWidget(),
+                  CardEducationWidget(),
                 ],
               ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.blueVibrant,
           onPressed: () {},
           tooltip: 'Increment',
           child: const Icon(Icons.add),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: AppColors.blueVibrant,
+          unselectedItemColor: AppColors.grayTwo,
+          currentIndex: currentIndex,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.currency_exchange), label: 'Transações'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_balance), label: 'Bancos'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.more_horiz), label: 'Mais'),
+          ],
+          onTap: onItemPressed,
         ),
       ),
     );
