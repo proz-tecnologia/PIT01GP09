@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../resources/colors.dart';
+import 'pie_chart_widget.dart';
 
 class CardChartWidget extends StatefulWidget {
   const CardChartWidget({super.key});
@@ -51,14 +52,35 @@ class _CardChartWidgetState extends State<CardChartWidget> {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 20),
       child: Container(
+        // width: MediaQuery.of(context).size.width * 0.7,
+        // height: MediaQuery.of(context).size.width * 0.50,
         width: 314,
         height: 222,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: AppColors.whiteSnow,
         ),
-        child: const Center(
-          child: Text('Gráfico'),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            PieChartSample2(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Receitas'),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    '70%',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
