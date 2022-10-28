@@ -52,8 +52,6 @@ class _CardChartWidgetState extends State<CardChartWidget> {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 20),
       child: Container(
-        // width: MediaQuery.of(context).size.width * 0.7,
-        // height: MediaQuery.of(context).size.width * 0.50,
         width: 314,
         height: 222,
         decoration: BoxDecoration(
@@ -63,7 +61,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            PieChartSample2(),
+            const PieChartSample2(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
