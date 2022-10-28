@@ -12,7 +12,9 @@ class CardGradientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      width: screenWidth,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
@@ -39,7 +41,6 @@ class CardGradientWidget extends StatelessWidget {
               alignment: AlignmentDirectional.centerEnd,
               children: const [
                 SizedBox(
-                  width: 400,
                   height: 67,
                   child: MonthPicker(),
                 ),
@@ -48,41 +49,47 @@ class CardGradientWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 1),
-              child: Stack(
-                alignment: AlignmentDirectional.topStart,
+              child: Row(
                 children: [
-                  SizedBox(
-                    width: 400,
-                    height: 175,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Expanded(
+                    child: Stack(
+                      fit: StackFit.passthrough,
                       children: [
-                        const Text(
-                          Strings.greeting,
-                          style: AppTextStyles.greeting,
+                        SizedBox(
+                          width: 400,
+                          height: 175,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                Strings.greeting,
+                                style: AppTextStyles.greeting,
+                              ),
+                              Image.asset(
+                                'assets/images/pig-and-coins.png',
+                                width: 249,
+                                height: 128,
+                              ),
+                            ],
+                          ),
                         ),
-                        Image.asset(
-                          'assets/images/pig-and-coins.png',
-                          width: 249,
+                        SizedBox(
+                          width: 178,
                           height: 128,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                Strings.balance,
+                                style: AppTextStyles.balance,
+                              ),
+                              CurrentBalance(),
+                              EarnPoints(),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 178,
-                    height: 128,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          Strings.balance,
-                          style: AppTextStyles.balance,
-                        ),
-                        CurrentBalance(),
-                        EarnPoints(),
                       ],
                     ),
                   ),
