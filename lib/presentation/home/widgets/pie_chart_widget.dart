@@ -1,8 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-//https://pub.dev/packages/fl_chart
-
 class PieChartSample2 extends StatefulWidget {
   const PieChartSample2({super.key});
 
@@ -17,54 +15,51 @@ class PieChart2State extends State {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.3,
-      child: Card(
-        color: Colors.white,
-        child: Row(
-          children: <Widget>[
-            const SizedBox(
-              height: 18,
-            ),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: PieChart(
-                  PieChartData(
-                    pieTouchData: PieTouchData(
-                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                        setState(() {
-                          if (!event.isInterestedForInteractions ||
-                              pieTouchResponse == null ||
-                              pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                          touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
-                        });
-                      },
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 2,
-                    centerSpaceRadius: 65,
-                    sections: showingSections(),
+      child: Row(
+        children: <Widget>[
+          const SizedBox(
+            height: 18,
+          ),
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
                   ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 2,
+                  centerSpaceRadius: 65,
+                  sections: showingSections(),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(2, (i) {
-      final isTouched = i == touchedIndex;
+    return List.generate(2, (int index) {
+      final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
       final radius = isTouched ? 35.0 : 12.0;
-      switch (i) {
+      switch (index) {
         case 0:
           return PieChartSectionData(
             color: const Color(0xFF3CF3A6),
