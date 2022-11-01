@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'presentation/figma/home_page_figma.dart';
-import 'presentation/home/page/homeT.dart';
 import 'presentation/home/page/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,7 +17,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const MyHomePage(title: 'SOMAi Finance'),
         '/help_home': (context) => const PrintHomePageFigma(),
-        '/homeT': (context) => Home(),
       },
     );
   }
