@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/resources/colors.dart';
-
 import '../../../resources/strings.dart';
+import 'card_tips.dart';
 
 class CardEducationWidget extends StatefulWidget {
   const CardEducationWidget({super.key});
@@ -13,19 +13,34 @@ class CardEducationWidget extends StatefulWidget {
 class _CardEducationWidgetState extends State<CardEducationWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 20),
-      height: MediaQuery.of(context).size.height * 0.30,
-      width: MediaQuery.of(context).size.width,
-      color: AppColors.amberPeach,
-      child: const Text(
-        Strings.financialEducation,
-        style: TextStyle(
-          color: AppColors.blackSwan,
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 16, top: 20, bottom: 20),
+        child: Text(
+          Strings.financialEducation,
+          style: TextStyle(
+            color: AppColors.blackSwan,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
-    );
+      Container(
+          margin: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+          height: 222,
+          child: ListView(scrollDirection: Axis.horizontal, children: [
+            Row(
+              children: [
+                CardTips(),
+                SizedBox(width: 20),
+                CardTips(),
+                SizedBox(width: 20),
+                CardTips(),
+                SizedBox(width: 20),
+                CardTips(),
+              ],
+            )
+          ])),
+    ]);
   }
 }

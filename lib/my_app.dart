@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const MyHomePage(title: 'SOMAi Finance'),
         '/help_home': (context) => const PrintHomePageFigma(),
+
       },
     );
   }
 }
+
+
