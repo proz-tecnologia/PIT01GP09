@@ -14,8 +14,8 @@ class _CardEducationWidgetState extends State<CardEducationWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 16, top: 20, bottom: 20),
+      const Padding(
+        padding: EdgeInsets.only(left: 16, top: 20, bottom: 20),
         child: Text(
           Strings.financialEducation,
           style: TextStyle(
@@ -30,7 +30,7 @@ class _CardEducationWidgetState extends State<CardEducationWidget> {
           height: 222,
           child: ListView(scrollDirection: Axis.horizontal, children: [
             Row(
-              children: [
+              children: const [
                 CardTips(),
                 SizedBox(width: 20),
                 CardTips(),
