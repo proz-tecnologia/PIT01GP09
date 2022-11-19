@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test/presentation/home/controller/transaction_controller.dart';
+import 'package:test/presentation/home/controller/transaction_state.dart';
 import 'package:test/presentation/home/widgets/card_chart_widget.dart';
 import 'package:test/presentation/home/widgets/card_education_widget.dart';
 import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
@@ -25,6 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final transactionController = context.watch<TransactionController>();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.graySuperLight,
@@ -33,11 +38,55 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CardGradientWidget(),
-                  CardFinancialStatementWidget(),
-                  CardChartWidget(),
-                  CardEducationWidget(),
+                children: [
+                  const CardGradientWidget(),
+                  const CardFinancialStatementWidget(),
+                  SizedBox(
+                    height: 200,
+                    //color: AppColors.blueVibrant,
+                    child: ValueListenableBuilder<TransactionState>(
+                      valueListenable: transactionController,
+                      builder: (_, state, __) {
+                        if (state is TransactionLoadingState) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                        if (state is TransactionSuccessState) {
+                          return Container(
+                            height: 100,
+                            color: Colors.red,
+                            width: 20,
+                            child: ListView.builder(
+                              itemCount: state.transactionListModel.length,
+                              itemBuilder: ((context, index) {
+                                final transactionItem =
+                                    state.transactionListModel[index];
+                                return ListTile(
+                                  leading: Text(
+                                    transactionItem.type,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  title: Text(transactionItem.description),
+                                  subtitle: Text(transactionItem.category),
+                                );
+                              }),
+                            ),
+                          );
+                        }
+                        if (state is TransactionErrorState) {
+                          return Center(
+                            child: Text(state.message),
+                          );
+                        }
+                        return Container();
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const CardChartWidget(),
+                  const CardEducationWidget(),
                 ],
               ),
             ],
