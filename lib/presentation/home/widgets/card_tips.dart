@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test/resources/colors.dart';
-import '../../../resources/strings.dart';
-import '../../../resources/text_style.dart';
-
-
 
 class CardTips extends StatelessWidget {
   const CardTips({
@@ -18,23 +14,21 @@ class CardTips extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: AppColors.whiteSnow,
-
         ),
         child: Stack(
           children: [
             Container(
               height: 149,
               width: 276,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
-
                 color: AppColors.amberPeach,
               ),
             ),
-            Positioned(
+            const Positioned(
               left: 10,
               top: 155,
               child: Text(
@@ -49,7 +43,7 @@ class CardTips extends StatelessWidget {
             Positioned(
               bottom: 22,
               right: 16,
-              child: Row(children: [
+              child: Row(children: const [
                 Text(
                   '+ ARTIGOS',
                   style: TextStyle(
