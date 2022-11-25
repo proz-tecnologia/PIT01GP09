@@ -7,6 +7,7 @@ class TransactionModel {
     required this.category,
     required this.type,
     required this.value,
+    required this.date,
   });
 
   String? id;
@@ -14,6 +15,7 @@ class TransactionModel {
   final String category;
   final String type;
   final double value;
+  final DateTime date;
 
   TransactionModel copyWith({
     String? id,
@@ -21,6 +23,7 @@ class TransactionModel {
     String? category,
     String? type,
     double? value,
+    DateTime? date,
   }) =>
       TransactionModel(
         id: id ?? this.id,
@@ -28,6 +31,7 @@ class TransactionModel {
         category: category ?? this.category,
         type: type ?? this.type,
         value: value ?? this.value,
+        date: date ?? this.date,
       );
 
   factory TransactionModel.fromJson(String str) =>
@@ -42,6 +46,7 @@ class TransactionModel {
         category: json["category"],
         type: json["type"],
         value: json["value"],
+        date: json["date"] ?? DateTime.now(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -50,10 +55,11 @@ class TransactionModel {
         "category": category,
         "type": type,
         "value": value,
+        "date": date,
       };
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, description: $description, category: $category, type: $type, value: $value)';
+    return 'TransactionModel(id: $id, description: $description, category: $category, type: $type, value: $value, date: $date)';
   }
 }
