@@ -20,6 +20,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    final transactionController =
+        Provider.of<TransactionController>(context, listen: false);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      transactionController.getTransactionList();
+    });
+  }
+
   void onItemPressed(int index) {
     setState(() {
       currentIndex = index;
@@ -41,9 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   const CardGradientWidget(),
                   const CardFinancialStatementWidget(),
-                  SizedBox(
+                  Container(
                     height: 200,
-                    //color: AppColors.blueVibrant,
+                    color: AppColors.amberPeach,
                     child: ValueListenableBuilder<TransactionState>(
                       valueListenable: transactionController,
                       builder: (_, state, __) {
@@ -52,27 +63,22 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: CircularProgressIndicator());
                         }
                         if (state is TransactionSuccessState) {
-                          return Container(
-                            height: 100,
-                            color: Colors.red,
-                            width: 20,
-                            child: ListView.builder(
-                              itemCount: state.transactionListModel.length,
-                              itemBuilder: ((context, index) {
-                                final transactionItem =
-                                    state.transactionListModel[index];
-                                return ListTile(
-                                  leading: Text(
-                                    transactionItem.type,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                    ),
+                          return ListView.builder(
+                            itemCount: state.transactionListModel.length,
+                            itemBuilder: ((context, index) {
+                              final transactionItem =
+                                  state.transactionListModel[index];
+                              return ListTile(
+                                leading: Text(
+                                  transactionItem.type,
+                                  style: const TextStyle(
+                                    color: Colors.black,
                                   ),
-                                  title: Text(transactionItem.description),
-                                  subtitle: Text(transactionItem.category),
-                                );
-                              }),
-                            ),
+                                ),
+                                title: Text(transactionItem.description),
+                                subtitle: Text(transactionItem.category),
+                              );
+                            }),
                           );
                         }
                         if (state is TransactionErrorState) {
