@@ -12,11 +12,13 @@ class NumericKeyboardPage extends StatefulWidget {
 class _NumericKeyboardPageState extends State<NumericKeyboardPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 66,
-        backgroundColor: AppColors.blueVibrant,
-        elevation: 0,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 66,
+          backgroundColor: AppColors.blueVibrant,
+          elevation: 0,
+        ),
       ),
     );
   }
