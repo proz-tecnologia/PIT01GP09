@@ -1,7 +1,9 @@
 class Strings {
   static const appName = 'Finance App';
-  static const income = 'Receitas';
+  static const revenue = 'Receitas';
+  static const income = 'Receita';
   static const expenses = 'Despesas';
+  static const expense = 'Despesa';
   static const financialEducation = 'Educação Financeira';
   static const titleGraphics = 'Gráficos';
   static const balance = 'Saldo';
@@ -9,4 +11,10 @@ class Strings {
   static const currentBalance = 'R\$ 1.000,00';
   static const earnPoints = '      Ganhe pontos!';
   static const greeting = 'Salve, Mary!';
+  static const value = 'Valor';
+  static const valueZero = '0,00';
+  static const description = 'Descrição';
+  static const category = 'Categoria';
+  static const date = '  Data';
+  static const add = 'Adicionar';
 }

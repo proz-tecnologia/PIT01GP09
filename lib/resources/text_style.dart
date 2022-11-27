@@ -67,4 +67,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.grayDark,
   );
+
+  static const input = TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.blackSwan,
+  );
 }

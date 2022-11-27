@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:test/resources/colors.dart';
 
+import '../../../resources/strings.dart';
 import '../../../resources/text_style.dart';
-import '../widgets/form_widget.dart';
+import '../widgets/form_fields_widget.dart';
 import '../widgets/top_card_widget.dart';
 
 class AddPage extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AddPageState extends State<AddPage> {
                         ),
                         onPressed: onPressed,
                         child: const Text(
-                          'Adicionar',
+                          Strings.add,
                           style: AppTextStyles.greeting,
                         )),
                   )

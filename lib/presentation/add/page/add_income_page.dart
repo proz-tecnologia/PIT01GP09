@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:test/presentation/add/page/add_page.dart';
 import 'package:test/resources/colors.dart';
 
+import '../../../resources/strings.dart';
+
 const List<String> list = <String>[
   "",
   "Salário",
@@ -20,7 +22,7 @@ class AddIncomePage extends StatefulWidget {
 class _AddIncomePageState extends State<AddIncomePage> {
   get color => AppColors.greenVibrant;
 
-  get type => 'Receita';
+  get type => Strings.income;
 
   @override
   Widget build(BuildContext context) {

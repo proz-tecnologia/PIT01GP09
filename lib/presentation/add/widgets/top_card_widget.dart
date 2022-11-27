@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../resources/colors.dart';
+import '../../../resources/strings.dart';
 import '../../../resources/text_style.dart';
 
 class TopCard extends StatefulWidget {
@@ -38,7 +38,7 @@ class _TopCardState extends State<TopCard> {
                   fit: StackFit.passthrough,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 168,
                         child: Text(
@@ -57,11 +57,11 @@ class _TopCardState extends State<TopCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: const [
                             Text(
-                              'Valor',
+                              Strings.value,
                               style: AppTextStyles.greeting,
                             ),
                             Text(
-                              '0,00',
+                              Strings.valueZero,
                               style: AppTextStyles.bigNumber,
                             ),
                           ],

@@ -9,7 +9,8 @@ import 'package:test/presentation/home/widgets/card_financial_statement_widget.d
 import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 
-import '../../add/page/add_expenses_page.dart';
+import '../../../resources/strings.dart';
+import '../../add/page/add_expense_page.dart';
 import '../../add/page/add_income_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -110,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SpeedDialChild(
               backgroundColor: AppColors.redWine,
               child: const Icon(Icons.remove),
-              label: 'Despesa',
+              label: Strings.expense,
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -121,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SpeedDialChild(
               backgroundColor: AppColors.greenVibrant,
               child: const Icon(Icons.add),
-              label: 'Receita',
+              label: Strings.income,
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(

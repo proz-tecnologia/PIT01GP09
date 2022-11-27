@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../resources/colors.dart';
+import '../../../resources/strings.dart';
 import '../../../resources/text_style.dart';
-import '../page/add_expenses_page.dart';
+import '../page/add_expense_page.dart';
 
 class FormFields extends StatefulWidget {
   const FormFields({
@@ -36,12 +37,11 @@ class _FormFieldsState extends State<FormFields> {
       initialDate: _date,
       firstDate: DateTime(2022, 1),
       lastDate: DateTime(2022, 12),
-      helpText: 'Select a date',
     );
     if (newDate != null) {
       setState(() {
         _dateController.text =
-            DateFormat('            dd/MM/yyyy').format(newDate);
+            DateFormat('           dd/MM/yyyy').format(newDate);
       });
     }
   }
@@ -49,26 +49,28 @@ class _FormFieldsState extends State<FormFields> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 72, left: 32.0, right: 32),
+      padding: const EdgeInsets.only(top: 72.0, left: 32.0, right: 32.0),
       child: Column(
         children: [
           TextFormField(
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.description),
-              labelText: 'Descrição',
+              labelText: Strings.description,
               labelStyle: AppTextStyles.data,
             ),
+            style: AppTextStyles.input,
           ),
           FormField<String>(builder: (FormFieldState<String> state) {
             return InputDecorator(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.list),
-                labelText: 'Categoria',
+                labelText: Strings.category,
                 labelStyle: AppTextStyles.data,
               ),
               isEmpty: _dropdownValue == '',
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
+                  style: AppTextStyles.input,
                   value: _dropdownValue,
                   isDense: true,
                   icon: const Icon(Icons.arrow_downward),
@@ -97,7 +99,7 @@ class _FormFieldsState extends State<FormFields> {
                   color: AppColors.grayDark,
                 ),
                 Text(
-                  '  Data',
+                  Strings.date,
                   style: AppTextStyles.data,
                 ),
               ],
@@ -105,6 +107,7 @@ class _FormFieldsState extends State<FormFields> {
           ),
           FormField<String>(builder: (FormFieldState<String> state) {
             return TextFormField(
+              style: AppTextStyles.input,
               readOnly: true,
               controller: _dateController,
               decoration: const InputDecoration(
