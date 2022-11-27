@@ -55,4 +55,16 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
+
+  static const bigNumber = TextStyle(
+    fontSize: 50.0,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
+  static const data = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.grayDark,
+  );
 }
