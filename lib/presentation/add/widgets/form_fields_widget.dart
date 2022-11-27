@@ -56,7 +56,7 @@ class _FormFieldsState extends State<FormFields> {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.description),
               labelText: Strings.description,
-              labelStyle: AppTextStyles.data,
+              labelStyle: AppTextStyles.date,
             ),
             style: AppTextStyles.input,
           ),
@@ -65,7 +65,7 @@ class _FormFieldsState extends State<FormFields> {
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.list),
                 labelText: Strings.category,
-                labelStyle: AppTextStyles.data,
+                labelStyle: AppTextStyles.date,
               ),
               isEmpty: _dropdownValue == '',
               child: DropdownButtonHideUnderline(
@@ -100,7 +100,7 @@ class _FormFieldsState extends State<FormFields> {
                 ),
                 Text(
                   Strings.date,
-                  style: AppTextStyles.data,
+                  style: AppTextStyles.date,
                 ),
               ],
             ),

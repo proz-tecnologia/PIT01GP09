@@ -10,8 +10,6 @@ import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 
 import '../../../resources/strings.dart';
-import '../../add/page/add_expense_page.dart';
-import '../../add/page/add_income_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -112,23 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: AppColors.redWine,
               child: const Icon(Icons.remove),
               label: Strings.expense,
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AddExpensePage())).then((_) {
-                setState(() {});
-              }),
+              onTap: () => Navigator.pushNamed(context, '/add_expense'),
             ),
             SpeedDialChild(
               backgroundColor: AppColors.greenVibrant,
               child: const Icon(Icons.add),
               label: Strings.income,
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AddIncomePage())).then((_) {
-                setState(() {});
-              }),
+              onTap: () => Navigator.pushNamed(context, '/add_income'),
             ),
           ],
         ),

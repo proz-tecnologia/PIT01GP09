@@ -62,7 +62,7 @@ class AppTextStyles {
     color: Colors.white,
   );
 
-  static const data = TextStyle(
+  static const date = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.w600,
     color: AppColors.grayDark,

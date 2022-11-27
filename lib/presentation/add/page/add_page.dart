@@ -24,11 +24,6 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-  void onPressed() {
-    int count = 0;
-    count++;
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -56,7 +51,7 @@ class _AddPageState extends State<AddPage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: widget.color,
                         ),
-                        onPressed: onPressed,
+                        onPressed: () => Navigator.pop(context, true),
                         child: const Text(
                           Strings.add,
                           style: AppTextStyles.greeting,

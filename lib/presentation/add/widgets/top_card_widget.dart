@@ -55,14 +55,18 @@ class _TopCardState extends State<TopCard> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               Strings.value,
                               style: AppTextStyles.greeting,
                             ),
-                            Text(
-                              Strings.valueZero,
-                              style: AppTextStyles.bigNumber,
+                            InkWell(
+                              child: const Text(
+                                Strings.valueZero,
+                                style: AppTextStyles.bigNumber,
+                              ),
+                              onTap: () =>
+                                  Navigator.pushNamed(context, '/keyboard'),
                             ),
                           ],
                         ),
