@@ -9,4 +9,5 @@ class Strings {
   static const currentBalance = 'R\$ 1.000,00';
   static const earnPoints = '      Ganhe pontos!';
   static const greeting = 'Salve, Mary!';
+  static const transactions = 'Transações';
 }
