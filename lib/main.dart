@@ -13,18 +13,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   locator.setup();
-  final Dio dio = Dio();
-  final httpClient = TransactionRepositoryImpl(dio);
+  // final Dio dio = Dio();
+  // final httpClient = TransactionRepositoryImpl(dio);
 
-  await httpClient.createTransaction(
-    TransactionModel(
-      description: 'Herança de família',
-      category: 'Herança',
-      type: 'Receita',
-      value: 3000.0, 
-      date: DateTime.now(),
-    ),
-  );
+  // await httpClient.createTransaction(
+  //   TransactionModel(
+  //     description: 'Herança de família',
+  //     category: 'Herança',
+  //     type: 'Receita',
+  //     value: 3000.0, 
+  //     date: DateTime.now(),
+  //   ),
+  // );
 
   //await httpClient.getTransactionList();
 
