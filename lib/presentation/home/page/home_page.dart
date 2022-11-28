@@ -8,16 +8,16 @@ import 'package:test/presentation/home/widgets/card_financial_statement_widget.d
 import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({
+    super.key,
+  });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   @override
@@ -109,13 +109,20 @@ class _MyHomePageState extends State<MyHomePage> {
           unselectedItemColor: AppColors.grayTwo,
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          items: [
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.currency_exchange), label: 'Transações'),
-            BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('/transactions'),
+                  child: const Icon(
+                    Icons.currency_exchange,
+                  ),
+                ),
+                label: 'Transações'),
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance), label: 'Bancos'),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.more_horiz), label: 'Mais'),
           ],
           onTap: onItemPressed,
