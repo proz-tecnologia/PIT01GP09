@@ -9,7 +9,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
 
   TransactionRepositoryImpl(this._dio);
 
-  final _baseUrl = 'https://crudcrud.com/api/89334b3ae3224542839db6a3c0cc087b';
+  final _baseUrl = 'https://crudcrud.com/api/254b81ffeeb041a286605c11afdb9585';
 
   @override
   Future<List<TransactionModel>> getTransactionList() async {

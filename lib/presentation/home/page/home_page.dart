@@ -10,7 +10,6 @@ import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/strings.dart';
 import '../../../resources/shared_widgets/transaction_card_widget.dart';
-import '../../../resources/strings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
