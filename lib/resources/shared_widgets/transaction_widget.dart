@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:test/data/models/transaction_model.dart';
+import 'package:test/resources/colors.dart';
 import 'package:test/resources/shared_widgets/transaction_card_widget.dart';
 
 class TransactionWidget extends StatefulWidget {
   final String appBarTitle;
   final Color appBarColor;
   final String date;
+  final List<TransactionModel> transactionsList;
   const TransactionWidget({
     super.key,
     required this.appBarColor,
     required this.appBarTitle,
     required this.date,
+    required this.transactionsList,
   });
 
   @override
@@ -28,12 +32,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
             child: const Icon(
               Icons.arrow_back,
             )),
-        title: Text(
-          widget.appBarTitle,
-          style: const TextStyle(
-            fontSize: 18,
-          )
-        ),
+        title: Text(widget.appBarTitle,
+            style: const TextStyle(
+              fontSize: 18,
+            )),
         elevation: 0,
         flexibleSpace: Container(
           width: double.maxFinite,
@@ -65,7 +67,12 @@ class _TransactionWidgetState extends State<TransactionWidget> {
               ),
             ),
             const SizedBox(height: 5),
-            const TransactionCardWidget()
+            TransactionCardWidget(
+              cardColor: AppColors.graySuperLight,
+              leftPadding: 0,
+              rightPadding: 0,
+              transactionsList: widget.transactionsList,
+            )
           ],
         ),
       ),
