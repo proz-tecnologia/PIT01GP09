@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:test/presentation/home/controller/transaction_controller.dart';
 import 'package:test/presentation/home/controller/transaction_state.dart';
@@ -101,11 +102,24 @@ class _MyHomePageState extends State<HomePage> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
           backgroundColor: AppColors.blueVibrant,
-          onPressed: () {},
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
+          overlayOpacity: 0.4,
+          children: [
+            SpeedDialChild(
+              backgroundColor: AppColors.redWine,
+              child: const Icon(Icons.remove),
+              label: Strings.expense,
+              onTap: () => Navigator.pushNamed(context, '/add_expense'),
+            ),
+            SpeedDialChild(
+              backgroundColor: AppColors.greenVibrant,
+              child: const Icon(Icons.add),
+              label: Strings.income,
+              onTap: () => Navigator.pushNamed(context, '/add_income'),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: AppColors.blueVibrant,
