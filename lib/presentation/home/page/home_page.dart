@@ -8,19 +8,19 @@ import 'package:test/presentation/home/widgets/card_education_widget.dart';
 import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
 import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
+import 'package:test/resources/strings.dart';
+import '../../../resources/shared_widgets/transaction_card_widget.dart';
 
-import '../../../resources/strings.dart';
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({
+    super.key,
+  });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   @override
@@ -51,37 +51,37 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
             children: <Widget>[
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CardGradientWidget(),
                   const CardFinancialStatementWidget(),
-                  Container(
-                    height: 200,
-                    color: AppColors.amberPeach,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16, bottom: 20),
+                    child: Text(
+                      Strings.recents,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 150,
                     child: ValueListenableBuilder<TransactionState>(
                       valueListenable: transactionController,
                       builder: (_, state, __) {
                         if (state is TransactionLoadingState) {
                           return const Center(
-                              child: CircularProgressIndicator());
+                              child: CircularProgressIndicator(
+                            color: AppColors.blueVibrant,
+                          ));
                         }
                         if (state is TransactionSuccessState) {
-                          return ListView.builder(
-                            itemCount: state.transactionListModel.length,
-                            itemBuilder: ((context, index) {
-                              final transactionItem =
-                                  state.transactionListModel[index];
-                              return ListTile(
-                                leading: Text(
-                                  transactionItem.type,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                title: Text(transactionItem.description),
-                                subtitle: Text(transactionItem.category),
-                              );
-                            }),
+                          return TransactionCardWidget(
+                            transactionsList: state.transactionListModel,
+                            cardColor: AppColors.whiteSnow,
+                            leftPadding: 16,
+                            rightPadding: 16,
                           );
                         }
                         if (state is TransactionErrorState) {
@@ -125,13 +125,20 @@ class _MyHomePageState extends State<MyHomePage> {
           unselectedItemColor: AppColors.grayTwo,
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          items: [
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.currency_exchange), label: 'Transações'),
-            BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('/transactions'),
+                  child: const Icon(
+                    Icons.currency_exchange,
+                  ),
+                ),
+                label: 'Transações'),
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance), label: 'Bancos'),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.more_horiz), label: 'Mais'),
           ],
           onTap: onItemPressed,

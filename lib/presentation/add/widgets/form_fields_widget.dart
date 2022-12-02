@@ -36,7 +36,7 @@ class _FormFieldsState extends State<FormFields> {
       context: context,
       initialDate: _date,
       firstDate: DateTime(2022, 1),
-      lastDate: DateTime(2022, 12),
+      lastDate: DateTime(2022, 12, 31),
     );
     if (newDate != null) {
       setState(() {

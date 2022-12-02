@@ -22,60 +22,66 @@ class _CardFinancialStatementWidgetState
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                  color: AppColors.whiteSnow,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    Strings.revenue,
-                    style: TextStyle(
-                      color: AppColors.grayDark,
-                      fontSize: 18,
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed('/income'),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                    color: AppColors.whiteSnow,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      Strings.income,
+                      style: TextStyle(
+                        color: AppColors.grayDark,
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 7),
-                  Text(
-                    'R\$ 20.250,30',
-                    style: TextStyle(
-                      color: AppColors.greenVibrant,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                    SizedBox(height: 7),
+                    Text(
+                      'R\$ 20.250,30',
+                      style: TextStyle(
+                        color: AppColors.greenVibrant,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                  color: AppColors.whiteSnow,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    Strings.expenses,
-                    style: TextStyle(
-                      color: AppColors.grayDark,
-                      fontSize: 18,
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed('/expenses'),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                    color: AppColors.whiteSnow,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      Strings.expenses,
+                      style: TextStyle(
+                        color: AppColors.grayDark,
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 7),
-                  Text(
-                    'R\$ 14.975,90',
-                    style: TextStyle(
-                        color: AppColors.redWine,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+                    SizedBox(height: 7),
+                    Text(
+                      'R\$ 14.975,90',
+                      style: TextStyle(
+                          color: AppColors.redWine,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -14,4 +14,5 @@ class AppColors {
   static const grayTwo = Color(0xFFAEAEAE);
   static const graySuperLight = Color(0xFFF5F5F5);
   static const whiteSnow = Color(0xFFFFFFFF);
+  static const transparent = Color.fromARGB(0, 255, 255, 255);
 }

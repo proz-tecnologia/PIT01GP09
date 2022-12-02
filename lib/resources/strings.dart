@@ -11,6 +11,8 @@ class Strings {
   static const currentBalance = 'R\$ 1.000,00';
   static const earnPoints = '      Ganhe pontos!';
   static const greeting = 'Salve, Mary!';
+  static const transactions = 'Transações';
+  static const recents = 'Recentes';
   static const value = 'Valor';
   static const valueZero = '0,00';
   static const description = 'Descrição';
