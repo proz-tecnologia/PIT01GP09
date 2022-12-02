@@ -7,7 +7,9 @@ import 'package:test/locator.dart';
 import 'locator.dart' as locator;
 
 import 'my_app.dart';
+import 'presentation/expenses/controller/expenses_controller.dart';
 import 'presentation/home/controller/transaction_controller.dart';
+import 'presentation/income/controller/income_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +23,7 @@ void main() async {
   //     description: 'Herança de família',
   //     category: 'Herança',
   //     type: 'Receita',
-  //     value: 3000.0, 
+  //     value: 9000.0,
   //     date: DateTime.now(),
   //   ),
   // );
@@ -41,6 +43,16 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => ExpensesController(
+            transactionRepository: getIt(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => IncomeController(
+            transactionRepository: getIt(),
+          ),
+        ),
         ChangeNotifierProvider(
           create: (_) => TransactionController(
             transactionRepository: getIt(),
