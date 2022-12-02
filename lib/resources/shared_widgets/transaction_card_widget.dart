@@ -2,8 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:test/data/models/transaction_model.dart';
 import 'package:test/resources/colors.dart';
 
+// ignore: must_be_immutable
 class TransactionCardWidget extends StatefulWidget {
-  const TransactionCardWidget({super.key});
+  final Color cardColor;
+  final double leftPadding;
+  final double rightPadding;
+  final List<TransactionModel> transactionsList;
+
+  const TransactionCardWidget({
+    super.key,
+    required this.cardColor,
+    required this.leftPadding,
+    required this.rightPadding,
+    required this.transactionsList,
+  });
 
   @override
   State<TransactionCardWidget> createState() => _TransactionCardWidgetState();
@@ -15,47 +27,34 @@ class _TransactionCardWidgetState extends State<TransactionCardWidget> {
     super.initState();
   }
 
-  List<TransactionModel> fakeTransactionList = [
-    TransactionModel(
-      description: 'Herança de família',
-      category: 'Herança',
-      type: 'Receita',
-      value: 3000.0,
-      date: DateTime.now(),
-    ),
-    TransactionModel(
-      description: 'Consulta médica',
-      category: 'Saúde',
-      type: 'Despesa',
-      value: 3000.0,
-      date: DateTime.now(),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: 370,
+          height: 150,
           width: double.maxFinite,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: fakeTransactionList.length,
+            itemCount: widget.transactionsList.length,
             itemBuilder: (BuildContext context, int index) {
-              final listItem = fakeTransactionList[index];
+              final listItem = widget.transactionsList[index];
               return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: EdgeInsets.only(
+                  left: widget.leftPadding,
+                  right: widget.rightPadding,
+                  bottom: 16,
+                ),
                 child: Container(
                   height: 60,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                    color: AppColors.graySuperLight,
+                    color: widget.cardColor,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: AppColors.graySuperLight,
+                      color: widget.cardColor,
                     ),
                   ),
                   child: Padding(
