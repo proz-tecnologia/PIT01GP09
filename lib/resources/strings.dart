@@ -10,4 +10,5 @@ class Strings {
   static const earnPoints = '      Ganhe pontos!';
   static const greeting = 'Salve, Mary!';
   static const transactions = 'Transações';
+  static const recents = 'Recentes';
 }
