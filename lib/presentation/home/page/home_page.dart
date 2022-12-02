@@ -12,9 +12,6 @@ import 'package:test/resources/strings.dart';
 import '../../../resources/shared_widgets/transaction_card_widget.dart';
 import '../../../resources/strings.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
