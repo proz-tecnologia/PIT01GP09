@@ -41,7 +41,7 @@ class _CardFinancialStatementWidgetState
                     ),
                     SizedBox(height: 7),
                     Text(
-                      'RS 20.250,30',
+                      'R\$ 20.250,30',
                       style: TextStyle(
                         color: AppColors.greenVibrant,
                         fontSize: 20,
@@ -74,7 +74,7 @@ class _CardFinancialStatementWidgetState
                     ),
                     SizedBox(height: 7),
                     Text(
-                      '14.975,90',
+                      'R\$ 14.975,90',
                       style: TextStyle(
                           color: AppColors.redWine,
                           fontSize: 20,
