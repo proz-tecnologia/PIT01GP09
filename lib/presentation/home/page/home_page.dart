@@ -7,6 +7,9 @@ import 'package:test/presentation/home/widgets/card_education_widget.dart';
 import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
 import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
+import 'package:test/resources/strings.dart';
+
+import '../../../resources/shared_widgets/transaction_card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -48,37 +51,37 @@ class _MyHomePageState extends State<HomePage> {
           child: ListView(
             children: <Widget>[
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CardGradientWidget(),
                   const CardFinancialStatementWidget(),
-                  Container(
-                    height: 200,
-                    color: AppColors.amberPeach,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16, bottom: 20),
+                    child: Text(
+                      Strings.recents,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 150,
                     child: ValueListenableBuilder<TransactionState>(
                       valueListenable: transactionController,
                       builder: (_, state, __) {
                         if (state is TransactionLoadingState) {
                           return const Center(
-                              child: CircularProgressIndicator());
+                              child: CircularProgressIndicator(
+                            color: AppColors.blueVibrant,
+                          ));
                         }
                         if (state is TransactionSuccessState) {
-                          return ListView.builder(
-                            itemCount: state.transactionListModel.length,
-                            itemBuilder: ((context, index) {
-                              final transactionItem =
-                                  state.transactionListModel[index];
-                              return ListTile(
-                                leading: Text(
-                                  transactionItem.type,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                title: Text(transactionItem.description),
-                                subtitle: Text(transactionItem.category),
-                              );
-                            }),
+                          return TransactionCardWidget(
+                            transactionsList: state.transactionListModel,
+                            cardColor: AppColors.whiteSnow,
+                            leftPadding: 16,
+                            rightPadding: 16,
                           );
                         }
                         if (state is TransactionErrorState) {
