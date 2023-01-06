@@ -25,4 +25,5 @@ class Strings {
   static const forgot = 'Esqueceu?';
   static const notHaveAccount = 'Não tem conta?';
   static const register = 'Cadastre-se';
+  static const concluded = 'Concluído';
 }

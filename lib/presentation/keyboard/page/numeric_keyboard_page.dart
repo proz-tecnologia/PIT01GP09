@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../resources/colors.dart';
+import '../../../resources/strings.dart';
+import '../../../resources/text_style.dart';
 
 class NumericKeyboardPage extends StatefulWidget {
   const NumericKeyboardPage({super.key});
@@ -11,119 +11,156 @@ class NumericKeyboardPage extends StatefulWidget {
   State<NumericKeyboardPage> createState() => _NumericKeyboardPageState();
 }
 
-
 class _NumericKeyboardPageState extends State<NumericKeyboardPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp ();
-void main() {
-  var input = '0';
-
-    runApp(
-    MaterialApp(
-    home: Scaffold(
-      body: Column(
-        children: [
-    Expanded(
-      child: Column(
-        children: [
-          Text(input),
-        ],
-        mainAxisAlignment: MainAxisAlignment.center,
+    var input = '0';
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 66,
+          backgroundColor: AppColors.blueVibrant,
+          elevation: 0,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(input),
+                  Container(
+                    color: AppColors.grayLight,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('1'),
+                                onPressed: () {
+                                  input += '1';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('2'),
+                                onPressed: () {
+                                  input += '2';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('3'),
+                                onPressed: () {
+                                  input += '3';
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('4'),
+                                onPressed: () {
+                                  input += '4';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('5'),
+                                onPressed: () {
+                                  input += '5';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('6'),
+                                onPressed: () {
+                                  input += '6';
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('7'),
+                                onPressed: () {
+                                  input += '7';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('8'),
+                                onPressed: () {
+                                  input += '8';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('9'),
+                                onPressed: () {
+                                  input += '9';
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Container(),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Text('0'),
+                                onPressed: () {
+                                  input += '0';
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                child: const Icon(Icons.backspace),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 48,
+                          width: 304,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.greenVibrant,
+                              ),
+                              onPressed: () => Navigator.pop(context, true),
+                              child: const Text(
+                                Strings.concluded,
+                                style: AppTextStyles.greeting,
+                              )),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-      ],
-      ),
-    child: Container (
-    color: AppColors.grayLight
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.spaceAround, 
-children: <widget>[   
-Row(
-  children: <widget>[
-Expanded (
-  child: MaterialButton(
-child: Text('1'),
-onPressed: () {
-input += '1';
-print(input);
-},
-),),
-Expanded(child: MaterialButton(
-child: Text('2'),
-onPressed: () {
-input += '2';
-print (input);
-},
-),),
-Expanded(child: MaterialButton(
-child: Text('3'),
-onPressed: () {
-input += '3';
-print (input);
-},
-),),
-
-Row(
-children: <widget>[
-Expanded(child: MaterialButton(
-child: Text('4'),
-onPressed: () {
-input += '4';
-print (input);
-},
-),),
-Expanded(child: MaterialButton(
-child: Text('5'),
-onPressed: () {
-input += '5';
-print (input);
-},
-),),
-Expanded(child: MaterialButton(
-child: Text('6'),
-onPressed: () {
-input += '6';
-print (input);
-},
-),),
-
-Row(
-children: <widget>[
-Expanded(child: MaterialButton(
-child: Text('7'),
-onPressed: () async {
-
-},
-),),
-Expanded(child: MaterialButton(
-child: Text('8'),
-onPressed: () {
-},
-),
-),
-
-Expanded(child: MaterialButton(
-child: Text('9'),
-onPressed: () {},
-),
-),
-
-Row(
-children: <widget>[
-Expanded(
-child: Container(),
-),
-
-Expanded(child: MaterialButton(
-child: Text('0'),
-onPressed: () {
-
-},
-),
-),
-Expanded(child: MaterialButton(
-child: Icon(Icons.backspace),
-onPressed: () {
-
-},
+    );
+  }
+}
