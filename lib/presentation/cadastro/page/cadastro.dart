@@ -47,7 +47,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     "assets/images/cadastro-image.png",
                   ),
                   const SizedBox(
-                    height: 120,
+                    height: 80,
                   ),
                   SizedBox(
                     height: 210,
@@ -61,7 +61,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               width: 30,
                             ),
                             Text(
-                              'Cadastro',
+                              Strings.registration,
                               style: AppTextStyles.applicationSubtitle,
                             ),
                           ],
@@ -73,7 +73,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             keyboardType: TextInputType.name,
                             decoration: const InputDecoration(
                                 prefixIcon: Icon(Icons.account_box_sharp),
-                                hintText: 'Nome',
+                                hintText: Strings.name,
                                 hintStyle: AppTextStyles.smallText),
                           ),
                         ),
@@ -118,7 +118,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       onPressed: () => Navigator.pushNamed(context, '/login'),
                       child: const Text(
-                        'Cadastro',
+                        Strings.registration,
                         style: AppTextStyles.login,
                       ),
                     ),
@@ -130,13 +130,13 @@ class _CadastroPageState extends State<CadastroPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Já tem conta?',
+                        Strings.haveAccount,
                         style: AppTextStyles.smallText,
                       ),
                       TextButton(
                         onPressed: () => Navigator.pushNamed(context, '/login'),
                         child: const Text(
-                          'Faça o login',
+                          Strings.goToLogin,
                           style: AppTextStyles.link,
                         ),
                       ),
