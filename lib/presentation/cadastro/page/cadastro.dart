@@ -3,14 +3,14 @@ import 'package:test/resources/colors.dart';
 import 'package:test/resources/strings.dart';
 import 'package:test/resources/text_style.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class CadastroPage extends StatefulWidget {
+  const CadastroPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CadastroPage> createState() => _CadastroPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CadastroPageState extends State<CadastroPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -44,13 +44,13 @@ class _LoginPageState extends State<LoginPage> {
                     height: 80,
                   ),
                   Image.asset(
-                    "assets/images/login-image.png",
+                    "assets/images/cadastro-image.png",
                   ),
                   const SizedBox(
                     height: 120,
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 210,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,10 +61,21 @@ class _LoginPageState extends State<LoginPage> {
                               width: 30,
                             ),
                             Text(
-                              Strings.login,
+                              'Cadastro',
                               style: AppTextStyles.applicationSubtitle,
                             ),
                           ],
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 30.0, right: 30.0),
+                          child: TextFormField(
+                            keyboardType: TextInputType.name,
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.account_box_sharp),
+                                hintText: 'Nome',
+                                hintStyle: AppTextStyles.smallText),
+                          ),
                         ),
                         Padding(
                           padding:
@@ -82,17 +93,10 @@ class _LoginPageState extends State<LoginPage> {
                               const EdgeInsets.only(left: 30.0, right: 30.0),
                           child: TextFormField(
                             obscureText: true,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock),
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.lock),
                               hintText: Strings.password,
                               hintStyle: AppTextStyles.smallText,
-                              suffixIcon: TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  Strings.forgot,
-                                  style: AppTextStyles.link,
-                                ),
-                              ),
                             ),
                           ),
                         ),
@@ -112,9 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         ),
                       ),
-                      onPressed: () => Navigator.pushNamed(context, '/home'),
+                      onPressed: () => Navigator.pushNamed(context, '/login'),
                       child: const Text(
-                        Strings.login,
+                        'Cadastro',
                         style: AppTextStyles.login,
                       ),
                     ),
@@ -126,14 +130,13 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        Strings.notHaveAccount,
+                        'Já tem conta?',
                         style: AppTextStyles.smallText,
                       ),
                       TextButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, '/cadastro'),
+                        onPressed: () => Navigator.pushNamed(context, '/login'),
                         child: const Text(
-                          Strings.register,
+                          'Faça o login',
                           style: AppTextStyles.link,
                         ),
                       ),

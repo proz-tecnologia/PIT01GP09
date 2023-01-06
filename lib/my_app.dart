@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test/presentation/cadastro/page/cadastro.dart';
 import 'package:test/presentation/expenses/page/expenses_page.dart';
 import 'package:test/presentation/income/page/income_page.dart';
 import 'package:test/presentation/add/page/add_expense_page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
+        '/cadastro': (context) => const CadastroPage(),
         '/home': (context) => const HomePage(),
         '/transactions': (context) => const TransactionsPage(),
         '/expenses': (context) => const ExpensesPage(),
