@@ -19,4 +19,10 @@ class Strings {
   static const category = 'Categoria';
   static const date = '  Data';
   static const add = 'Adicionar';
+  static const login = 'Login';
+  static const email = 'Email';
+  static const password = 'Senha';
+  static const forgot = 'Esqueceu?';
+  static const notHaveAccount = 'Não tem conta?';
+  static const register = 'Cadastre-se';
 }
