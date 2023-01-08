@@ -26,4 +26,7 @@ class Strings {
   static const notHaveAccount = 'Não tem conta?';
   static const register = 'Cadastre-se';
   static const concluded = 'Concluído';
+  static const dontWorry = 'Informe um email associado a sua conta. ';
+  static const forgotpassword = 'Esqueceu a senha?';
+  static const submit = 'Submeter';
 }

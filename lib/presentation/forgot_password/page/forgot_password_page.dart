@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test/presentation/forgot_password/page/forgot_password_page.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/strings.dart';
 import 'package:test/resources/text_style.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -45,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 80,
                   ),
                   Image.asset(
-                    "assets/images/login-image.png",
+                    "assets/images/forgot-image.png",
                   ),
                   const SizedBox(
                     height: 120,
@@ -62,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 30,
                             ),
                             Text(
-                              Strings.login,
+                              Strings.forgotpassword,
                               style: AppTextStyles.applicationSubtitle,
                             ),
                           ],
@@ -78,36 +77,16 @@ class _LoginPageState extends State<LoginPage> {
                                 hintStyle: AppTextStyles.smallText),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 30.0, right: 30.0),
-                          child: TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock),
-                              hintText: Strings.password,
-                              hintStyle: AppTextStyles.smallText,
-                              suffixIcon: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const ForgotPasswordPage()));
-                                },
-                                child: const Text(
-                                  Strings.forgot,
-                                  style: AppTextStyles.link,
-                                ),
-                              ),
-                            ),
+                        SizedBox(
+                          height: 150,
+                          width: 120,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 112,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 30.0, right: 30.0),
@@ -121,32 +100,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onPressed: () => Navigator.pushNamed(context, '/home'),
                       child: const Text(
-                        Strings.login,
+                        Strings.submit,
                         style: AppTextStyles.login,
                       ),
                     ),
                   ),
                   const SizedBox(
                     height: 64,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        Strings.notHaveAccount,
-                        style: AppTextStyles.smallText,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          Strings.register,
-                          style: AppTextStyles.link,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 66,
                   ),
                 ],
               ),
