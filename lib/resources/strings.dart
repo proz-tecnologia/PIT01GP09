@@ -20,13 +20,21 @@ class Strings {
   static const date = '  Data';
   static const add = 'Adicionar';
   static const login = 'Login';
-  static const email = 'Email';
+  static const email = 'E-mail';
   static const password = 'Senha';
   static const forgot = 'Esqueceu?';
   static const notHaveAccount = 'Não tem conta?';
   static const register = 'Cadastre-se';
+  static const registration = 'Cadastro';
   static const concluded = 'Concluído';
   static const dontWorry = 'Informe um email associado a sua conta. ';
   static const forgotpassword = 'Esqueceu a senha?';
   static const submit = 'Submeter';
+  static const name = 'Nome';
+  static const haveAccount = 'Já tem conta?';
+  static const goToLogin = 'Faça o login';
+  static const errorMessageEmptyField = 'Campo obrigatório!';
+  static const errorMessageInvalidEmail = 'E-mail inválido!';
+  static const passwordHelperText = 'Mínimo 8 caracteres!';
+  static const errorLoginSnackBar = 'Não foi possível efetuar o login!';
 }

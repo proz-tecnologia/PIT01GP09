@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/domain/repositories/transaction_repository.dart';
-import 'package:test/presentation/expenses/controller/expenses_state.dart';
+
+import '../../../domain/repositories/transaction/transaction_repository.dart';
+import 'expenses_state.dart';
 
 class ExpensesController extends ValueNotifier<ExpensesState> {
   final TransactionRepository _transactionRepository;

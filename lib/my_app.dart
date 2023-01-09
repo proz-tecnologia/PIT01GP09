@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:test/presentation/expenses/page/expenses_page.dart';
-import 'package:test/presentation/income/page/income_page.dart';
-import 'package:test/presentation/add/page/add_expense_page.dart';
-import 'package:test/presentation/add/page/add_income_page.dart';
-import 'package:test/presentation/keyboard/page/numeric_keyboard_page.dart';
-import 'package:test/presentation/login/page/login_page.dart';
+
+import 'presentation/add/page/add_expense_page.dart';
+import 'presentation/add/page/add_income_page.dart';
+import 'presentation/expenses/page/expenses_page.dart';
 import 'presentation/home/page/home_page.dart';
+import 'presentation/income/page/income_page.dart';
+import 'presentation/keyboard/page/numeric_keyboard_page.dart';
+import 'presentation/login/page/login_page.dart';
+import 'presentation/sign_up/page/sign_up_page.dart';
+import 'presentation/splash/page/splash_page.dart';
 import 'presentation/transactions/page/transactions_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -19,9 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       routes: {
         '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignUpPage(),
         '/home': (context) => const HomePage(),
         '/transactions': (context) => const TransactionsPage(),
         '/expenses': (context) => const ExpensesPage(),
@@ -29,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/add_income': (context) => const AddIncomePage(),
         '/add_expense': (context) => const AddExpensePage(),
         '/keyboard': (context) => const NumericKeyboardPage(),
+        '/splash': (context) => const SplashPage(),
       },
     );
   }
