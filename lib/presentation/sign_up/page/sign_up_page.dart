@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/strings.dart';
-import 'package:test/resources/text_style.dart';
 
-class CadastroPage extends StatefulWidget {
-  const CadastroPage({super.key});
+import '../../../resources/colors.dart';
+import '../../../resources/strings.dart';
+import '../../../resources/text_style.dart';
+
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<CadastroPage> createState() => _CadastroPageState();
+  State<SignUpPage> createState() => _SignUpPage();
 }
 
-class _CadastroPageState extends State<CadastroPage> {
+class _SignUpPage extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;

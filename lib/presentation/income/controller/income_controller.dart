@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/domain/repositories/transaction_repository.dart';
+import 'package:test/domain/repositories/transaction/transaction_repository.dart';
 import 'package:test/presentation/income/controller/income_state.dart';
 
 class IncomeController extends ValueNotifier<IncomeState> {

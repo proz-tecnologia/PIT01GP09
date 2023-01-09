@@ -20,7 +20,7 @@ class Strings {
   static const date = '  Data';
   static const add = 'Adicionar';
   static const login = 'Login';
-  static const email = 'Email';
+  static const email = 'E-mail';
   static const password = 'Senha';
   static const forgot = 'Esqueceu?';
   static const notHaveAccount = 'Não tem conta?';
@@ -30,4 +30,8 @@ class Strings {
   static const name = 'Nome';
   static const haveAccount = 'Já tem conta?';
   static const goToLogin = 'Faça o login';
+  static const errorMessageEmptyField = 'Campo obrigatório!';
+  static const errorMessageInvalidEmail = 'E-mail inválido!';
+  static const passwordHelperText = 'Mínimo 8 caracteres!';
+  static const errorLoginSnackBar = 'Não foi possível efetuar o login!';
 }
