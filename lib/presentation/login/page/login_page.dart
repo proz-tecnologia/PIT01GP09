@@ -144,13 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                               hintStyle: AppTextStyles.smallText,
                               helperText: Strings.passwordHelperText,
                               suffixIcon: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const ForgotPasswordPage()));
-                                },
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, '/forgot'),
                                 child: const Text(
                                   Strings.forgot,
                                   style: AppTextStyles.link,

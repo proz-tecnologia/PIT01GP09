@@ -37,4 +37,6 @@ class Strings {
   static const errorMessageInvalidEmail = 'E-mail inválido!';
   static const passwordHelperText = 'Mínimo 8 caracteres!';
   static const errorLoginSnackBar = 'Não foi possível efetuar o login!';
+  static const textForgotPassword =
+      'Não se preocupe! Acontece. Favor informar o endereço de email associado com a sua conta.';
 }
