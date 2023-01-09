@@ -7,7 +7,7 @@ import 'presentation/home/page/home_page.dart';
 import 'presentation/income/page/income_page.dart';
 import 'presentation/keyboard/page/numeric_keyboard_page.dart';
 import 'presentation/login/page/login_page.dart';
-import 'presentation/sign_up/page/sign_up.dart';
+import 'presentation/sign_up/page/sign_up_page.dart';
 import 'presentation/splash/page/splash_page.dart';
 import 'presentation/transactions/page/transactions_page.dart';
 
