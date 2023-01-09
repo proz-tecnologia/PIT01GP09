@@ -5,6 +5,7 @@ import '../../../locator.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/strings.dart';
 import '../../../resources/text_style.dart';
+import '../../forgot_password/page/forgot_password_page.dart';
 import '../controller/auth_controller.dart';
 import '../controller/auth_state.dart';
 
@@ -143,7 +144,13 @@ class _LoginPageState extends State<LoginPage> {
                               hintStyle: AppTextStyles.smallText,
                               helperText: Strings.passwordHelperText,
                               suffixIcon: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              const ForgotPasswordPage()));
+                                },
                                 child: const Text(
                                   Strings.forgot,
                                   style: AppTextStyles.link,

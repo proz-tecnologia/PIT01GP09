@@ -10,7 +10,6 @@ class TransactionRepositoryImpl implements TransactionRepository {
 
   TransactionRepositoryImpl(this._dio);
 
-
   final _baseUrl = 'https://crudcrud.com/api/a8c16e04e05e4034bd062802bb846aaf';
 
   @override
