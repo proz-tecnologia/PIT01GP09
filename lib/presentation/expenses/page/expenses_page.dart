@@ -63,7 +63,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             backgroundColor: AppColors.redWine,
             onPressed: () => Navigator.of(context).pushNamed('/add_expense'),
             tooltip: 'Add expense',
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.remove),
           ),
         ),
       ),
