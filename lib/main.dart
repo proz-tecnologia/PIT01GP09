@@ -33,14 +33,25 @@ void main() async {
   //   ),
   // );
 
-  // await httpClient.getTransactionList();
+  // await httpClient.createTransaction(
+  //   TransactionModel(
+  //     description: 'Aluguel de Janeiro',
+  //     category: 'Aluguel',
+  //     type: 'Despesa',
+  //     value: 1000.0,
+  //     date: DateTime.now(),
+  //   ),
+  // );
+
+  await httpClient.getTransactionList();
 
   // await httpClient.updateTransaction(TransactionModel(
   //   id: '51a7c8e76cee41ac8c86d88e374186bb',
-  //       description: 'Compra frutos do mar',
-  //       category: 'Compras',
-  //       type: 'Despesa',
-  //       value: 50.0,
+  //   description: 'Compra frutos do mar',
+  //   category: 'Compras',
+  //   type: 'Despesa',
+  //   value: 50.0,
+  //   date: DateTime.now(),
   // ));
 
   // await httpClient.deleteTransaction('51a7c8e76cee41ac8c86d88e374186bb');

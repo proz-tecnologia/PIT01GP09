@@ -31,14 +31,14 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModel> register(String email, String password) async {
+  Future<UserModel> register(String name, String email, String password) async {
     try {
       final result = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (result.user != null) {
-        return UserModel(name: '', email: email);
+        return UserModel(name: name, email: email);
       }
       throw AuthException;
     } on AuthException catch (e) {
