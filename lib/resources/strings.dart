@@ -42,4 +42,6 @@ class Strings {
   static const errorSignUpSnackBar = 'Erro ao criar conta!';
   static const successSignUpSnackBar =
       'Conta criada com sucesso! Realize Login.';
+  static const textForgotPassword =
+      'Não se preocupe! Acontece. Favor informar o endereço de email associado com a sua conta.';
 }

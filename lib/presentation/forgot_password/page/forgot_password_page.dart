@@ -41,16 +41,16 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 80,
+                    height: 164,
                   ),
                   Image.asset(
                     "assets/images/forgot-image.png",
                   ),
                   const SizedBox(
-                    height: 120,
+                    height: 80,
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 228,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,6 +66,14 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
                             ),
                           ],
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(
+                              left: 30.0, top: 8.00, right: 30.0, bottom: 8.00),
+                          child: Text(
+                            Strings.textForgotPassword,
+                            style: AppTextStyles.smallText,
+                          ),
+                        ),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 30.0, right: 30.0),
@@ -77,13 +85,8 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
                                 hintStyle: AppTextStyles.smallText),
                           ),
                         ),
-                        SizedBox(
-                          height: 150,
-                          width: 120,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          ),
+                        const SizedBox(
+                          height: 52,
                         ),
                       ],
                     ),
