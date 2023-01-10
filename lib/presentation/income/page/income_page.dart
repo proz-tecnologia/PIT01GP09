@@ -58,7 +58,7 @@ class _IncomePageState extends State<IncomePage> {
         ),
         bottomSheet: const BottomSheetIncomeWidget(),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 74),
+          padding: const EdgeInsets.only(bottom: 60),
           child: FloatingActionButton(
             backgroundColor: AppColors.greenVibrant,
             onPressed: () => Navigator.of(context).pushNamed('/add_income'),

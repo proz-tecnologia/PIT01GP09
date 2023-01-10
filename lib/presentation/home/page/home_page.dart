@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:test/presentation/home/controller/transaction_controller.dart';
 import 'package:test/presentation/home/controller/transaction_state.dart';
@@ -10,6 +9,7 @@ import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/strings.dart';
 import '../../../resources/shared_widgets/transaction_card_widget.dart';
+import '../widgets/add_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -101,25 +101,7 @@ class _MyHomePageState extends State<HomePage> {
             ],
           ),
         ),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
-          backgroundColor: AppColors.blueVibrant,
-          overlayOpacity: 0.4,
-          children: [
-            SpeedDialChild(
-              backgroundColor: AppColors.redWine,
-              child: const Icon(Icons.remove),
-              label: Strings.expense,
-              onTap: () => Navigator.pushNamed(context, '/add_expense'),
-            ),
-            SpeedDialChild(
-              backgroundColor: AppColors.greenVibrant,
-              child: const Icon(Icons.add),
-              label: Strings.income,
-              onTap: () => Navigator.pushNamed(context, '/add_income'),
-            ),
-          ],
-        ),
+        floatingActionButton: const AddMenu(color: AppColors.blueVibrant),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: AppColors.blueVibrant,
           unselectedItemColor: AppColors.grayTwo,

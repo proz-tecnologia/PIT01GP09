@@ -58,7 +58,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
         ),
         bottomSheet: const BottomSheetExpensesWidget(),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 74),
+          padding: const EdgeInsets.only(bottom: 60),
           child: FloatingActionButton(
             backgroundColor: AppColors.redWine,
             onPressed: () => Navigator.of(context).pushNamed('/add_expense'),
