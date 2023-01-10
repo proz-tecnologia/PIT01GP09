@@ -7,6 +7,8 @@ import 'package:test/resources/colors.dart';
 import 'package:test/resources/shared_widgets/transaction_widget.dart';
 import 'package:test/resources/strings.dart';
 
+import '../../home/widgets/add_menu.dart';
+
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key});
 
@@ -57,14 +59,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
           },
         ),
         bottomSheet: const BottomSheetTransactionsWidget(),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 74),
-          child: FloatingActionButton(
-            backgroundColor: AppColors.purpleFlower,
-            onPressed: () {},
-            tooltip: 'Press and access options',
-            child: const Icon(Icons.add),
-          ),
+        floatingActionButton: const Padding(
+          padding: EdgeInsets.only(bottom: 60.0),
+          child: AddMenu(color: AppColors.purpleFlower),
         ),
       ),
     );

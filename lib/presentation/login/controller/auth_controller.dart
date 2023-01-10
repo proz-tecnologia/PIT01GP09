@@ -24,11 +24,11 @@ class AuthController extends ValueNotifier<AuthState> {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String name, String email, String password) async {
     state.value = LoadingAuthState();
     try {
       await Future.delayed(const Duration(seconds: 2));
-      await _authRepository.register(email, password);
+      await _authRepository.register(name, email, password);
       state.value = SuccessAuthState();
     } catch (e) {
       state.value = ErrorAuthState();

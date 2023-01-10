@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test/presentation/forgot_password/page/forgot_password_page.dart';
+import 'package:test/presentation/profile/page/profile_page.dart';
 
 import 'presentation/add/page/add_expense_page.dart';
 import 'presentation/add/page/add_income_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/forgot': (context) => const ForgotPasswordPage(),
         '/signup': (context) => const SignUpPage(),
         '/home': (context) => const HomePage(),
+        '/profile': (context) => const ProfilePage(),
         '/transactions': (context) => const TransactionsPage(),
         '/expenses': (context) => const ExpensesPage(),
         '/income': (context) => const IncomePage(),
