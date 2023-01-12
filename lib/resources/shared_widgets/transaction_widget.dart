@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/models/transaction_model.dart';
+import 'package:test/data/models/transactions_model.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/shared_widgets/transaction_card_widget.dart';
 
@@ -7,7 +7,7 @@ class TransactionWidget extends StatefulWidget {
   final String appBarTitle;
   final Color appBarColor;
   final String date;
-  final List<TransactionModel> transactionsList;
+  final List<TransactionsModel> transactionsList;
   const TransactionWidget({
     super.key,
     required this.appBarColor,
