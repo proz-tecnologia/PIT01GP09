@@ -1,4 +1,4 @@
-import 'package:test/data/models/transaction_model.dart';
+import 'package:test/data/models/transactions_model.dart';
 
 abstract class ExpensesState {}
 
@@ -7,7 +7,7 @@ class ExpensesInitialState extends ExpensesState {}
 class ExpensesLoadingState extends ExpensesState {}
 
 class ExpensesSuccessState extends ExpensesState {
-  final List<TransactionModel> expensesListModel;
+  final List<TransactionsModel> expensesListModel;
 
   ExpensesSuccessState(this.expensesListModel);
 }
