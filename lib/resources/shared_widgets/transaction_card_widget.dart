@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/models/transaction_model.dart';
+import 'package:test/data/models/transactions_model.dart';
 import 'package:test/resources/colors.dart';
 
 // ignore: must_be_immutable
@@ -7,7 +7,7 @@ class TransactionCardWidget extends StatefulWidget {
   final Color cardColor;
   final double leftPadding;
   final double rightPadding;
-  final List<TransactionModel> transactionsList;
+  final List<TransactionsModel> transactionsList;
 
   const TransactionCardWidget({
     super.key,
