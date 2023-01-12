@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:test/locator.dart';
 import 'package:test/presentation/income/controller/income_controller.dart';
 import 'package:test/presentation/income/controller/income_state.dart';
 import 'package:test/presentation/income/widgets/bottom_sheet_income_widget.dart';
@@ -15,24 +15,21 @@ class IncomePage extends StatefulWidget {
 }
 
 class _IncomePageState extends State<IncomePage> {
+  final incomeController = IncomeController(
+      transactionsRepository: getIt(), authRepository: getIt());
+
   @override
   void initState() {
     super.initState();
-    final incomeController =
-        Provider.of<IncomeController>(context, listen: false);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      incomeController.getIncomeTransactionList();
-    });
+    incomeController.getIncomeTransactionList();
   }
 
   @override
   Widget build(BuildContext context) {
-    final incomeController = context.watch<IncomeController>();
     return SafeArea(
       child: Scaffold(
         body: ValueListenableBuilder<IncomeState>(
-          valueListenable: incomeController,
+          valueListenable: incomeController.notifier,
           builder: (_, state, __) {
             if (state is IncomeLoadingState) {
               return const Center(
