@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test/locator.dart';
+import 'package:test/presentation/profile/controller/profile_controller.dart';
+import 'package:test/presentation/profile/controller/profile_state.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/text_style.dart';
 
@@ -12,6 +15,19 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final profileController = ProfileController(authRepository: getIt());
+
+  @override
+  void initState() {
+    super.initState();
+    profileController.notifier.addListener(() {
+      if (profileController.state is ProfileLogoutState) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (route) => false);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -99,7 +115,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Radius.circular(10.0)),
                                     ),
                                   ),
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    await profileController.signOut();
+                                  },
                                   child: const Text(
                                     'Sair',
                                     style: AppTextStyles.login,
