@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:test/data/repositories/transactions/transactions_repository_impl.dart';
 import 'package:test/domain/repositories/transactions/transactions_repository.dart';
-import 'package:test/presentation/home/controller/transaction_controller.dart';
+import 'package:test/presentation/home/controller/transactions_controller.dart';
 
 import 'data/repositories/authentication/auth_repository_impl.dart';
 import 'domain/repositories/authentication/auth_repository.dart';
