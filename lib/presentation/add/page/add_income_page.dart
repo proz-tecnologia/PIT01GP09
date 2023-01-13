@@ -10,6 +10,7 @@ const List<String> list = <String>[
   "Renda",
   "Venda",
   "Freelance",
+  "Outras receitas",
 ];
 
 class AddIncomePage extends StatefulWidget {
