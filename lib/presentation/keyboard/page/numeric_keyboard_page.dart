@@ -1,164 +1,126 @@
 import 'package:flutter/material.dart';
+import 'package:test/presentation/keyboard/widgets/num_pad.dart';
 
-import '../../../resources/colors.dart';
-import '../../../resources/strings.dart';
+import 'package:test/resources/colors.dart';
 import '../../../resources/text_style.dart';
 
 class NumericKeyboardPage extends StatefulWidget {
-  const NumericKeyboardPage({super.key});
+  const NumericKeyboardPage({
+    Key? key,
+    required this.color,
+    required this.type,
+  }) : super(key: key);
+
+  final Color color;
+  final String type;
 
   @override
   State<NumericKeyboardPage> createState() => _NumericKeyboardPageState();
 }
 
 class _NumericKeyboardPageState extends State<NumericKeyboardPage> {
+  final TextEditingController _myController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    var input = '0';
+    final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 66,
+          toolbarHeight: 55,
           backgroundColor: AppColors.blueVibrant,
           elevation: 0,
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        body: Center(
+          child: ListView(
+            children: [
+              Column(
                 children: [
-                  Text(input),
                   Container(
-                    color: AppColors.grayLight,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('1'),
-                                onPressed: () {
-                                  input += '1';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('2'),
-                                onPressed: () {
-                                  input += '2';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('3'),
-                                onPressed: () {
-                                  input += '3';
-                                },
-                              ),
-                            ),
-                          ],
+                    width: screenWidth,
+                    color: widget.color,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('4'),
-                                onPressed: () {
-                                  input += '4';
-                                },
-                              ),
+                      ),
+                      height: 175,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              fit: StackFit.passthrough,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    height: 168,
+                                    child: Text(
+                                      widget.type,
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.greeting,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    height: 138,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        TextField(
+                                          controller: _myController,
+                                          style: AppTextStyles.bigNumber,
+                                          showCursor: false,
+                                          keyboardType: TextInputType.none,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('5'),
-                                onPressed: () {
-                                  input += '5';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('6'),
-                                onPressed: () {
-                                  input += '6';
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('7'),
-                                onPressed: () {
-                                  input += '7';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('8'),
-                                onPressed: () {
-                                  input += '8';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('9'),
-                                onPressed: () {
-                                  input += '9';
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Text('0'),
-                                onPressed: () {
-                                  input += '0';
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                child: const Icon(Icons.backspace),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 48,
-                          width: 304,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.greenVibrant,
-                              ),
-                              onPressed: () => Navigator.pop(context, true),
-                              child: const Text(
-                                Strings.concluded,
-                                style: AppTextStyles.greeting,
-                              )),
-                        )
-                      ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 702,
+                    decoration: const BoxDecoration(
+                      color: AppColors.graySuperLight,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                    ),
+                    child: NumPad(
+                      type: widget.type,
+                      buttonSize: 75,
+                      buttonColor: AppColors.whiteSnow,
+                      iconColor: AppColors.grayTwo,
+                      controller: _myController,
+                      delete: () {
+                        _myController.text = _myController.text
+                            .substring(0, _myController.text.length - 1);
+                      },
+                      // do something with the input numbers
+                      onSubmit: () {},
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
