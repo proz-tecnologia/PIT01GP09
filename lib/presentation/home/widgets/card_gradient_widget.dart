@@ -39,12 +39,14 @@ class CardGradientWidget extends StatelessWidget {
           children: [
             Stack(
               alignment: AlignmentDirectional.centerEnd,
-              children: const [
-                SizedBox(
+              children: [
+                const SizedBox(
                   height: 67,
                   child: MonthPicker(),
                 ),
-                Profile(),
+                InkWell(
+                    onTap: () => Navigator.of(context).pushNamed('/profile'),
+                    child: const Profile()),
               ],
             ),
             Padding(

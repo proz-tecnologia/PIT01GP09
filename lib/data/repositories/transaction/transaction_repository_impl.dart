@@ -1,19 +1,20 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:test/data/models/transaction_model.dart';
-import 'package:test/domain/repositories/transaction_repository.dart';
+
+import '../../../domain/repositories/transaction/transaction_repository.dart';
+import '../../models/transaction_model.dart';
 
 class TransactionRepositoryImpl implements TransactionRepository {
   final Dio _dio;
 
   TransactionRepositoryImpl(this._dio);
 
-  final _baseUrl = 'https://crudcrud.com/api/a304393de252455bb2c3dce5bcaa47e5';
+  final _baseUrl = 'https://crudcrud.com/api/d6d87fd9b5de4232b055a38f07850936';
 
   @override
   Future<List<TransactionModel>> getTransactionList() async {
-     final Response response = await _dio.get(
+    final Response response = await _dio.get(
       '$_baseUrl/transactions',
     );
     final list = List.from(response.data);

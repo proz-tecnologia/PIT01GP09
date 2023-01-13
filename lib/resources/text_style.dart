@@ -8,6 +8,12 @@ class AppTextStyles {
     color: Colors.black,
   );
 
+  static const applicationSubtitle = TextStyle(
+    fontSize: 30.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
   static const name1 = TextStyle(
     fontSize: 26.0,
     fontWeight: FontWeight.bold,
@@ -54,5 +60,41 @@ class AppTextStyles {
     fontSize: 18.0,
     fontWeight: FontWeight.bold,
     color: Colors.white,
+  );
+
+  static const bigNumber = TextStyle(
+    fontSize: 50.0,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
+  static const date = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.grayDark,
+  );
+
+  static const input = TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.blackSwan,
+  );
+
+  static const link = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blueVibrant,
+  );
+
+  static const login = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.whiteSnow,
+  );
+
+  static const smallText = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.grayTwo,
   );
 }
