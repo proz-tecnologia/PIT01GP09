@@ -16,6 +16,7 @@ class Strings {
   static const value = 'Valor';
   static const valueZero = '0,00';
   static const description = 'Descrição';
+  static const type = 'Tipo';
   static const category = 'Categoria';
   static const date = '  Data';
   static const add = 'Adicionar';
