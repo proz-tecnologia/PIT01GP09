@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/locator.dart';
-import 'package:test/presentation/home/controller/transaction_controller.dart';
-import 'package:test/presentation/home/controller/transaction_state.dart';
+import 'package:test/presentation/home/controller/transactions_controller.dart';
+import 'package:test/presentation/home/controller/transactions_state.dart';
 import 'package:test/presentation/home/widgets/card_chart_widget.dart';
 import 'package:test/presentation/home/widgets/card_education_widget.dart';
 import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
