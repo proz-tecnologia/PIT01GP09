@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:test/presentation/forgot_password/page/forgot_password_page.dart';
 import 'package:test/presentation/profile/page/profile_page.dart';
 
-import 'presentation/add/page/add_expense_page.dart';
-import 'presentation/add/page/add_income_page.dart';
+import 'presentation/expenses/page/add_expense_page.dart';
+import 'presentation/income/page/add_income_page.dart';
 import 'presentation/expenses/page/expenses_page.dart';
 import 'presentation/home/page/home_page.dart';
 import 'presentation/income/page/income_page.dart';
-import 'presentation/keyboard/page/numeric_keyboard_page.dart';
+import 'resources/shared_widgets/numeric_keyboard_page.dart';
 import 'presentation/login/page/login_page.dart';
 import 'presentation/sign_up/page/sign_up_page.dart';
 import 'presentation/splash/page/splash_page.dart';
