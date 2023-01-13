@@ -17,6 +17,10 @@ class TransactionsModel {
   final DateTime date;
   final String userId;
 
+  bool isAtMonthYear(int month, int year) {
+    return (date.month == month) && (date.year == year);
+  }
+
   TransactionsModel copyWith({
     String? id,
     String? description,
