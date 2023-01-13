@@ -47,50 +47,43 @@ class _NumericKeyboardPageState extends State<NumericKeyboardPage> {
                         ),
                       ),
                       height: 175,
-                      child: Row(
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        fit: StackFit.passthrough,
                         children: [
-                          Expanded(
-                            child: Stack(
-                              alignment: AlignmentDirectional.bottomCenter,
-                              fit: StackFit.passthrough,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox(
-                                    height: 168,
-                                    child: Text(
-                                      widget.type,
-                                      textAlign: TextAlign.center,
-                                      style: AppTextStyles.greeting,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox(
-                                    height: 138,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        TextField(
-                                          controller: _myController,
-                                          style: AppTextStyles.bigNumber,
-                                          showCursor: false,
-                                          keyboardType: TextInputType.none,
-                                          decoration: const InputDecoration(
-                                            border: InputBorder.none,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              height: 168,
+                              child: Text(
+                                widget.type,
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.greeting,
+                              ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, top: 29, right: 20),
+                            child: SizedBox(
+                              height: 138,
+                              child: TextFormField(
+                                textDirection: TextDirection.rtl,
+                                controller: _myController,
+                                style: AppTextStyles.bigNumber,
+                                showCursor: false,
+                                keyboardType: TextInputType.none,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  prefix: Text(
+                                    'R\$ ',
+                                    style: AppTextStyles.money,
+                                  ),
+                                  // contentPadding: EdgeInsets.only(left: 100),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),

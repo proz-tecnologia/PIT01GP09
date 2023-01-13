@@ -152,15 +152,6 @@ class NumPad extends StatelessWidget {
                 ),
                 iconSize: buttonSize,
               ),
-              // this button is used to submit the entered value
-              // IconButton(
-              //   onPressed: () => onSubmit(),
-              //   icon: Icon(
-              //     Icons.done_rounded,
-              //     color: iconColor,
-              //   ),
-              //   iconSize: buttonSize,
-              // ),
             ],
           ),
           const SizedBox(height: 20),
@@ -171,7 +162,7 @@ class NumPad extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: cotinueColor,
                 ),
-                onPressed: () => Navigator.pop(context, true),
+                onPressed: () => onSubmit(),
                 child: const Text(
                   Strings.concluded,
                   style: AppTextStyles.greeting,

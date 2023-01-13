@@ -40,11 +40,9 @@ class _AddPageState extends State<AddPage> {
               Column(
                 children: [
                   TopCard(
-                    color: widget.color,
-                    type: widget.type,
-                    screenWidth: screenWidth,
-                    value: 0,
-                  ),
+                      color: widget.color,
+                      type: widget.type,
+                      screenWidth: screenWidth),
                   FormFields(list: widget.list),
                   SizedBox(
                     height: 48,

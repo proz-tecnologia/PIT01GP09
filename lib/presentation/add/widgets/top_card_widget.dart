@@ -9,12 +9,10 @@ class TopCard extends StatefulWidget {
     required this.color,
     required this.type,
     required this.screenWidth,
-    required this.value,
   }) : super(key: key);
 
   final Color color;
   final String type;
-  final double value;
   final double screenWidth;
 
   @override
