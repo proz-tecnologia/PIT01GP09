@@ -16,6 +16,7 @@ class Strings {
   static const value = 'Valor';
   static const valueZero = '0,00';
   static const description = 'Descrição';
+  static const type = 'Tipo';
   static const category = 'Categoria';
   static const date = '  Data';
   static const add = 'Adicionar';
@@ -35,6 +36,13 @@ class Strings {
   static const goToLogin = 'Faça o login';
   static const errorMessageEmptyField = 'Campo obrigatório!';
   static const errorMessageInvalidEmail = 'E-mail inválido!';
+  static const errorMessageInvalidName = 'Nome inválido!';
   static const passwordHelperText = 'Mínimo 8 caracteres!';
+  static const nameHelperText = 'Nome não pode estar vazio!';
   static const errorLoginSnackBar = 'Não foi possível efetuar o login!';
+  static const errorSignUpSnackBar = 'Erro ao criar conta!';
+  static const successSignUpSnackBar =
+      'Conta criada com sucesso! Realize Login.';
+  static const textForgotPassword =
+      'Não se preocupe! Acontece. Favor informar o endereço de email associado com a sua conta.';
 }

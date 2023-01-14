@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/strings.dart';
 import '../../../resources/text_style.dart';
-import '../page/add_expense_page.dart';
+import '../../expenses/page/add_expense_page.dart';
 
 class FormFields extends StatefulWidget {
   const FormFields({
@@ -19,8 +19,8 @@ class FormFields extends StatefulWidget {
 }
 
 class _FormFieldsState extends State<FormFields> {
-  final DateTime firstDate = DateTime(2022, 1);
-  final DateTime lastDate = DateTime(2022, 12);
+  final DateTime firstDate = DateTime(2023, 1);
+  final DateTime lastDate = DateTime(2023, 12);
   final DateTime _date = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
   String _dropdownValue = list.first;
@@ -40,8 +40,7 @@ class _FormFieldsState extends State<FormFields> {
     );
     if (newDate != null) {
       setState(() {
-        _dateController.text =
-            DateFormat('           dd/MM/yyyy').format(newDate);
+        _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
       });
     }
   }
@@ -49,7 +48,7 @@ class _FormFieldsState extends State<FormFields> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 72.0, left: 32.0, right: 32.0),
+      padding: const EdgeInsets.only(top: 20, left: 32.0, right: 32.0),
       child: Column(
         children: [
           TextFormField(

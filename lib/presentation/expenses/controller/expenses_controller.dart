@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:test/domain/repositories/authentication/auth_repository.dart';
 
-import '../../../domain/repositories/transaction/transaction_repository.dart';
+import '../../../domain/repositories/transactions/transactions_repository.dart';
 import 'expenses_state.dart';
 
 class ExpensesController extends ValueNotifier<ExpensesState> {
-  final TransactionRepository _transactionRepository;
+  final TransactionsRepository _transactionRepository;
+  final AuthRepository _authRepository;
 
   ExpensesController({
-    required TransactionRepository transactionRepository,
+    required TransactionsRepository transactionRepository,
+    required AuthRepository authRepository,
   })  : _transactionRepository = transactionRepository,
+        _authRepository = authRepository,
         super(ExpensesInitialState());
 
   Future<void> getExpensesTransactionsList() async {
     value = ExpensesLoadingState();
 
     try {
-      var transactionList = await _transactionRepository.getTransactionList();
+      final userId = _authRepository.currentUser?.uid;
+      var transactionList = await _transactionRepository.getTransactionsList(userId ?? "");
       var expensesFilteredList =
           transactionList.where((item) => item.type == 'Despesa').toList();
       value = ExpensesSuccessState(expensesFilteredList);

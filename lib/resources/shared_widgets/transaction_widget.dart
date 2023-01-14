@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/models/transaction_model.dart';
+import 'package:test/data/models/transactions_model.dart';
+import 'package:test/locator.dart';
+import 'package:test/presentation/home/controller/transactions_controller.dart';
 import 'package:test/resources/colors.dart';
+import 'package:test/resources/shared_widgets/month_carousel_widget.dart';
 import 'package:test/resources/shared_widgets/transaction_card_widget.dart';
 
 class TransactionWidget extends StatefulWidget {
   final String appBarTitle;
   final Color appBarColor;
   final String date;
-  final List<TransactionModel> transactionsList;
+  final List<TransactionsModel> transactionsList;
   const TransactionWidget({
     super.key,
     required this.appBarColor,
@@ -21,6 +24,15 @@ class TransactionWidget extends StatefulWidget {
 }
 
 class _TransactionWidgetState extends State<TransactionWidget> {
+  final transactionsController = TransactionsController(
+      authRepository: getIt(), transactionsRepository: getIt());
+
+  @override
+  void initState() {
+    super.initState();
+    transactionsController.fetchTransactionListFromRepository();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,15 +58,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              color: Colors.amber,
-              height: 74,
-              // child: MonthCarouselWidget(
-              //   onSelectMonthYear: ,
-              //   monthsList: ,
-              // ),
+            MonthCarouselWidget(
+              onSelectMonthYear: transactionsController.filterTransactionList,
+              monthsList: transactionsController.monthsList,
             ),
             SizedBox(
               height: 33,
