@@ -13,7 +13,6 @@ class TopCard extends StatefulWidget {
 
   final Color color;
   final String type;
-
   final double screenWidth;
 
   @override
@@ -21,6 +20,7 @@ class TopCard extends StatefulWidget {
 }
 
 class _TopCardState extends State<TopCard> {
+  final value = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,12 +61,16 @@ class _TopCardState extends State<TopCard> {
                               style: AppTextStyles.greeting,
                             ),
                             InkWell(
-                              child: const Text(
-                                Strings.valueZero,
+                              child: Text(
+                                value.toStringAsPrecision(3),
                                 style: AppTextStyles.bigNumber,
                               ),
-                              onTap: () =>
-                                  Navigator.pushNamed(context, '/keyboard'),
+                              onTap: () => {
+                                if (widget.type == Strings.income)
+                                  {Navigator.pushNamed(context, '/num_income')}
+                                else if (widget.type == Strings.expense)
+                                  {Navigator.pushNamed(context, '/num_expense')}
+                              },
                             ),
                           ],
                         ),

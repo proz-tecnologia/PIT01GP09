@@ -19,8 +19,8 @@ class FormFields extends StatefulWidget {
 }
 
 class _FormFieldsState extends State<FormFields> {
-  final DateTime firstDate = DateTime(2022, 1);
-  final DateTime lastDate = DateTime(2022, 12);
+  final DateTime firstDate = DateTime(2023, 1);
+  final DateTime lastDate = DateTime(2023, 12);
   final DateTime _date = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
   String _dropdownValue = list.first;
@@ -40,8 +40,7 @@ class _FormFieldsState extends State<FormFields> {
     );
     if (newDate != null) {
       setState(() {
-        _dateController.text =
-            DateFormat('   dd/MM/yyyy').format(newDate);
+        _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
       });
     }
   }
@@ -56,14 +55,6 @@ class _FormFieldsState extends State<FormFields> {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.description),
               labelText: Strings.description,
-              labelStyle: AppTextStyles.date,
-            ),
-            style: AppTextStyles.input,
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.type_specimen_outlined),
-              labelText: Strings.type,
               labelStyle: AppTextStyles.date,
             ),
             style: AppTextStyles.input,
