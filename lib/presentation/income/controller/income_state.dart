@@ -1,4 +1,4 @@
-import 'package:test/data/models/transaction_model.dart';
+import 'package:test/data/models/transactions_model.dart';
 
 abstract class IncomeState {}
 
@@ -7,7 +7,7 @@ class IncomeInitialState extends IncomeState {}
 class IncomeLoadingState extends IncomeState {}
 
 class IncomeSuccessState extends IncomeState {
-  final List<TransactionModel> incomeListModel;
+  final List<TransactionsModel> incomeListModel;
 
   IncomeSuccessState(this.incomeListModel);
 }

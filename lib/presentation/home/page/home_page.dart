@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:test/presentation/home/controller/transaction_controller.dart';
-import 'package:test/presentation/home/controller/transaction_state.dart';
+import 'package:test/locator.dart';
+import 'package:test/presentation/home/controller/transactions_controller.dart';
+import 'package:test/presentation/home/controller/transactions_state.dart';
 import 'package:test/presentation/home/widgets/card_chart_widget.dart';
 import 'package:test/presentation/home/widgets/card_education_widget.dart';
 import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
@@ -23,15 +23,13 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
 
+  final transactionsController = TransactionsController(
+      authRepository: getIt(), transactionsRepository: getIt());
+
   @override
   void initState() {
     super.initState();
-    final transactionController =
-        Provider.of<TransactionController>(context, listen: false);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      transactionController.getTransactionList();
-    });
+    transactionsController.getTransactionsList();
   }
 
   void onItemPressed(int index) {
@@ -42,8 +40,6 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final transactionController = context.watch<TransactionController>();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.graySuperLight,
@@ -68,7 +64,7 @@ class _MyHomePageState extends State<HomePage> {
                   SizedBox(
                     height: 150,
                     child: ValueListenableBuilder<TransactionState>(
-                      valueListenable: transactionController,
+                      valueListenable: transactionsController,
                       builder: (_, state, __) {
                         if (state is TransactionLoadingState) {
                           return const Center(

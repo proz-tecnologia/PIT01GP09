@@ -8,6 +8,12 @@ class AuthRepositoryImpl implements AuthRepository {
   FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
 
   @override
+  bool get isLogged => _firebaseAuth.currentUser != null;
+
+  @override
+  User? get currentUser => _firebaseAuth.currentUser;
+
+  @override
   Future<UserModel> login(String email, String password) async {
     try {
       final result = await _firebaseAuth.signInWithEmailAndPassword(
@@ -51,5 +57,10 @@ class AuthRepositoryImpl implements AuthRepository {
           throw SomethingWentWrongDefaultException(e.message);
       }
     }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 }

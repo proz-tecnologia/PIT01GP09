@@ -1,13 +1,12 @@
-import 'dart:convert';
-
-class TransactionModel {
-  TransactionModel({
+class TransactionsModel {
+  TransactionsModel({
     this.id,
     required this.description,
     required this.category,
     required this.type,
     required this.value,
     required this.date,
+    required this.userId,
   });
 
   String? id;
@@ -16,50 +15,53 @@ class TransactionModel {
   final String type;
   final double value;
   final DateTime date;
+  final String userId;
 
-  TransactionModel copyWith({
+  bool isAtMonthYear(int month, int year) {
+    return (date.month == month) && (date.year == year);
+  }
+
+  TransactionsModel copyWith({
     String? id,
     String? description,
     String? category,
     String? type,
     double? value,
     DateTime? date,
+    String? userId,
   }) =>
-      TransactionModel(
+      TransactionsModel(
         id: id ?? this.id,
         description: description ?? this.description,
         category: category ?? this.category,
         type: type ?? this.type,
         value: value ?? this.value,
         date: date ?? this.date,
+        userId: userId ?? this.userId,
       );
 
-  factory TransactionModel.fromJson(String str) =>
-      TransactionModel.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory TransactionModel.fromMap(Map<String, dynamic> json) =>
-      TransactionModel(
-        id: json["_id"],
+  factory TransactionsModel.fromMap(String id, Map<String, dynamic> json) =>
+      TransactionsModel(
+        id: id,
         description: json["description"],
         category: json["category"],
         type: json["type"],
-        value: json["value"],
-        date: json["date"] ?? DateTime.now(),
+        value: json["value"] ?? 0.0,
+        date: DateTime.fromMillisecondsSinceEpoch(json["date"] as int),
+        userId: json["userId"],
       );
 
   Map<String, dynamic> toMap() => {
-        "_id": id,
         "description": description,
         "category": category,
         "type": type,
         "value": value,
-        "date": date,
+        "date": date.millisecondsSinceEpoch,
+        "userId": userId,
       };
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, description: $description, category: $category, type: $type, value: $value, date: $date)';
+    return 'TransactionsModel(id: $id, description: $description, category: $category, type: $type, value: $value, date: $date, userId: $userId)';
   }
 }

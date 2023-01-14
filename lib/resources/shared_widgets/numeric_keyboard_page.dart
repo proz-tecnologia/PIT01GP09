@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../resources/colors.dart';
-import '../../../resources/strings.dart';
-import '../../../resources/text_style.dart';
+import '../colors.dart';
+import '../strings.dart';
+import '../text_style.dart';
 
 class NumericKeyboardPage extends StatefulWidget {
   const NumericKeyboardPage({super.key});

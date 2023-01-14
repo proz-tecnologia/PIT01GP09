@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:test/presentation/home/controller/transaction_controller.dart';
-import 'package:test/presentation/home/controller/transaction_state.dart';
+import 'package:test/locator.dart';
+import 'package:test/presentation/home/controller/transactions_controller.dart';
+import 'package:test/presentation/home/controller/transactions_state.dart';
 import 'package:test/presentation/transactions/widgets/bottom_sheet_transactions_widget.dart';
 import 'package:test/resources/colors.dart';
 import 'package:test/resources/shared_widgets/transaction_widget.dart';
@@ -17,24 +17,20 @@ class TransactionsPage extends StatefulWidget {
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
+  final transactionsController = TransactionsController(
+      authRepository: getIt(), transactionsRepository: getIt());
   @override
   void initState() {
     super.initState();
-    final transactionController =
-        Provider.of<TransactionController>(context, listen: false);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      transactionController.getTransactionList();
-    });
+    transactionsController.getTransactionsList();
   }
 
   @override
   Widget build(BuildContext context) {
-    final transactionController = context.watch<TransactionController>();
     return SafeArea(
       child: Scaffold(
         body: ValueListenableBuilder<TransactionState>(
-          valueListenable: transactionController,
+          valueListenable: transactionsController,
           builder: (_, state, __) {
             if (state is TransactionLoadingState) {
               return const Center(
