@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test/presentation/expenses/page/num_expense_page.dart';
 import 'package:test/presentation/forgot_password/page/forgot_password_page.dart';
+import 'package:test/presentation/income/page/num_income_page.dart';
 import 'package:test/presentation/profile/page/profile_page.dart';
 
 import 'presentation/expenses/page/add_expense_page.dart';
@@ -7,7 +9,6 @@ import 'presentation/income/page/add_income_page.dart';
 import 'presentation/expenses/page/expenses_page.dart';
 import 'presentation/home/page/home_page.dart';
 import 'presentation/income/page/income_page.dart';
-import 'resources/shared_widgets/numeric_keyboard_page.dart';
 import 'presentation/login/page/login_page.dart';
 import 'presentation/sign_up/page/sign_up_page.dart';
 import 'presentation/splash/page/splash_page.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         '/income': (context) => const IncomePage(),
         '/add_income': (context) => const AddIncomePage(),
         '/add_expense': (context) => const AddExpensePage(),
-        '/keyboard': (context) => const NumericKeyboardPage(),
+        '/num_income': (context) => const NumericKeyboardIncomePage(),
+        '/num_expense': (context) => const NumericKeyboardExpensePage(),
         '/splash': (context) => const SplashPage(),
       },
     );

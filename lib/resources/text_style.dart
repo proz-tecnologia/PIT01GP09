@@ -14,6 +14,12 @@ class AppTextStyles {
     color: Colors.black,
   );
 
+  static const money = TextStyle(
+    fontSize: 30.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.whiteSnow,
+  );
+
   static const name1 = TextStyle(
     fontSize: 26.0,
     fontWeight: FontWeight.bold,
