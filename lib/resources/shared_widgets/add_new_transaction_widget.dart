@@ -22,6 +22,8 @@ class AddNewTransactionWidget extends StatefulWidget {
 }
 
 class _FormFieldsState extends State<AddNewTransactionWidget> {
+  final _formKey = GlobalKey<FormState>();
+
   final DateTime firstDate = DateTime(2023, 1);
   final DateTime lastDate = DateTime(2023, 12);
   final DateTime _date = DateTime.now();
@@ -56,6 +58,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
     final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        key: _formKey,
         appBar: AppBar(
           toolbarHeight: 66,
           backgroundColor: AppColors.blueVibrant,
