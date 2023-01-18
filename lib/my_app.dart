@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         '/transactions': (context) => const TransactionsPage(),
         '/expenses': (context) => const ExpensesPage(),
         '/income': (context) => const IncomePage(),
-        '/add_income': (context) => const AddIncomePage(),
-        '/add_expense': (context) => const AddExpensePage(),
+        '/add-income': (context) => const AddIncomePage(),
+        '/add-expense': (context) => const AddExpensePage(),
         '/splash': (context) => const SplashPage(),
       },
     );
