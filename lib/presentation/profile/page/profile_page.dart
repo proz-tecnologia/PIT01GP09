@@ -32,103 +32,110 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.whiteSnow,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.purpleFlower,
+          elevation: 0,
         ),
-        child: Stack(
+        body: ListView(
           children: [
             Container(
-              height: 420,
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.topLeft,
-                  colors: [
-                    Color(0xFF645FFB),
-                    Color(0xFF05EDE3),
-                  ],
-                ),
+                color: AppColors.whiteSnow,
               ),
-            ),
-            Scaffold(
-              backgroundColor: AppColors.transparent,
-              body: Stack(
+              child: Stack(
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 64),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Profile(),
-                          SizedBox(
-                            height: 32,
-                          ),
-                          Text(
-                            'Mary',
-                            style: AppTextStyles.name1,
-                          ),
+                  Container(
+                    height: 420,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.topLeft,
+                        colors: [
+                          Color(0xFF645FFB),
+                          Color(0xFF05EDE3),
                         ],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 424),
-                    child: Container(
-                      color: AppColors.whiteSnow,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 355, left: 22, right: 22),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 94),
+                  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 64),
                           child: Column(
-                            children: [
-                              infoChild(
-                                width,
-                                Icons.email,
-                                'exemplo@gmail.com',
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Profile(),
+                              SizedBox(
+                                height: 32,
                               ),
-                              infoChild(
-                                width,
-                                Icons.call,
-                                '+12-1234567890',
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 150, left: 30.0, right: 30.0),
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: AppColors.purpleFlower,
-                                    minimumSize: const Size(369, 54),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                    ),
-                                  ),
-                                  onPressed: () async {
-                                    await profileController.signOut();
-                                  },
-                                  child: const Text(
-                                    'Sair',
-                                    style: AppTextStyles.login,
-                                  ),
-                                ),
+                              Text(
+                                'Mary',
+                                style: AppTextStyles.name1,
                               ),
                             ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 424),
+                        child: Container(
+                          color: AppColors.whiteSnow,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 355, left: 22, right: 22),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 94),
+                              child: Column(
+                                children: [
+                                  infoChild(
+                                    width,
+                                    Icons.email,
+                                    'exemplo@gmail.com',
+                                  ),
+                                  infoChild(
+                                    width,
+                                    Icons.call,
+                                    '+12-1234567890',
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 150, left: 30.0, right: 30.0),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: AppColors.purpleFlower,
+                                        minimumSize: const Size(369, 54),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0)),
+                                        ),
+                                      ),
+                                      onPressed: () async {
+                                        await profileController.signOut();
+                                      },
+                                      child: const Text(
+                                        'Sair',
+                                        style: AppTextStyles.login,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
