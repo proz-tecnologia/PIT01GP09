@@ -31,7 +31,7 @@ class _AddMenuState extends State<AddMenu> {
             color: AppColors.whiteSnow,
           ),
           label: Strings.expense,
-          onTap: () => Navigator.pushNamed(context, '/add_expense'),
+          onTap: () => Navigator.pushNamed(context, '/add-expense'),
         ),
         SpeedDialChild(
           backgroundColor: AppColors.greenVibrant,
@@ -40,7 +40,7 @@ class _AddMenuState extends State<AddMenu> {
             color: AppColors.whiteSnow,
           ),
           label: Strings.income,
-          onTap: () => Navigator.pushNamed(context, '/add_income'),
+          onTap: () => Navigator.pushNamed(context, '/add-income'),
         ),
       ],
     );
