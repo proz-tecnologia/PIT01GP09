@@ -17,4 +17,12 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
     return transactionsList;
   }
+
+  @override
+  Future<bool> addTransaction(TransactionsModel transactionsModel) async {
+    final result = await _firestore
+        .collection("transactions")
+        .add(transactionsModel.toMap());
+    return result.id.isNotEmpty;
+  }
 }
