@@ -58,7 +58,6 @@ class _NumericKeyboardWidgetState extends State<NumericKeyboardWidget> {
                           'R\$ ',
                           style: AppTextStyles.money,
                         ),
-                        // contentPadding: EdgeInsets.only(left: 100),
                       ),
                     ),
                   ),
@@ -74,22 +73,25 @@ class _NumericKeyboardWidgetState extends State<NumericKeyboardWidget> {
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
             child: NumPad(
-              type: widget.type,
-              buttonSize: 75,
-              buttonColor: AppColors.whiteSnow,
-              iconColor: AppColors.grayTwo,
-              controller: widget.keyBoardController,
-              delete: () {
-                if (widget.keyBoardController.text.isNotEmpty) {
-                  widget.keyBoardController.text = widget
-                      .keyBoardController.text
-                      .substring(0, widget.keyBoardController.text.length - 1);
-                } else {
-                  widget.keyBoardController.text = '';
-                }
-              },
-              onSubmit: () => Navigator.pop(context),
-            ),
+                type: widget.type,
+                buttonSize: 75,
+                buttonColor: AppColors.whiteSnow,
+                iconColor: AppColors.grayTwo,
+                controller: widget.keyBoardController,
+                delete: () {
+                  if (widget.keyBoardController.text.isNotEmpty) {
+                    widget.keyBoardController.text =
+                        widget.keyBoardController.text.substring(
+                            0, widget.keyBoardController.text.length - 1);
+                  } else {
+                    widget.keyBoardController.text = '';
+                  }
+                },
+                onSubmit: () {
+                  setState(() {
+                    Navigator.pop(context, widget.keyBoardController.text);
+                  });
+                }),
           ),
         ],
       ),
