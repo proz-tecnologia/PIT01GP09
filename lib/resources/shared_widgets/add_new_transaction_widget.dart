@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:test/data/models/transactions_model.dart';
+import 'package:test/locator.dart';
+import 'package:test/presentation/income/controller/add_transaction_controller.dart';
+import 'package:test/presentation/income/controller/add_transaction_state.dart';
+import 'package:test/resources/colors.dart';
 import 'package:test/resources/shared_widgets/numeric_keyboard_widget.dart';
-
-import '../colors.dart';
-import '../strings.dart';
-import '../text_style.dart';
+import 'package:test/resources/strings.dart';
+import 'package:test/resources/text_style.dart';
+import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {
   final List<String> list;
@@ -28,8 +32,12 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final DateTime lastDate = DateTime(2023, 12);
   final DateTime _date = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _keyboardValueController =
       TextEditingController();
+
+  final addTransactionController = AddTransactionController(
+      transactionsRepository: getIt(), authRepository: getIt());
 
   void getInitialDate() async {
     setState(() {
@@ -51,10 +59,22 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
     }
   }
 
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.list.first;
+    addTransactionController.notifier.addListener(() {
+      if (addTransactionController.state is AddTransactionSuccessState) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/income', (route) => false);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = widget.list.first;
-    double value = 0;
     final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -108,15 +128,44 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                             Strings.value,
                                             style: AppTextStyles.greeting,
                                           ),
-                                          InkWell(
-                                            child: Text(
-                                              value.toStringAsPrecision(3),
-                                              style: AppTextStyles.bigNumber,
-                                            ),
-                                            onTap: () => {
-                                              _numericKeyboardWidgetModalBottomSheet(
-                                                  context),
-                                            },
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              SizedBox(
+                                                height: 80,
+                                                width: 350,
+                                                child: TextFormField(
+                                                  textDirection:
+                                                      ui.TextDirection.rtl,
+                                                  keyboardType:
+                                                      TextInputType.none,
+                                                  style:
+                                                      AppTextStyles.bigNumber,
+                                                  controller:
+                                                      _keyboardValueController,
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    hintText: '00,00',
+                                                    hintTextDirection:
+                                                        ui.TextDirection.rtl,
+                                                    hintStyle:
+                                                        AppTextStyles.bigNumber,
+                                                    border: InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                  ),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _numericKeyboardWidgetModalBottomSheet(
+                                                          context);
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
@@ -136,6 +185,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                     child: Column(
                       children: [
                         TextFormField(
+                          controller: _descriptionController,
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.description),
                             labelText: Strings.description,
@@ -165,10 +215,10 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                 },
                                 items: widget.list
                                     .map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                        (String text) {
                                   return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
+                                    value: text,
+                                    child: Text(text),
                                   );
                                 }).toList(),
                               ),
@@ -221,7 +271,27 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: widget.color,
                         ),
-                        onPressed: () => Navigator.pop(context, true),
+                        onPressed: () {
+                          if (_keyboardValueController.text.isNotEmpty ||
+                              _descriptionController.text.isNotEmpty ||
+                              dropdownValue.isNotEmpty) {
+                            addTransactionController.addTransaction(
+                              TransactionsModel(
+                                description: _descriptionController.text,
+                                category: dropdownValue,
+                                date: _date,
+                                type: 'Receita',
+                                value: _keyboardValueController.text.isNotEmpty
+                                    ? double.parse(
+                                        _keyboardValueController.text)
+                                    : 0,
+                                userId: '',
+                              ),
+                            );
+                          } else {
+                            return;
+                          }
+                        },
                         child: const Text(
                           Strings.add,
                           style: AppTextStyles.greeting,
