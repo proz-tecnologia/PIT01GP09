@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:test/data/repositories/transactions/transactions_repository_impl.dart';
 import 'package:test/domain/repositories/transactions/transactions_repository.dart';
 import 'package:test/presentation/home/controller/transactions_controller.dart';
+import 'package:test/presentation/income/controller/add_transaction_controller.dart';
 
 import 'data/repositories/authentication/auth_repository_impl.dart';
 import 'domain/repositories/authentication/auth_repository.dart';
@@ -14,6 +15,10 @@ import 'presentation/splash/controller/splash_controller.dart';
 final getIt = GetIt.instance;
 
 void setup() {
+  getIt.registerLazySingleton<AddTransactionController>(() =>
+      AddTransactionController(
+          transactionsRepository: getIt(), authRepository: getIt()));
+
   getIt.registerLazySingleton<ProfileController>(
       () => ProfileController(authRepository: getIt()));
 
