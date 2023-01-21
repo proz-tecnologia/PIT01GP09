@@ -59,8 +59,11 @@ class _IncomePageState extends State<IncomePage> {
           child: FloatingActionButton(
             backgroundColor: AppColors.greenVibrant,
             onPressed: () => Navigator.of(context).pushNamed('/add_income'),
-            tooltip: 'Add income',
-            child: const Icon(Icons.add),
+            tooltip: 'Adicionar Receita',
+            child: const Icon(
+              Icons.keyboard_arrow_up_outlined,
+              color: AppColors.whiteSnow,
+            ),
           ),
         ),
       ),

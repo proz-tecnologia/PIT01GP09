@@ -59,8 +59,11 @@ class _ExpensesPageState extends State<ExpensesPage> {
           child: FloatingActionButton(
             backgroundColor: AppColors.redWine,
             onPressed: () => Navigator.of(context).pushNamed('/add_expense'),
-            tooltip: 'Add expense',
-            child: const Icon(Icons.remove),
+            tooltip: 'Adicionar despesa',
+            child: const Icon(
+              Icons.keyboard_arrow_down_outlined,
+              color: AppColors.whiteSnow,
+            ),
           ),
         ),
       ),
