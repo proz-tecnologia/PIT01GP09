@@ -58,7 +58,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
           padding: const EdgeInsets.only(bottom: 60),
           child: FloatingActionButton(
             backgroundColor: AppColors.redWine,
-            onPressed: () => Navigator.of(context).pushNamed('/add_expense'),
+            onPressed: () => Navigator.of(context).pushNamed('/add-expense'),
             tooltip: 'Adicionar despesa',
             child: const Icon(
               Icons.keyboard_arrow_down_outlined,
