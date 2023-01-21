@@ -280,7 +280,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                 description: _descriptionController.text,
                                 category: dropdownValue,
                                 date: _date,
-                                type: 'Receita',
+                                type: widget.type,
                                 value: _keyboardValueController.text.isNotEmpty
                                     ? double.parse(
                                         _keyboardValueController.text)
