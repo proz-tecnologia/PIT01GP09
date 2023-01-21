@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/models/transactions_model.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
-import 'package:test/domain/repositories/transactions/transactions_repository.dart';
-import 'package:test/presentation/income/controller/add_transaction_state.dart';
+import 'package:finance_app/data/models/transactions_model.dart';
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
+import 'package:finance_app/presentation/income/controller/add_transaction_state.dart';
 
 class AddTransactionController extends ValueNotifier<AddTransactionState> {
   final TransactionsRepository _transactionsRepository;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/models/datetime_model.dart';
-import 'package:test/data/models/transactions_model.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
-import 'package:test/domain/repositories/transactions/transactions_repository.dart';
-import 'package:test/presentation/home/controller/transactions_state.dart';
+import 'package:finance_app/data/models/datetime_model.dart';
+import 'package:finance_app/data/models/transactions_model.dart';
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state.dart';
 
 class TransactionsController extends ValueNotifier<TransactionState> {
   final TransactionsRepository _transactionsRepository;

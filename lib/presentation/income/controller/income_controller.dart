@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
-import 'package:test/domain/repositories/transactions/transactions_repository.dart';
-import 'package:test/presentation/income/controller/income_state.dart';
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
+import 'package:finance_app/presentation/income/controller/income_state.dart';
 
 class IncomeController extends ValueNotifier<IncomeState> {
   final TransactionsRepository _transactionsRepository;

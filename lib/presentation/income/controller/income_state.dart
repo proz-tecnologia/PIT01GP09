@@ -1,4 +1,4 @@
-import 'package:test/data/models/transactions_model.dart';
+import 'package:finance_app/data/models/transactions_model.dart';
 
 abstract class IncomeState {}
 

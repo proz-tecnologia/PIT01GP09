@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
-import 'package:test/presentation/profile/controller/profile_state.dart';
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:finance_app/presentation/profile/controller/profile_state.dart';
 
 class ProfileController extends ValueNotifier<ProfileState> {
   final AuthRepository _authRepository;

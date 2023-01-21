@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:test/resources/colors.dart';
+import 'package:finance_app/resources/colors.dart';
 import '../../../resources/text_style.dart';
 import 'num_pad.dart';
 

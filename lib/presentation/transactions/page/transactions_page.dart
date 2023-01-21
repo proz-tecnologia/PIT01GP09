@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test/locator.dart';
-import 'package:test/presentation/home/controller/transactions_controller.dart';
-import 'package:test/presentation/home/controller/transactions_state.dart';
-import 'package:test/presentation/transactions/widgets/bottom_sheet_transactions_widget.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/shared_widgets/transaction_widget.dart';
-import 'package:test/resources/strings.dart';
+import 'package:finance_app/locator.dart';
+import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state.dart';
+import 'package:finance_app/presentation/transactions/widgets/bottom_sheet_transactions_widget.dart';
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/shared_widgets/transaction_widget.dart';
+import 'package:finance_app/resources/strings.dart';
 
 import '../../home/widgets/add_menu.dart';
 

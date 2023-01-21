@@ -1,4 +1,4 @@
-import 'package:test/utils/date_util.dart';
+import 'package:finance_app/utils/date_util.dart';
 
 class DateTimeModel {
   final DateTime? date;

@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:test/data/models/user_model.dart';
-import 'package:test/data/repositories/authentication/auth_repository_impl.dart';
+import 'package:finance_app/data/models/user_model.dart';
+import 'package:finance_app/data/repositories/authentication/auth_repository_impl.dart';
+import 'package:finance_app/core/exceptions/auth_exception.dart';
 
 import '../../../mock/mock_classes.dart';
 
@@ -30,7 +31,7 @@ void main() {
       when((() => userCredential.user)).thenReturn(user);
       final result = await repository.login('user@email.com', 'user@123');
       expect(result, isA<UserModel>());
-      expect(result.email, 'user@email');
+      expect(result.email, 'user@email.com');
     });
     test('no user returned, throw exception', () async {
       when(
@@ -42,7 +43,7 @@ void main() {
       //act
       //assert
       expect(() => repository.login('user@email.com', 'user@123'),
-          throwsA(isA<Exception>()));
+          throwsA(isInstanceOf<AuthException>()));
     });
     test('no connection, throw exception', () async {
       when(

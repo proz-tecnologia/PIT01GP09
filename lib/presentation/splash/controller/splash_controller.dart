@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
-import 'package:test/presentation/splash/controller/splash_state.dart';
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:finance_app/presentation/splash/controller/splash_state.dart';
 
 class SplashController extends ValueNotifier<SplashState> {
   final AuthRepository _authRepository;

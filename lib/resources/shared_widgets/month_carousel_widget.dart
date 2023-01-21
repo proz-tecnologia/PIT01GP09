@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:test/data/models/datetime_model.dart';
-import 'package:test/resources/colors.dart';
+import 'package:finance_app/data/models/datetime_model.dart';
+import 'package:finance_app/resources/colors.dart';
 
 class MonthCarouselWidget extends StatefulWidget {
   final List<DateTimeModel> monthsList;

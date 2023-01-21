@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test/locator.dart';
-import 'package:test/presentation/profile/controller/profile_controller.dart';
-import 'package:test/presentation/profile/controller/profile_state.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/text_style.dart';
+import 'package:finance_app/locator.dart';
+import 'package:finance_app/presentation/profile/controller/profile_controller.dart';
+import 'package:finance_app/presentation/profile/controller/profile_state.dart';
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/text_style.dart';
 
 import '../../home/widgets/profile.dart';
 
