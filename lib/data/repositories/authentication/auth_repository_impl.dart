@@ -5,7 +5,9 @@ import '../../../domain/repositories/authentication/auth_repository.dart';
 import '../../models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth;
+
+  AuthRepositoryImpl(this._firebaseAuth);
 
   @override
   bool get isLogged => _firebaseAuth.currentUser != null;

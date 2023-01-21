@@ -1,14 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/data/models/user_model.dart';
 import 'package:test/data/repositories/authentication/auth_repository_impl.dart';
 
-class FirebaseMock extends Mock implements FirebaseAuth {}
-
-class UserCredentialMock extends Mock implements UserCredential {}
-
-class UserMock extends Mock implements User {}
+import '../../../mock/mock_classes.dart';
 
 void main() {
   late AuthRepositoryImpl repository;
@@ -18,14 +13,14 @@ void main() {
 
   setUp(() {
     firebaseAuth = FirebaseMock();
-    repository = AuthRepositoryImpl();
+    repository = AuthRepositoryImpl(firebaseAuth);
     userCredential = UserCredentialMock();
     user = UserMock();
   });
 
   //sucesso, se logou e devolveu um UserModel
   group('method login', () {
-    test('caso de sucesso', () async {
+    test('success case repository', () async {
       when(
         () => firebaseAuth.signInWithEmailAndPassword(
           email: any(named: 'email'),
@@ -33,9 +28,58 @@ void main() {
         ),
       ).thenAnswer((invocation) async => userCredential);
       when((() => userCredential.user)).thenReturn(user);
-      final result = await repository.login('cindi@gmail.com', '123456789');
+      final result = await repository.login('user@email.com', 'user@123');
       expect(result, isA<UserModel>());
-      expect(result.email, 'cindi@gmail.com');
+      expect(result.email, 'user@email');
+    });
+    test('no user returned, throw exception', () async {
+      when(
+        () => firebaseAuth.signInWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((invocation) async => userCredential);
+      //act
+      //assert
+      expect(() => repository.login('user@email.com', 'user@123'),
+          throwsA(isA<Exception>()));
+    });
+    test('no connection, throw exception', () async {
+      when(
+        () => firebaseAuth.signInWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(
+            named: 'password',
+          ),
+        ),
+      ).thenThrow(Exception());
+      expect(() => repository.login('user@email.com', 'user@123'),
+          throwsException);
+    });
+  });
+  group('method register', () {
+    test('success case for sign up', () async {
+      when(
+        () => firebaseAuth.createUserWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((invocation) async => userCredential);
+      when((() => userCredential.user)).thenReturn(user);
+      final result =
+          await repository.register('User', 'user@email.com', 'user@123');
+      expect(result, isA<UserModel>());
+      expect(result.email, 'user@email.com');
+    });
+    test('sign up failure', () async {
+      when(
+        () => firebaseAuth.createUserWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenThrow(Exception());
+      expect(() => repository.register('User', 'user@email.com', 'user@123'),
+          throwsException);
     });
   });
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:test/data/repositories/transactions/transactions_repository_impl.dart';
 import 'package:test/domain/repositories/transactions/transactions_repository.dart';
@@ -28,7 +29,8 @@ void setup() {
   getIt.registerLazySingleton<AuthController>(
       () => AuthController(authRepository: getIt()));
 
-  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+  getIt.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(FirebaseAuth.instance));
 
   getIt.registerLazySingleton<ExpensesController>(() => ExpensesController(
       transactionRepository: getIt(), authRepository: getIt()));
