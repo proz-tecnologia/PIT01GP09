@@ -40,7 +40,7 @@ void main() {
           password: any(named: 'password'),
         ),
       ).thenAnswer((invocation) async => userCredential);
-      expect(
+      expectLater(
           () => repository.login('user@email.com', 'user@123'),
           throwsA(
             predicate(
