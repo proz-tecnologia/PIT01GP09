@@ -40,10 +40,13 @@ void main() {
           password: any(named: 'password'),
         ),
       ).thenAnswer((invocation) async => userCredential);
-      //act
-      //assert
-      expect(() => repository.login('user@email.com', 'user@123'),
-          throwsA(isInstanceOf<AuthException>()));
+      expect(
+          () => repository.login('user@email.com', 'user@123'),
+          throwsA(
+            predicate(
+              (x) => x is ArgumentError && x.message == UserNotFoundException,
+            ),
+          ));
     });
     test('no connection, throw exception', () async {
       when(
