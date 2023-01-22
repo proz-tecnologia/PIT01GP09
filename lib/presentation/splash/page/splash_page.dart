@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/splash/controller/splash_controller.dart';
 import 'package:finance_app/presentation/splash/controller/splash_state.dart';
+import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
 import 'package:finance_app/presentation/home/controller/transactions_state.dart';
@@ -6,6 +5,7 @@ import 'package:finance_app/presentation/transactions/widgets/bottom_sheet_trans
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/shared_widgets/transaction_widget.dart';
 import 'package:finance_app/resources/strings.dart';
+import 'package:flutter/material.dart';
 
 import '../../home/widgets/add_menu.dart';
 

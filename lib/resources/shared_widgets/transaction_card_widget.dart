@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/resources/colors.dart';
+import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TransactionCardWidget extends StatefulWidget {

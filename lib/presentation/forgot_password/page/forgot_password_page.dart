@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
+import 'package:flutter/material.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

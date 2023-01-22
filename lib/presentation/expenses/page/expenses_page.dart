@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/expenses/controller/expenses_controller.dart';
 import 'package:finance_app/presentation/expenses/controller/expenses_state.dart';
@@ -6,6 +5,7 @@ import 'package:finance_app/presentation/expenses/widgets/bottom_sheet_expenses_
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/shared_widgets/transaction_widget.dart';
 import 'package:finance_app/resources/strings.dart';
+import 'package:flutter/material.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
@@ -8,6 +6,8 @@ import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/shared_widgets/numeric_keyboard_widget.dart';
 import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/shared_widgets/month_carousel_widget.dart';
 import 'package:finance_app/resources/shared_widgets/transaction_card_widget.dart';
+import 'package:flutter/material.dart';
 
 class TransactionWidget extends StatefulWidget {
   final String appBarTitle;

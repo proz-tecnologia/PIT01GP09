@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/resources/colors.dart';
+import 'package:flutter/material.dart';
 import '../../../resources/strings.dart';
 import 'card_tips.dart';
 

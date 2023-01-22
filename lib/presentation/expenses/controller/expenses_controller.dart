@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
+import 'package:flutter/material.dart';
 
 import '../../../domain/repositories/transactions/transactions_repository.dart';
 import 'expenses_state.dart';

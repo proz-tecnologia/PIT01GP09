@@ -1,7 +1,7 @@
+import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:finance_app/resources/text_style.dart';
 
 class AppTheme {
   static final light = ThemeData(
