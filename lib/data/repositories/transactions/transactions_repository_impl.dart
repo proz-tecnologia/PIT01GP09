@@ -7,22 +7,30 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
   @override
   Future<List<TransactionsModel>> getTransactionsList(String userId) async {
-    final result = await _firestore
-        .collection("transactions")
-        .where("userId", isEqualTo: userId)
-        .get();
+    try {
+      final result = await _firestore
+          .collection("transactions")
+          .where("userId", isEqualTo: userId)
+          .get();
 
-    final transactionsList = List<TransactionsModel>.from(result.docs
-        .map((doc) => TransactionsModel.fromMap(doc.id, doc.data())));
+      final transactionsList = List<TransactionsModel>.from(result.docs
+          .map((doc) => TransactionsModel.fromMap(doc.id, doc.data())));
 
-    return transactionsList;
+      return transactionsList;
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
-  Future<bool> addTransaction(TransactionsModel transactionsModel) async {
-    final result = await _firestore
-        .collection("transactions")
-        .add(transactionsModel.toMap());
-    return result.id.isNotEmpty;
+  Future<void> addTransaction(transactionsModel) async {
+    try {
+      final result = await _firestore
+          .collection("transactions")
+          .add(transactionsModel.toMap());
+      result.id.isNotEmpty;
+    } catch (e) {
+      throw Exception();
+    }
   }
 }
