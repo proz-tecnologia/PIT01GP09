@@ -1,6 +1,6 @@
+import 'package:finance_app/resources/strings.dart';
+import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:test/resources/text_style.dart';
-import 'package:test/resources/strings.dart';
 
 import 'current_balance.dart';
 import 'earn_points.dart';

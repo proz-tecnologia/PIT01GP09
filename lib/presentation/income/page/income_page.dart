@@ -1,11 +1,11 @@
+import 'package:finance_app/locator.dart';
+import 'package:finance_app/presentation/income/controller/income_controller.dart';
+import 'package:finance_app/presentation/income/controller/income_state.dart';
+import 'package:finance_app/presentation/income/widgets/bottom_sheet_income_widget.dart';
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/shared_widgets/transaction_widget.dart';
+import 'package:finance_app/resources/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:test/locator.dart';
-import 'package:test/presentation/income/controller/income_controller.dart';
-import 'package:test/presentation/income/controller/income_state.dart';
-import 'package:test/presentation/income/widgets/bottom_sheet_income_widget.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/shared_widgets/transaction_widget.dart';
-import 'package:test/resources/strings.dart';
 
 class IncomePage extends StatefulWidget {
   const IncomePage({super.key});
