@@ -2,24 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:mock_exceptions/mock_exceptions.dart';
-
-class FirestoreMock extends Mock implements FirebaseFirestore {}
+import 'package:mocktail/mocktail.dart';
 
 class MockTransactionsRepository extends Mock
     implements TransactionsRepository {}
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   late MockTransactionsRepository repository;
-  late FirestoreMock firestore;
+  late FakeFirebaseFirestore firestoreInstance;
 
   setUp(() {
     repository = MockTransactionsRepository();
-    firestore = FirestoreMock();
+    firestoreInstance = FakeFirebaseFirestore();
   });
 
   const String userId = 'user345';
@@ -33,13 +29,6 @@ void main() {
       userId: 'xpto',
       value: 100);
 
-  final firestoreInstance = FakeFirebaseFirestore();
-
-  final snapshot = firestoreInstance
-      .collection("transactions")
-      .where(userId, isEqualTo: userId)
-      .get();
-
   group(
     'caso de sucesso - método getTransactionsList',
     () {
@@ -47,13 +36,9 @@ void main() {
         'deve retornar lista de TransactionsModel',
         () async {
           // arrange
-          when(() => firestore
-              .collection("transactions")
-              .where(userId, isEqualTo: userId)
-              .get()).thenAnswer((_) => snapshot);
-
           when(() => repository.getTransactionsList(userId))
               .thenAnswer((_) async => [transactionsModel]);
+
           // act
           final result = await repository.getTransactionsList(userId);
           // assert
@@ -71,13 +56,9 @@ void main() {
         'deve retornar uma exceção',
         () async {
           // arrange
-          when(() => firestore
-              .collection("transactions")
-              .where(userId, isEqualTo: userId)
-              .get()).thenThrow(Exception());
-
           when(() => repository.getTransactionsList(userId))
               .thenThrow(Exception());
+
           // assert
           expect(() => repository.getTransactionsList(userId), throwsException);
         },
@@ -124,7 +105,7 @@ void main() {
           // assert
           whenCalling(Invocation.method(#set, null))
               .on(doc)
-              .thenThrow(FirebaseException(plugin: 'firestore'));
+              .thenThrow(FirebaseException(plugin: 'firestoreInstance'));
 
           expect(() => doc.set({'name': 'Bob'}),
               throwsA(isA<FirebaseException>()));
