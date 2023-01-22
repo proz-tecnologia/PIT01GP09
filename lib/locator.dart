@@ -1,3 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get_it/get_it.dart';
+import 'package:finance_app/data/repositories/transactions/transactions_repository_impl.dart';
+import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
+import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
+import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
 import 'package:finance_app/data/repositories/transactions/transactions_repository_impl.dart';
 import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
@@ -28,7 +34,8 @@ void setup() {
   getIt.registerLazySingleton<AuthController>(
       () => AuthController(authRepository: getIt()));
 
-  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+  getIt.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(FirebaseAuth.instance));
 
   getIt.registerLazySingleton<ExpensesController>(() => ExpensesController(
       transactionRepository: getIt(), authRepository: getIt()));

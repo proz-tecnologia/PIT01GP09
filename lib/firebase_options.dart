@@ -67,8 +67,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '820375406013',
     projectId: 'finance-app-33581',
     storageBucket: 'finance-app-33581.appspot.com',
-    iosClientId: '820375406013-rq7ln8jhu02tr6cokccaeu3k36q726ba.apps.googleusercontent.com',
-    iosBundleId: 'com.example.test',
+    iosClientId:
+        '820375406013-rq7ln8jhu02tr6cokccaeu3k36q726ba.apps.googleusercontent.com',
+    iosBundleId: 'com.example.finance_app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '820375406013',
     projectId: 'finance-app-33581',
     storageBucket: 'finance-app-33581.appspot.com',
-    iosClientId: '820375406013-rq7ln8jhu02tr6cokccaeu3k36q726ba.apps.googleusercontent.com',
-    iosBundleId: 'com.example.test',
+    iosClientId:
+        '820375406013-rq7ln8jhu02tr6cokccaeu3k36q726ba.apps.googleusercontent.com',
+    iosBundleId: 'com.example.finance_app',
   );
 }
