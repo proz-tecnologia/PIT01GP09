@@ -1,13 +1,13 @@
+import 'package:finance_app/locator.dart';
+import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state.dart';
+import 'package:finance_app/presentation/home/widgets/card_chart_widget.dart';
+import 'package:finance_app/presentation/home/widgets/card_education_widget.dart';
+import 'package:finance_app/presentation/home/widgets/card_financial_statement_widget.dart';
+import 'package:finance_app/presentation/home/widgets/card_gradient_widget.dart';
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:test/locator.dart';
-import 'package:test/presentation/home/controller/transactions_controller.dart';
-import 'package:test/presentation/home/controller/transactions_state.dart';
-import 'package:test/presentation/home/widgets/card_chart_widget.dart';
-import 'package:test/presentation/home/widgets/card_education_widget.dart';
-import 'package:test/presentation/home/widgets/card_financial_statement_widget.dart';
-import 'package:test/presentation/home/widgets/card_gradient_widget.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/strings.dart';
 import '../../../resources/shared_widgets/transaction_card_widget.dart';
 import '../widgets/add_menu.dart';
 

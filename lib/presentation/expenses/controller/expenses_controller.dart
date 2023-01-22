@@ -1,5 +1,5 @@
+import 'package:finance_app/domain/repositories/authentication/auth_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:test/domain/repositories/authentication/auth_repository.dart';
 
 import '../../../domain/repositories/transactions/transactions_repository.dart';
 import 'expenses_state.dart';
@@ -20,7 +20,8 @@ class ExpensesController extends ValueNotifier<ExpensesState> {
 
     try {
       final userId = _authRepository.currentUser?.uid;
-      var transactionList = await _transactionRepository.getTransactionsList(userId ?? "");
+      var transactionList =
+          await _transactionRepository.getTransactionsList(userId ?? "");
       var expensesFilteredList =
           transactionList.where((item) => item.type == 'Despesa').toList();
       value = ExpensesSuccessState(expensesFilteredList);

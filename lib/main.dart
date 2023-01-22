@@ -1,10 +1,10 @@
+import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
+import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
+import 'package:finance_app/presentation/profile/controller/profile_controller.dart';
+import 'package:finance_app/presentation/splash/controller/splash_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test/presentation/home/controller/transactions_controller.dart';
-import 'package:test/presentation/income/controller/add_transaction_controller.dart';
-import 'package:test/presentation/profile/controller/profile_controller.dart';
-import 'package:test/presentation/splash/controller/splash_controller.dart';
 
 import 'firebase_options.dart';
 import 'locator.dart';

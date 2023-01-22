@@ -1,5 +1,5 @@
+import 'package:finance_app/resources/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:test/resources/colors.dart';
 
 class BottomSheetExpensesWidget extends StatelessWidget {
   const BottomSheetExpensesWidget({super.key});

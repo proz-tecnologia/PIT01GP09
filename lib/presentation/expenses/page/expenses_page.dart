@@ -1,11 +1,11 @@
+import 'package:finance_app/locator.dart';
+import 'package:finance_app/presentation/expenses/controller/expenses_controller.dart';
+import 'package:finance_app/presentation/expenses/controller/expenses_state.dart';
+import 'package:finance_app/presentation/expenses/widgets/bottom_sheet_expenses_widget.dart';
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/shared_widgets/transaction_widget.dart';
+import 'package:finance_app/resources/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:test/locator.dart';
-import 'package:test/presentation/expenses/controller/expenses_controller.dart';
-import 'package:test/presentation/expenses/controller/expenses_state.dart';
-import 'package:test/presentation/expenses/widgets/bottom_sheet_expenses_widget.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/resources/shared_widgets/transaction_widget.dart';
-import 'package:test/resources/strings.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});

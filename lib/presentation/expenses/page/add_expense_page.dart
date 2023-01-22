@@ -1,8 +1,7 @@
+import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/shared_widgets/add_new_transaction_widget.dart';
+import 'package:finance_app/utils/list_expenses_util.dart';
 import 'package:flutter/material.dart';
-import 'package:test/resources/shared_widgets/add_new_transaction_widget.dart';
-import 'package:test/resources/colors.dart';
-import 'package:test/utils/list_expenses_util.dart';
-
 import '../../../resources/strings.dart';
 
 class AddExpensePage extends StatefulWidget {
