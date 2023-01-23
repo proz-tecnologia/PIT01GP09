@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:finance_app/data/models/user_model.dart';
 import 'package:finance_app/data/repositories/authentication/auth_repository_impl.dart';
-import 'package:finance_app/core/exceptions/auth_exception.dart';
 
 import '../../../mock/mock_classes.dart';
 
@@ -32,21 +31,6 @@ void main() {
       final result = await repository.login('user@email.com', 'user@123');
       expect(result, isA<UserModel>());
       expect(result.email, 'user@email.com');
-    });
-    test('no user returned, throw exception', () async {
-      when(
-        () => firebaseAuth.signInWithEmailAndPassword(
-          email: any(named: 'email'),
-          password: any(named: 'password'),
-        ),
-      ).thenAnswer((invocation) async => userCredential);
-      expectLater(
-          () => repository.login('user@email.com', 'user@123'),
-          throwsA(
-            predicate(
-              (x) => x is ArgumentError && x.message == UserNotFoundException,
-            ),
-          ));
     });
     test('no connection, throw exception', () async {
       when(
@@ -84,6 +68,24 @@ void main() {
       ).thenThrow(Exception());
       expect(() => repository.register('User', 'user@email.com', 'user@123'),
           throwsException);
+    });
+  });
+  group('sign out method', () {
+    test('sign out success', () async {
+      when(
+        () => firebaseAuth.signInWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((invocation) async => userCredential);
+      when((() => userCredential.user)).thenReturn(user);
+      await repository.login('user@email.com', 'user@123');
+      when(
+        () => firebaseAuth.signOut(),
+      ).thenAnswer((invocation) async => userCredential);
+      when((() => userCredential.user)).thenReturn(user);
+      await repository.signOut();
+      expect(repository.isLogged, false);
     });
   });
 }

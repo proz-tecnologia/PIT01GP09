@@ -1,5 +1,4 @@
 import 'package:finance_app/data/repositories/authentication/auth_repository_impl.dart';
-import 'package:finance_app/presentation/login/controller/auth_controller.dart';
 import 'package:finance_app/presentation/profile/controller/profile_controller.dart';
 import 'package:finance_app/presentation/profile/controller/profile_state.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +8,6 @@ import '../../../mock/mock_classes.dart';
 
 void main() {
   late AuthRepositoryImpl repository;
-  late AuthController authController;
   late ProfileController profileController;
   late FirebaseMock firebaseAuth;
   late UserCredentialMock userCredential;
@@ -18,7 +16,6 @@ void main() {
   setUp(() {
     firebaseAuth = FirebaseMock();
     repository = AuthRepositoryImpl(firebaseAuth);
-    authController = AuthController(authRepository: repository);
     profileController = ProfileController(authRepository: repository);
     userCredential = UserCredentialMock();
     user = UserMock();
