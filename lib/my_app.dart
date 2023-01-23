@@ -1,8 +1,6 @@
+import 'package:finance_app/presentation/forgot_password/page/forgot_password_page.dart';
+import 'package:finance_app/presentation/profile/page/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:test/presentation/expenses/page/num_expense_page.dart';
-import 'package:test/presentation/forgot_password/page/forgot_password_page.dart';
-import 'package:test/presentation/income/page/num_income_page.dart';
-import 'package:test/presentation/profile/page/profile_page.dart';
 
 import 'presentation/expenses/page/add_expense_page.dart';
 import 'presentation/income/page/add_income_page.dart';
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Test',
+      title: 'finance_app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -35,10 +33,8 @@ class MyApp extends StatelessWidget {
         '/transactions': (context) => const TransactionsPage(),
         '/expenses': (context) => const ExpensesPage(),
         '/income': (context) => const IncomePage(),
-        '/add_income': (context) => const AddIncomePage(),
-        '/add_expense': (context) => const AddExpensePage(),
-        '/num_income': (context) => const NumericKeyboardIncomePage(),
-        '/num_expense': (context) => const NumericKeyboardExpensePage(),
+        '/add-income': (context) => const AddIncomePage(),
+        '/add-expense': (context) => const AddExpensePage(),
         '/splash': (context) => const SplashPage(),
       },
     );

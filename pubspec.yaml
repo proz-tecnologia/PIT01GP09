@@ -1,4 +1,4 @@
-name: test
+name: finance_app
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -32,8 +32,10 @@ dependencies:
   cloud_firestore: ^4.3.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  fake_cloud_firestore: ^2.3.0+3
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
+  firebase_storage_mocks: ^0.6.0+1
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
@@ -41,6 +43,8 @@ dependencies:
   get_it: ^7.2.0
   google_fonts: ^3.0.1
   intl: ^0.17.0
+  mock_exceptions: ^0.8.2
+  mocktail: ^0.3.0
   month_year_picker: ^0.2.0+3
   provider: ^6.0.4
 

@@ -27,20 +27,20 @@ class _AddMenuState extends State<AddMenu> {
         SpeedDialChild(
           backgroundColor: AppColors.redWine,
           child: const Icon(
-            Icons.remove,
+            Icons.keyboard_arrow_down_outlined,
             color: AppColors.whiteSnow,
           ),
           label: Strings.expense,
-          onTap: () => Navigator.pushNamed(context, '/add_expense'),
+          onTap: () => Navigator.pushNamed(context, '/add-expense'),
         ),
         SpeedDialChild(
           backgroundColor: AppColors.greenVibrant,
           child: const Icon(
-            Icons.add,
+            Icons.keyboard_arrow_up_outlined,
             color: AppColors.whiteSnow,
           ),
           label: Strings.income,
-          onTap: () => Navigator.pushNamed(context, '/add_income'),
+          onTap: () => Navigator.pushNamed(context, '/add-income'),
         ),
       ],
     );
