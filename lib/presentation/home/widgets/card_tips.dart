@@ -44,17 +44,21 @@ class _CardTipsState extends State<CardTips> {
             Positioned(
               left: 10,
               top: 155,
-              child: Text(
-                widget.cardTitle,
-                style: const TextStyle(
-                  color: AppColors.blackSwan,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
+              child: SizedBox(
+                width: 208,
+                height: 45,
+                child: Text(
+                  widget.cardTitle,
+                  style: const TextStyle(
+                    color: AppColors.blackSwan,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ),
             Positioned(
-              bottom: 22,
+              bottom: 12,
               right: 16,
               child: Row(children: const [
                 Text(
