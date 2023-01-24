@@ -1,11 +1,20 @@
 import 'package:finance_app/resources/colors.dart';
 import 'package:flutter/material.dart';
 
-class CardTips extends StatelessWidget {
+class CardTips extends StatefulWidget {
+  final String imageLocation;
+  final String cardTitle;
   const CardTips({
     Key? key,
+    required this.imageLocation,
+    required this.cardTitle,
   }) : super(key: key);
 
+  @override
+  State<CardTips> createState() => _CardTipsState();
+}
+
+class _CardTipsState extends State<CardTips> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,20 +29,24 @@ class CardTips extends StatelessWidget {
             Container(
               height: 149,
               width: 276,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
                 color: AppColors.amberPeach,
+                image: DecorationImage(
+                  image: AssetImage(widget.imageLocation),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            const Positioned(
+            Positioned(
               left: 10,
               top: 155,
               child: Text(
-                'Dicas para economizar na quebrada',
-                style: TextStyle(
+                widget.cardTitle,
+                style: const TextStyle(
                   color: AppColors.blackSwan,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -44,17 +57,6 @@ class CardTips extends StatelessWidget {
               bottom: 22,
               right: 16,
               child: Row(children: const [
-                Text(
-                  '+ ARTIGOS',
-                  style: TextStyle(
-                    color: AppColors.grayDark,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
                 Text(
                   'LEIA MAIS',
                   style: TextStyle(
