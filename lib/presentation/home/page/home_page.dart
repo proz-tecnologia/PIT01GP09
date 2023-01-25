@@ -28,8 +28,8 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     transactionsController.getTransactionsList();
+    super.initState();
   }
 
   void onItemPressed(int index) {
