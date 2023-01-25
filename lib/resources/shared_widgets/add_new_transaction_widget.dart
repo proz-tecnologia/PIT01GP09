@@ -47,11 +47,27 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
 
   void _selectDate() async {
     final DateTime? newDate = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: DateTime(2023, 1),
-      lastDate: DateTime(2023, 12, 31),
-    );
+        context: context,
+        initialDate: _date,
+        firstDate: DateTime(2023, 1),
+        lastDate: DateTime(2023, 12, 31),
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary: widget.color, // <-- SEE HERE
+                onPrimary: AppColors.whiteSnow, // <-- SEE HERE
+                onSurface: AppColors.purpleFlower, // <-- SEE HERE
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor: widget.color, // button text color
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        });
     if (newDate != null) {
       setState(() {
         _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
