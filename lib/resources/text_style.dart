@@ -57,7 +57,7 @@ class AppTextStyles {
   );
 
   static const currentBalance = TextStyle(
-    fontSize: 20.0,
+    fontSize: 32.0,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
