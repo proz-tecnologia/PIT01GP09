@@ -30,7 +30,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   @override
   void initState() {
     super.initState();
-    transactionsController.fetchTransactionListFromRepository();
+    //transactionsController.fetchTransactionListFromRepository();
   }
 
   @override
@@ -59,10 +59,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: [
-            MonthCarouselWidget(
-              onSelectMonthYear: transactionsController.filterTransactionList,
-              monthsList: transactionsController.monthsList,
-            ),
+            // MonthCarouselWidget(
+            //   onSelectMonthYear: transactionsController.filterTransactionList,
+            //   monthsList: transactionsController.monthsList,
+            // ),
             SizedBox(
               height: 33,
               child: Row(

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:finance_app/data/models/datetime_model.dart';
 import 'package:finance_app/resources/colors.dart';
 import 'package:flutter/material.dart';
@@ -78,9 +76,8 @@ class _MonthCarouselWidgetState extends State<MonthCarouselWidget> {
                     itemCount: widget.monthsList.length,
                     itemBuilder: (BuildContext context, int index) {
                       final DateTimeModel monthItem = widget.monthsList[index];
-                      log('listMonth ${widget.monthsList}');
                       return InkWell(
-                        onTap: () {
+                        onTap: () async {
                           setState(() {
                             selectedIndex = index;
                             indexItem = index;

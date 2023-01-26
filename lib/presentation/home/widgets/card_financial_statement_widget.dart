@@ -1,3 +1,6 @@
+import 'package:finance_app/presentation/home/controller/transactions_state_error.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_loading.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_success.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +27,7 @@ class _CardFinancialStatementWidgetState
   @override
   void initState() {
     super.initState();
-    transactionsController.getTransactionsList();
+    transactionsController.fetchTransactions();
   }
 
   String getTotalIncome(List<TransactionsModel> transactionsList) {
@@ -54,20 +57,20 @@ class _CardFinancialStatementWidgetState
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<TransactionState>(
-        valueListenable: transactionsController,
+        valueListenable: transactionsController.state,
         builder: (_, state, __) {
-          if (state is TransactionLoadingState) {
+          if (state is TransactionStateLoading) {
             return const Center(
                 child: CircularProgressIndicator(
               color: AppColors.blueVibrant,
             ));
           }
-          if (state is TransactionErrorState) {
+          if (state is TransactionStateError) {
             return Center(
               child: Text(state.message),
             );
           }
-          if (state is TransactionSuccessState) {
+          if (state is TransactionStateSuccess) {
             return Padding(
               padding: const EdgeInsets.only(
                   left: 16, top: 16, right: 16, bottom: 24),
@@ -95,7 +98,7 @@ class _CardFinancialStatementWidgetState
                             ),
                             const SizedBox(height: 7),
                             Text(
-                              getTotalIncome(state.transactionListModel),
+                              getTotalIncome(state.transactions.value),
                               style: const TextStyle(
                                 color: AppColors.greenVibrant,
                                 fontSize: 20,
@@ -128,7 +131,7 @@ class _CardFinancialStatementWidgetState
                             ),
                             const SizedBox(height: 7),
                             Text(
-                              getTotalExpense(state.transactionListModel),
+                              getTotalExpense(state.transactions.value),
                               style: const TextStyle(
                                   color: AppColors.redWine,
                                   fontSize: 20,
