@@ -103,4 +103,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.grayTwo,
   );
+
+  static const percent = TextStyle(
+    fontSize: 25.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackSwan,
+  );
 }

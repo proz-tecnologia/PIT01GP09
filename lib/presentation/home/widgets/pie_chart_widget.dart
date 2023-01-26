@@ -2,10 +2,16 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class PieChartSample2 extends StatefulWidget {
-  final double percentage;
+  final double percentageOne;
+  final double percentageTwo;
+  final Color colorOne;
+  final Color colorTwo;
   const PieChartSample2({
     Key? key,
-    required this.percentage,
+    required this.percentageOne,
+    required this.percentageTwo,
+    required this.colorOne,
+    required this.colorTwo,
   }) : super(key: key);
 
   @override
@@ -17,50 +23,50 @@ class _PieChartSample2State extends State<PieChartSample2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AspectRatio(
-        aspectRatio: 1.3,
-        child: Row(
-          children: <Widget>[
-            const SizedBox(
-              height: 18,
-            ),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: PieChart(
-                  PieChartData(
-                    pieTouchData: PieTouchData(
-                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                        setState(() {
-                          if (!event.isInterestedForInteractions ||
-                              pieTouchResponse == null ||
-                              pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                          touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
-                        });
-                      },
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 2,
-                    centerSpaceRadius: 65,
-                    sections: showingSections(widget.percentage),
+    return AspectRatio(
+      aspectRatio: 1.3,
+      child: Row(
+        children: <Widget>[
+          const SizedBox(
+            height: 18,
+          ),
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
                   ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 2,
+                  centerSpaceRadius: 65,
+                  sections: showingSections(widget.percentageOne,
+                      widget.percentageTwo, widget.colorOne, widget.colorTwo),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections(double percentage) {
+  List<PieChartSectionData> showingSections(double percentageOne,
+      double percentageTwo, Color colorOne, Color colorTwo) {
     return List.generate(2, (int index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
@@ -68,9 +74,9 @@ class _PieChartSample2State extends State<PieChartSample2> {
       switch (index) {
         case 0:
           return PieChartSectionData(
-            color: const Color(0xFF3CF3A6),
-            value: percentage,
-            title: '${percentage.toStringAsFixed(0)} %',
+            color: colorOne,
+            value: percentageOne,
+            title: '${percentageOne.toStringAsFixed(0)} %',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -80,9 +86,9 @@ class _PieChartSample2State extends State<PieChartSample2> {
           );
         case 1:
           return PieChartSectionData(
-            color: const Color(0xFFAEAEAE),
-            value: 100 - percentage,
-            title: '${(100 - percentage).toStringAsFixed(0)} %',
+            color: colorTwo,
+            value: percentageTwo,
+            title: '${(percentageTwo).toStringAsFixed(0)} %',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

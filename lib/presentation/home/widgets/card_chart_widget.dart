@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../data/models/transactions_model.dart';
 import '../../../locator.dart';
 import '../../../resources/colors.dart';
+import '../../../resources/text_style.dart';
 import '../controller/transactions_controller.dart';
 import '../controller/transactions_state.dart';
 import 'pie_chart_widget.dart';
@@ -36,7 +37,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
     }
     final currentBalance = totalIncome - totalExpense;
     final incomePercentage = (currentBalance / totalIncome) * 100;
-    final expensePercentage = (currentBalance / totalExpense) * 100;
+    final expensePercentage = (totalExpense / totalIncome) * 100;
     return [incomePercentage, expensePercentage];
   }
 
@@ -81,17 +82,29 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           loadChart(
-                              'Receitas',
-                              getPercentages(state.transactionListModel)[0],
-                              AppColors.greenVibrant),
+                            'Receitas',
+                            getPercentages(state.transactionListModel)[0],
+                            getPercentages(state.transactionListModel)[1],
+                            getPercentages(state.transactionListModel)[0],
+                            AppColors.greenVibrant,
+                            AppColors.grayTwo,
+                          ),
                           loadChart(
-                              'Receitas',
-                              getPercentages(state.transactionListModel)[0],
-                              AppColors.greenVibrant),
+                            'Despesas',
+                            getPercentages(state.transactionListModel)[0],
+                            getPercentages(state.transactionListModel)[1],
+                            getPercentages(state.transactionListModel)[1],
+                            AppColors.grayTwo,
+                            AppColors.redWine,
+                          ),
                           loadChart(
-                              'Receitas',
-                              getPercentages(state.transactionListModel)[0],
-                              AppColors.greenVibrant),
+                            'Total',
+                            getPercentages(state.transactionListModel)[0],
+                            getPercentages(state.transactionListModel)[1],
+                            100,
+                            AppColors.greenVibrant,
+                            AppColors.redWine,
+                          ),
                         ],
                       ),
                     ],
@@ -104,9 +117,10 @@ class _CardChartWidgetState extends State<CardChartWidget> {
         });
   }
 
-  Widget loadChart(String type, double percentage, Color color) {
+  Widget loadChart(String type, double percentageOne, double percentageTwo,
+      double percentageShown, Color colorOne, Color colorTwo) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 20),
+      padding: const EdgeInsets.only(right: 20),
       child: Container(
         width: 314,
         height: 222,
@@ -118,21 +132,26 @@ class _CardChartWidgetState extends State<CardChartWidget> {
           alignment: Alignment.center,
           children: [
             PieChartSample2(
-              percentage: percentage,
+              percentageOne: percentageOne,
+              percentageTwo: percentageTwo,
+              colorOne: colorOne,
+              colorTwo: colorTwo,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(type),
+                  child: Text(
+                    type,
+                    style: AppTextStyles.date,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '${percentage.toStringAsFixed(0)} %',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w600),
+                    '${percentageShown.toStringAsFixed(0)} %',
+                    style: AppTextStyles.percent,
                   ),
                 ),
               ],
