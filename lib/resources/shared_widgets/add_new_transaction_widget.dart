@@ -8,6 +8,7 @@ import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {
@@ -33,8 +34,8 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final DateTime _date = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _keyboardValueController =
-      TextEditingController();
+  final MoneyMaskedTextController _keyboardValueController =
+      MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
 
   final addTransactionController = AddTransactionController(
       transactionsRepository: getIt(), authRepository: getIt());
@@ -152,6 +153,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                 height: 80,
                                                 width: 350,
                                                 child: TextFormField(
+                                                  readOnly: true,
                                                   textDirection:
                                                       ui.TextDirection.rtl,
                                                   keyboardType:
@@ -162,7 +164,12 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                       _keyboardValueController,
                                                   decoration:
                                                       const InputDecoration(
-                                                    hintText: '00,00',
+                                                    prefix: Text(
+                                                      'R\$ ',
+                                                      style:
+                                                          AppTextStyles.money,
+                                                    ),
+                                                    hintText: '0,00',
                                                     hintTextDirection:
                                                         ui.TextDirection.rtl,
                                                     hintStyle:
@@ -298,8 +305,9 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                 date: _date,
                                 type: widget.type,
                                 value: _keyboardValueController.text.isNotEmpty
-                                    ? double.parse(
-                                        _keyboardValueController.text)
+                                    ? double.parse(_keyboardValueController.text
+                                        .replaceAll('.', '')
+                                        .replaceAll(',', '.'))
                                     : 0,
                                 userId: '',
                               ),
