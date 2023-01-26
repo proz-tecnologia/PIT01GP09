@@ -8,6 +8,7 @@ import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {
@@ -33,8 +34,8 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final DateTime _date = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _keyboardValueController =
-      TextEditingController();
+  final MoneyMaskedTextController _keyboardValueController =
+      MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
 
   final addTransactionController = AddTransactionController(
       transactionsRepository: getIt(), authRepository: getIt());
@@ -47,11 +48,27 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
 
   void _selectDate() async {
     final DateTime? newDate = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: DateTime(2023, 1),
-      lastDate: DateTime(2023, 12, 31),
-    );
+        context: context,
+        initialDate: _date,
+        firstDate: DateTime(2023, 1),
+        lastDate: DateTime(2023, 12, 31),
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary: widget.color, // <-- SEE HERE
+                onPrimary: AppColors.whiteSnow, // <-- SEE HERE
+                onSurface: AppColors.purpleFlower, // <-- SEE HERE
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor: widget.color, // button text color
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        });
     if (newDate != null) {
       setState(() {
         _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
@@ -136,6 +153,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                 height: 80,
                                                 width: 350,
                                                 child: TextFormField(
+                                                  readOnly: true,
                                                   textDirection:
                                                       ui.TextDirection.rtl,
                                                   keyboardType:
@@ -146,7 +164,12 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                       _keyboardValueController,
                                                   decoration:
                                                       const InputDecoration(
-                                                    hintText: '00,00',
+                                                    prefix: Text(
+                                                      'R\$ ',
+                                                      style:
+                                                          AppTextStyles.money,
+                                                    ),
+                                                    hintText: '0,00',
                                                     hintTextDirection:
                                                         ui.TextDirection.rtl,
                                                     hintStyle:
@@ -282,8 +305,9 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                 date: _date,
                                 type: widget.type,
                                 value: _keyboardValueController.text.isNotEmpty
-                                    ? double.parse(
-                                        _keyboardValueController.text)
+                                    ? double.parse(_keyboardValueController.text
+                                        .replaceAll('.', '')
+                                        .replaceAll(',', '.'))
                                     : 0,
                                 userId: '',
                               ),
