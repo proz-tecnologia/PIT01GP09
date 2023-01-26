@@ -1,11 +1,12 @@
 import 'package:finance_app/resources/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 import '../../../resources/text_style.dart';
 import 'num_pad.dart';
 
 class NumericKeyboardWidget extends StatefulWidget {
-  final TextEditingController keyBoardController;
+  final MoneyMaskedTextController keyBoardController;
 
   const NumericKeyboardWidget({
     Key? key,

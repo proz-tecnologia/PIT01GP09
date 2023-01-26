@@ -1,5 +1,4 @@
 const List<String> listIncome = <String>[
-  "",
   "Salário",
   "Renda",
   "Venda",

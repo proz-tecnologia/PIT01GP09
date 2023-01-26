@@ -39,6 +39,7 @@ dependencies:
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
+  flutter_masked_text2: ^0.9.1
   flutter_speed_dial: ^6.2.0
   get_it: ^7.2.0
   google_fonts: ^3.0.1
@@ -69,6 +70,10 @@ flutter:
     - assets/images/login-image.png
     - assets/images/cadastro-image.png
     - assets/images/forgot-image.png
+    - assets/images/01-guetonomia.png
+    - assets/images/02-tio-patinhas.jpg
+    - assets/images/03-pixando.jpg
+    - assets/images/4-monopoly.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

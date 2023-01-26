@@ -31,13 +31,25 @@ class _CardEducationWidgetState extends State<CardEducationWidget> {
           child: ListView(scrollDirection: Axis.horizontal, children: [
             Row(
               children: const [
-                CardTips(),
+                CardTips(
+                  cardTitle: 'Dicas para economizar na quebrada',
+                  imageLocation: 'assets/images/01-guetonomia.png',
+                ),
                 SizedBox(width: 20),
-                CardTips(),
+                CardTips(
+                  cardTitle: 'Sorrindo a toa dando o close certo nas finanças',
+                  imageLocation: 'assets/images/02-tio-patinhas.jpg',
+                ),
                 SizedBox(width: 20),
-                CardTips(),
+                CardTips(
+                  cardTitle: 'Fazendo o corre para a aposentadoria',
+                  imageLocation: 'assets/images/03-pixando.jpg',
+                ),
                 SizedBox(width: 20),
-                CardTips(),
+                CardTips(
+                  cardTitle: 'Abra seu próprio negócio na periferia',
+                  imageLocation: 'assets/images/4-monopoly.jpg',
+                ),
               ],
             )
           ])),
