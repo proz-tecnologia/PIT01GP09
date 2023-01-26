@@ -78,9 +78,9 @@ class _MonthCarouselWidgetState extends State<MonthCarouselWidget> {
                     itemCount: widget.monthsList.length,
                     itemBuilder: (BuildContext context, int index) {
                       final DateTimeModel monthItem = widget.monthsList[index];
-                      log('listMonth ${widget.monthsList}');
+                      log('MonthItem ${monthItem.date}');
                       return InkWell(
-                        onTap: () {
+                        onTap: () async {
                           setState(() {
                             selectedIndex = index;
                             indexItem = index;
