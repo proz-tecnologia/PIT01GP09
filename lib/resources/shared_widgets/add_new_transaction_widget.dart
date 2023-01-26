@@ -39,18 +39,12 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final addTransactionController = AddTransactionController(
       transactionsRepository: getIt(), authRepository: getIt());
 
-  void getInitialDate() async {
-    setState(() {
-      _dateController.text = DateFormat('dd-MM-yyyy').format(_date);
-    });
-  }
-
   void _selectDate() async {
     final DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: _date,
-      firstDate: DateTime(2023, 1),
-      lastDate: DateTime(2023, 12, 31),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2025),
     );
     if (newDate != null) {
       setState(() {
@@ -76,6 +70,8 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    String dateHintText = DateFormat(' dd/MM/yyyy').format(_date);
+
     return SafeArea(
       child: Scaffold(
         key: _formKey,
@@ -246,9 +242,10 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                             style: AppTextStyles.input,
                             readOnly: true,
                             controller: _dateController,
-                            decoration: const InputDecoration(
-                              suffixIcon: Icon(Icons.calendar_month),
-                              enabledBorder: OutlineInputBorder(
+                            decoration: InputDecoration(
+                              hintText: dateHintText,
+                              suffixIcon: const Icon(Icons.calendar_month),
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                     color: AppColors.grayDark, width: 1.0),
                               ),
