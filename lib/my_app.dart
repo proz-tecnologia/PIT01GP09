@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'finance_app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.grey),
       ),
       initialRoute: '/splash',
       routes: {
