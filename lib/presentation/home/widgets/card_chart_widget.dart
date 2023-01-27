@@ -4,8 +4,13 @@ import '../../../data/models/transactions_model.dart';
 import '../../../locator.dart';
 import '../../../resources/colors.dart';
 import '../../../resources/text_style.dart';
+import '../../transactions/page/transactions_page_error.dart';
+import '../../transactions/page/transactions_page_loading.dart';
 import '../controller/transactions_controller.dart';
 import '../controller/transactions_state.dart';
+import '../controller/transactions_state_error.dart';
+import '../controller/transactions_state_loading.dart';
+import '../controller/transactions_state_success.dart';
 import 'pie_chart_widget.dart';
 
 class CardChartWidget extends StatefulWidget {
@@ -22,7 +27,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
   @override
   void initState() {
     super.initState();
-    transactionsController.getTransactionsList();
+    transactionsController.fetchTransactions();
   }
 
   List<double> getPercentages(List<TransactionsModel> transactionsList) {
@@ -44,20 +49,15 @@ class _CardChartWidgetState extends State<CardChartWidget> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<TransactionState>(
-        valueListenable: transactionsController,
+        valueListenable: transactionsController.state,
         builder: (_, state, __) {
-          if (state is TransactionLoadingState) {
-            return const Center(
-                child: CircularProgressIndicator(
-              color: AppColors.blueVibrant,
-            ));
+          if (state is TransactionStateLoading) {
+            return TransactionsPageLoading(state: state);
           }
-          if (state is TransactionErrorState) {
-            return Center(
-              child: Text(state.message),
-            );
+          if (state is TransactionStateError) {
+            return TransactionsPageError(state: state);
           }
-          if (state is TransactionSuccessState) {
+          if (state is TransactionStateSuccess) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -83,24 +83,24 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                         children: [
                           loadChart(
                             'Receitas',
-                            getPercentages(state.transactionListModel)[0],
-                            getPercentages(state.transactionListModel)[1],
-                            getPercentages(state.transactionListModel)[0],
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
+                            getPercentages(state.transactions.value)[0],
                             AppColors.greenVibrant,
                             AppColors.grayTwo,
                           ),
                           loadChart(
                             'Despesas',
-                            getPercentages(state.transactionListModel)[0],
-                            getPercentages(state.transactionListModel)[1],
-                            getPercentages(state.transactionListModel)[1],
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
+                            getPercentages(state.transactions.value)[1],
                             AppColors.grayTwo,
                             AppColors.redWine,
                           ),
                           loadChart(
                             'Total',
-                            getPercentages(state.transactionListModel)[0],
-                            getPercentages(state.transactionListModel)[1],
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
                             100,
                             AppColors.greenVibrant,
                             AppColors.redWine,
