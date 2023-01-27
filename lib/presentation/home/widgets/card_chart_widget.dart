@@ -88,6 +88,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                             getPercentages(state.transactions.value)[0],
                             AppColors.greenVibrant,
                             AppColors.grayTwo,
+                            AppColors.greenVibrant,
                           ),
                           loadChart(
                             'Despesas',
@@ -95,6 +96,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                             getPercentages(state.transactions.value)[1],
                             getPercentages(state.transactions.value)[1],
                             AppColors.grayTwo,
+                            AppColors.redWine,
                             AppColors.redWine,
                           ),
                           loadChart(
@@ -104,6 +106,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                             100,
                             AppColors.greenVibrant,
                             AppColors.redWine,
+                            AppColors.blackSwan,
                           ),
                         ],
                       ),
@@ -118,7 +121,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
   }
 
   Widget loadChart(String type, double percentageOne, double percentageTwo,
-      double percentageShown, Color colorOne, Color colorTwo) {
+      double percentageShown, Color colorOne, Color colorTwo, Color colorType) {
     return Padding(
       padding: const EdgeInsets.only(right: 20),
       child: Container(
@@ -144,7 +147,11 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     type,
-                    style: AppTextStyles.date,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                      color: colorType,
+                    ),
                   ),
                 ),
                 Padding(

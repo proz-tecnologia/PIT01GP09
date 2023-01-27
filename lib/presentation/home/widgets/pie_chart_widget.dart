@@ -76,7 +76,7 @@ class _PieChartSample2State extends State<PieChartSample2> {
           return PieChartSectionData(
             color: colorOne,
             value: percentageOne,
-            title: '${percentageOne.toStringAsFixed(0)} %',
+            title: '',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -88,7 +88,7 @@ class _PieChartSample2State extends State<PieChartSample2> {
           return PieChartSectionData(
             color: colorTwo,
             value: percentageTwo,
-            title: '${(percentageTwo).toStringAsFixed(0)} %',
+            title: '',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
