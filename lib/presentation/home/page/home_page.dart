@@ -1,10 +1,14 @@
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
 import 'package:finance_app/presentation/home/controller/transactions_state.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_error.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_loading.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_success.dart';
 import 'package:finance_app/presentation/home/widgets/card_chart_widget.dart';
 import 'package:finance_app/presentation/home/widgets/card_education_widget.dart';
 import 'package:finance_app/presentation/home/widgets/card_financial_statement_widget.dart';
 import 'package:finance_app/presentation/home/widgets/card_gradient_widget.dart';
+import 'package:finance_app/presentation/transactions/page/transactions_page_loading.dart';
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/strings.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +32,8 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    transactionsController.fetchTransactions();
     super.initState();
-    transactionsController.getTransactionsList();
   }
 
   void onItemPressed(int index) {
@@ -64,23 +68,20 @@ class _MyHomePageState extends State<HomePage> {
                   SizedBox(
                     height: 150,
                     child: ValueListenableBuilder<TransactionState>(
-                      valueListenable: transactionsController,
+                      valueListenable: transactionsController.state,
                       builder: (_, state, __) {
-                        if (state is TransactionLoadingState) {
-                          return const Center(
-                              child: CircularProgressIndicator(
-                            color: AppColors.blueVibrant,
-                          ));
+                        if (state is TransactionStateLoading) {
+                          return TransactionsPageLoading(state: state);
                         }
-                        if (state is TransactionSuccessState) {
+                        if (state is TransactionStateSuccess) {
                           return TransactionCardWidget(
-                            transactionsList: state.transactionListModel,
+                            transactionsList: state.transactions.value,
                             cardColor: AppColors.whiteSnow,
                             leftPadding: 16,
                             rightPadding: 16,
                           );
                         }
-                        if (state is TransactionErrorState) {
+                        if (state is TransactionStateError) {
                           return Center(
                             child: Text(state.message),
                           );

@@ -58,7 +58,7 @@ void main() async {
             authRepository: getIt(),
           ),
         ),
-        ChangeNotifierProvider(
+        Provider(
           create: (_) => TransactionsController(
             transactionsRepository: getIt(),
             authRepository: getIt(),

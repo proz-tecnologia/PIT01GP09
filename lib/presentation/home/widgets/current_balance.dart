@@ -1,3 +1,6 @@
+import 'package:finance_app/presentation/home/controller/transactions_state_error.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_loading.dart';
+import 'package:finance_app/presentation/home/controller/transactions_state_success.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../data/models/transactions_model.dart';
@@ -23,7 +26,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
   @override
   void initState() {
     super.initState();
-    transactionsController.getTransactionsList();
+    transactionsController.fetchTransactions();
   }
 
   String getCurrentBalance(List<TransactionsModel> transactionsList) {
@@ -44,21 +47,21 @@ class _CurrentBalanceState extends State<CurrentBalance> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<TransactionState>(
-      valueListenable: transactionsController,
+      valueListenable: transactionsController.state,
       builder: (_, state, __) {
-        if (state is TransactionLoadingState) {
+        if (state is TransactionStateLoading) {
           return const Center(
               child: CircularProgressIndicator(
             color: AppColors.blueVibrant,
           ));
         }
-        if (state is TransactionSuccessState) {
+        if (state is TransactionStateSuccess) {
           return Text(
-            getCurrentBalance(state.transactionListModel),
+            getCurrentBalance(state.transactions.value),
             style: AppTextStyles.currentBalance,
           );
         }
-        if (state is TransactionErrorState) {
+        if (state is TransactionStateError) {
           return Center(
             child: Text(state.message),
           );
