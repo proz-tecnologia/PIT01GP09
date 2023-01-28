@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/models/transactions_model.dart';
+import '../../../locator.dart';
 import '../../../resources/colors.dart';
+import '../../../resources/text_style.dart';
+import '../../transactions/page/transactions_page_error.dart';
+import '../../transactions/page/transactions_page_loading.dart';
+import '../controller/transactions_controller.dart';
+import '../controller/transactions_state.dart';
+import '../controller/transactions_state_error.dart';
+import '../controller/transactions_state_loading.dart';
+import '../controller/transactions_state_success.dart';
 import 'pie_chart_widget.dart';
 
 class CardChartWidget extends StatefulWidget {
@@ -11,46 +21,109 @@ class CardChartWidget extends StatefulWidget {
 }
 
 class _CardChartWidgetState extends State<CardChartWidget> {
+  final transactionsController = TransactionsController(
+      authRepository: getIt(), transactionsRepository: getIt());
+
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 16, bottom: 20),
-          child: Text(
-            'Gráficos',
-            style: TextStyle(
-              color: AppColors.blackSwan,
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 12),
-          height: 222,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  loadChart(context),
-                  loadChart(context),
-                  loadChart(context),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+  void initState() {
+    super.initState();
+    transactionsController.fetchTransactions();
   }
 
-  Widget loadChart(context) {
+  List<double> getPercentages(List<TransactionsModel> transactionsList) {
+    late double totalIncome = 0;
+    late double totalExpense = 0;
+    for (var transaction in transactionsList) {
+      if (transaction.type == 'Receita') {
+        totalIncome += transaction.value;
+      } else if (transaction.type == 'Despesa') {
+        totalExpense += transaction.value;
+      }
+    }
+    final currentBalance = totalIncome - totalExpense;
+    final incomePercentage = (currentBalance / totalIncome) * 100;
+    final expensePercentage = (totalExpense / totalIncome) * 100;
+    return [incomePercentage, expensePercentage];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<TransactionState>(
+        valueListenable: transactionsController.state,
+        builder: (_, state, __) {
+          if (state is TransactionStateLoading) {
+            return TransactionsPageLoading(state: state);
+          }
+          if (state is TransactionStateError) {
+            return TransactionsPageError(state: state);
+          }
+          if (state is TransactionStateSuccess) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 16, bottom: 20),
+                  child: Text(
+                    'Gráficos',
+                    style: TextStyle(
+                      color: AppColors.blackSwan,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 12),
+                  height: 222,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          loadChart(
+                            'Receitas',
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
+                            getPercentages(state.transactions.value)[0],
+                            AppColors.greenVibrant,
+                            AppColors.grayTwo,
+                            AppColors.greenVibrant,
+                          ),
+                          loadChart(
+                            'Despesas',
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
+                            getPercentages(state.transactions.value)[1],
+                            AppColors.grayTwo,
+                            AppColors.redWine,
+                            AppColors.redWine,
+                          ),
+                          loadChart(
+                            'Total',
+                            getPercentages(state.transactions.value)[0],
+                            getPercentages(state.transactions.value)[1],
+                            100,
+                            AppColors.greenVibrant,
+                            AppColors.redWine,
+                            AppColors.blackSwan,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }
+          return Container();
+        });
+  }
+
+  Widget loadChart(String type, double percentageOne, double percentageTwo,
+      double percentageShown, Color colorOne, Color colorTwo, Color colorType) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 20),
+      padding: const EdgeInsets.only(right: 20),
       child: Container(
         width: 314,
         height: 222,
@@ -61,19 +134,31 @@ class _CardChartWidgetState extends State<CardChartWidget> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            const PieChartSample2(),
+            PieChartSample2(
+              percentageOne: percentageOne,
+              percentageTwo: percentageTwo,
+              colorOne: colorOne,
+              colorTwo: colorTwo,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Receitas'),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    type,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                      color: colorType,
+                    ),
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '70%',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    '${percentageShown.toStringAsFixed(0)} %',
+                    style: AppTextStyles.percent,
                   ),
                 ),
               ],
