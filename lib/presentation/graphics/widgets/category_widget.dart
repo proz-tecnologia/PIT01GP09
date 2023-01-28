@@ -1,3 +1,4 @@
+import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -19,6 +20,7 @@ class CategoryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -27,8 +29,10 @@ class CategoryWidget extends StatelessWidget {
                 color: color,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(category),
+                padding: const EdgeInsets.only(
+                  left: 8.0,
+                ),
+                child: Text(category, style: AppTextStyles.description),
               ),
             ],
           ),
@@ -37,10 +41,11 @@ class CategoryWidget extends StatelessWidget {
             children: [
               Text(
                 'R\$ ${totalValue.toStringAsFixed(2)}',
+                style: AppTextStyles.description,
               ),
               Text(
                 '${percentage.toStringAsFixed(2)} %',
-                style: const TextStyle(color: Colors.grey),
+                style: AppTextStyles.percentGraphic,
               ),
             ],
           ),
