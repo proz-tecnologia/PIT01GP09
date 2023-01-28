@@ -46,10 +46,11 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
       initialDate: _date,
       firstDate: DateTime(2020),
       lastDate: DateTime(2025),
+      locale: const Locale('pt'),
     );
     if (newDate != null) {
       setState(() {
-        _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
+        _dateController.text = DateFormat('dd/MM/yyyy').format(newDate);
       });
     }
   }
@@ -62,8 +63,14 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
     dropdownValue = widget.list.first;
     addTransactionController.notifier.addListener(() {
       if (addTransactionController.state is AddTransactionSuccessState) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/income', (route) => false);
+        if (widget.type == Strings.income) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/income', (route) => false);
+        }
+        if (widget.type == Strings.expense) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/expenses', (route) => false);
+        }
       }
     });
   }
@@ -71,7 +78,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    String dateHintText = DateFormat(' dd/MM/yyyy').format(_date);
+    String dateHintText = DateFormat('dd/MM/yyyy').format(_date);
 
     return SafeArea(
       child: Scaffold(
@@ -251,6 +258,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                             controller: _dateController,
                             decoration: InputDecoration(
                               hintText: dateHintText,
+                              prefixIcon: const Text('   '),
                               suffixIcon: const Icon(Icons.calendar_month),
                               enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -283,7 +291,10 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                               TransactionsModel(
                                 description: _descriptionController.text,
                                 category: dropdownValue,
-                                date: _date,
+                                date: _dateController.text.isNotEmpty
+                                    ? DateFormat('dd/MM/yyyy')
+                                        .parse(_dateController.text)
+                                    : DateTime.now(),
                                 type: widget.type,
                                 value: _keyboardValueController.text.isNotEmpty
                                     ? double.parse(_keyboardValueController.text
