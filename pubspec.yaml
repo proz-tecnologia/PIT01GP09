@@ -39,11 +39,13 @@ dependencies:
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_masked_text2: ^0.9.1
   flutter_speed_dial: ^6.2.0
   get_it: ^7.2.0
   google_fonts: ^3.0.1
-  intl: ^0.17.0
+  intl: any
   mock_exceptions: ^0.8.2
   mocktail: ^0.3.0
   month_year_picker: ^0.2.0+3
