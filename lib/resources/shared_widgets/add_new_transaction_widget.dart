@@ -63,8 +63,14 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
     dropdownValue = widget.list.first;
     addTransactionController.notifier.addListener(() {
       if (addTransactionController.state is AddTransactionSuccessState) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/income', (route) => false);
+        if (widget.type == Strings.income) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/income', (route) => false);
+        }
+        if (widget.type == Strings.expense) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/expenses', (route) => false);
+        }
       }
     });
   }
@@ -285,8 +291,10 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                               TransactionsModel(
                                 description: _descriptionController.text,
                                 category: dropdownValue,
-                                date: DateFormat('dd/MM/yyyy')
-                                    .parse(_dateController.text),
+                                date: _dateController.text.isNotEmpty
+                                    ? DateFormat('dd/MM/yyyy')
+                                        .parse(_dateController.text)
+                                    : DateTime.now(),
                                 type: widget.type,
                                 value: _keyboardValueController.text.isNotEmpty
                                     ? double.parse(_keyboardValueController.text
