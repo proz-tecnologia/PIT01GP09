@@ -115,8 +115,14 @@ class _MyHomePageState extends State<HomePage> {
                   ),
                 ),
                 label: 'Transações'),
-            const BottomNavigationBarItem(
-                icon: Icon(Icons.circle_outlined), label: 'Gráficos'),
+            BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('/graphics'),
+                  child: const Icon(
+                    Icons.circle_outlined,
+                  ),
+                ),
+                label: 'Gráficos'),
             BottomNavigationBarItem(
                 icon: GestureDetector(
                   onTap: () => Navigator.of(context).pushNamed('/profile'),

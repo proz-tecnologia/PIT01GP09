@@ -3,6 +3,7 @@ import 'package:finance_app/presentation/profile/page/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/expenses/page/add_expense_page.dart';
+import 'presentation/graphics/page/graphics_page.dart';
 import 'presentation/income/page/add_income_page.dart';
 import 'presentation/expenses/page/expenses_page.dart';
 import 'presentation/home/page/home_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/income': (context) => const IncomePage(),
         '/add-income': (context) => const AddIncomePage(),
         '/add-expense': (context) => const AddExpensePage(),
+        '/graphics': (context) => const GraphicsPage(),
         '/splash': (context) => const SplashPage(),
       },
     );
