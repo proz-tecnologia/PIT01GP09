@@ -17,10 +17,28 @@ class TransactionsController {
   final ValueNotifier<TransactionState> state =
       ValueNotifier<TransactionState>(TransactionInitialState());
 
-  void fetchTransactions() {
+  void fetchTransactions() async {
     final userId = authRepository.currentUser?.uid;
-    transactionsRepository.getTransactionsList(userId ?? "").then((list) {
+    await transactionsRepository.getTransactionsList(userId ?? "").then((list) {
       state.value = TransactionStateSuccess(transactions: list);
     });
+  }
+
+  void getIncomeTransactionList() async {
+    final userId = authRepository.currentUser?.uid;
+    var incomeTransactionsList =
+        await transactionsRepository.getTransactionsList(userId ?? "");
+    var incomefilteredList =
+        incomeTransactionsList.where((item) => item.type == 'Receita').toList();
+    state.value = TransactionStateSuccess(transactions: incomefilteredList);
+  }
+
+  void getExpensesTransactionList() async {
+    final userId = authRepository.currentUser?.uid;
+    var incomeTransactionsList =
+        await transactionsRepository.getTransactionsList(userId ?? "");
+    var incomefilteredList =
+        incomeTransactionsList.where((item) => item.type == 'Despesa').toList();
+    state.value = TransactionStateSuccess(transactions: incomefilteredList);
   }
 }
