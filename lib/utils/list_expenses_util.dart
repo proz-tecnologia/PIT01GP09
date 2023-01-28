@@ -5,5 +5,6 @@ const List<String> listExpenses = <String>[
   "Lazer",
   "Transporte",
   "Casa",
+  "Educação",
   "Outras despesas"
 ];

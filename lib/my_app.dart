@@ -1,8 +1,10 @@
 import 'package:finance_app/presentation/forgot_password/page/forgot_password_page.dart';
 import 'package:finance_app/presentation/profile/page/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'presentation/expenses/page/add_expense_page.dart';
+import 'presentation/graphics/page/graphics_page.dart';
 import 'presentation/income/page/add_income_page.dart';
 import 'presentation/expenses/page/expenses_page.dart';
 import 'presentation/home/page/home_page.dart';
@@ -24,6 +26,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.grey),
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('pt'),
+      ],
       initialRoute: '/splash',
       routes: {
         '/login': (context) => const LoginPage(),
@@ -36,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/income': (context) => const IncomePage(),
         '/add-income': (context) => const AddIncomePage(),
         '/add-expense': (context) => const AddExpensePage(),
+        '/graphics': (context) => const GraphicsPage(),
         '/splash': (context) => const SplashPage(),
       },
     );

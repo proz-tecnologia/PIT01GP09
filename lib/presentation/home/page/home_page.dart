@@ -115,10 +115,22 @@ class _MyHomePageState extends State<HomePage> {
                   ),
                 ),
                 label: 'Transações'),
-            const BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance), label: 'Bancos'),
-            const BottomNavigationBarItem(
-                icon: Icon(Icons.more_horiz), label: 'Mais'),
+            BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('/graphics'),
+                  child: const Icon(
+                    Icons.circle_outlined,
+                  ),
+                ),
+                label: 'Gráficos'),
+            BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('/profile'),
+                  child: const Icon(
+                    Icons.person,
+                  ),
+                ),
+                label: 'Perfil'),
           ],
           onTap: onItemPressed,
         ),

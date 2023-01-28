@@ -2,13 +2,23 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class PieChartSample2 extends StatefulWidget {
-  const PieChartSample2({super.key});
+  final double percentageOne;
+  final double percentageTwo;
+  final Color colorOne;
+  final Color colorTwo;
+  const PieChartSample2({
+    Key? key,
+    required this.percentageOne,
+    required this.percentageTwo,
+    required this.colorOne,
+    required this.colorTwo,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => PieChart2State();
+  State<PieChartSample2> createState() => _PieChartSample2State();
 }
 
-class PieChart2State extends State {
+class _PieChartSample2State extends State<PieChartSample2> {
   int touchedIndex = -1;
 
   @override
@@ -44,7 +54,8 @@ class PieChart2State extends State {
                   ),
                   sectionsSpace: 2,
                   centerSpaceRadius: 65,
-                  sections: showingSections(),
+                  sections: showingSections(widget.percentageOne,
+                      widget.percentageTwo, widget.colorOne, widget.colorTwo),
                 ),
               ),
             ),
@@ -54,7 +65,8 @@ class PieChart2State extends State {
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(double percentageOne,
+      double percentageTwo, Color colorOne, Color colorTwo) {
     return List.generate(2, (int index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
@@ -62,9 +74,9 @@ class PieChart2State extends State {
       switch (index) {
         case 0:
           return PieChartSectionData(
-            color: const Color(0xFF3CF3A6),
-            value: 70,
-            title: '70%',
+            color: colorOne,
+            value: percentageOne,
+            title: '',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -74,9 +86,9 @@ class PieChart2State extends State {
           );
         case 1:
           return PieChartSectionData(
-            color: const Color(0xFFAEAEAE),
-            value: 30,
-            title: '30%',
+            color: colorTwo,
+            value: percentageTwo,
+            title: '',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
