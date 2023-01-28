@@ -109,4 +109,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.blackSwan,
   );
+
+  static const percentGraphic = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.normal,
+    color: AppColors.grayTwo,
+  );
 }
