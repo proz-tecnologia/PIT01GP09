@@ -77,7 +77,7 @@ class _PieChartSample7State extends State<PieChartSample7> {
                     show: false,
                   ),
                   sectionsSpace: 2,
-                  centerSpaceRadius: 65,
+                  centerSpaceRadius: 80,
                   sections: showingSections(
                       widget.percentageOne,
                       widget.percentageTwo,
@@ -124,7 +124,7 @@ class _PieChartSample7State extends State<PieChartSample7> {
     return List.generate(8, (int index) {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
-      final radius = isTouched ? 35.0 : 12.0;
+      final radius = isTouched ? 50.0 : 25.0;
       switch (index) {
         case 0:
           return PieChartSectionData(
