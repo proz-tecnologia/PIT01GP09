@@ -1,10 +1,8 @@
-import 'package:finance_app/presentation/home/widgets/pie_chart_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../../resources/colors.dart';
-import '../../home/widgets/card_chart_widget.dart';
+import '../widgets/category_widget.dart';
+import '../widgets/pie_chart_categories_widget.dart';
 
 class GraphicsPage extends StatefulWidget {
   const GraphicsPage({super.key});
@@ -62,80 +60,73 @@ class _GraphicsPageState extends State<GraphicsPage> {
                     ),
                     child: Column(
                       children: [
-                        const PieChartSample2(
-                            percentageOne: 70,
-                            percentageTwo: 30,
-                            colorOne: Colors.green,
-                            colorTwo: Colors.blue),
+                        const PieChartSample7(
+                          percentageOne: 10,
+                          percentageTwo: 10,
+                          percentageThree: 10,
+                          percentageFour: 10,
+                          percentageFive: 10,
+                          percentageSix: 10,
+                          percentageSeven: 10,
+                          percentageEight: 30,
+                          colorOne: Colors.green,
+                          colorTwo: Colors.blue,
+                          colorThree: Colors.amber,
+                          colorFour: Colors.red,
+                          colorFive: Colors.brown,
+                          colorSix: Colors.black,
+                          colorSeven: Colors.purple,
+                          colorEight: Colors.pink,
+                        ),
                         Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.circle,
-                                        color: Colors.green,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text('Saúde'),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
-                                      Text(
-                                        'R\$ 2.000,00',
-                                      ),
-                                      Text(
-                                        '70%',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                          children: const [
+                            CategoryWidget(
+                              color: Colors.green,
+                              category: 'Alimentação',
+                              totalValue: 1000,
+                              percentage: 10,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.circle,
-                                        color: Colors.blue,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text('Educação'),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: const [
-                                      Text(
-                                        'R\$ 857,14',
-                                      ),
-                                      Text(
-                                        '30%',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                            CategoryWidget(
+                              color: Colors.blue,
+                              category: 'Saúde',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.amber,
+                              category: 'Pessoal',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.red,
+                              category: 'Lazer',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.brown,
+                              category: 'Transporte',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.black,
+                              category: 'Casa',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.purple,
+                              category: 'Educação',
+                              totalValue: 1000,
+                              percentage: 10,
+                            ),
+                            CategoryWidget(
+                              color: Colors.pink,
+                              category: 'Outras despesas',
+                              totalValue: 3000,
+                              percentage: 30,
                             ),
                           ],
                         ),
