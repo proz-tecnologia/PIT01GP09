@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'current_balance.dart';
 import 'earn_points.dart';
-import 'month_picker.dart';
 import 'profile.dart';
 
 class CardGradientWidget extends StatelessWidget {
@@ -36,19 +35,11 @@ class CardGradientWidget extends StatelessWidget {
           right: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Stack(
-              alignment: AlignmentDirectional.centerEnd,
-              children: [
-                const SizedBox(
-                  height: 67,
-                  child: MonthPicker(),
-                ),
-                InkWell(
-                    onTap: () => Navigator.of(context).pushNamed('/profile'),
-                    child: const Profile()),
-              ],
-            ),
+            InkWell(
+                onTap: () => Navigator.of(context).pushNamed('/profile'),
+                child: const Profile()),
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 1),
               child: Row(
