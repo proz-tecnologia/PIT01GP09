@@ -63,6 +63,7 @@ class _TransactionsGroupWidgetState extends State<TransactionsGroupWidget> {
               onDismissed: (direction) {
                 if (direction == DismissDirection.endToStart) {
                   deleteController.deleteTransaction(item.id.toString());
+
                   setState(() {
                     widget.mapListByDay[date]!.remove(item);
                   });
