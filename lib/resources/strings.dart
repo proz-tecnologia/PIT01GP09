@@ -45,4 +45,5 @@ class Strings {
       'Conta criada com sucesso! Realize Login.';
   static const textForgotPassword =
       'Não se preocupe! Acontece. Favor informar o endereço de email associado com a sua conta.';
+  static const successDeletedSnackBar = 'Transação deletada com sucesso!';
 }
