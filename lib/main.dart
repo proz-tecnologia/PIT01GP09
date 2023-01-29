@@ -13,6 +13,7 @@ import 'my_app.dart';
 import 'presentation/expenses/controller/expenses_controller.dart';
 import 'presentation/income/controller/income_controller.dart';
 import 'presentation/login/controller/auth_controller.dart';
+import 'presentation/transactions/controller/delete_transaction_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,11 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        Provider(
+          create: (_) => DeleteTransactionController(
+            transactionsRepository: getIt(),
+          ),
+        ),
         ChangeNotifierProvider(
           create: (_) => AddTransactionController(
             transactionsRepository: getIt(),

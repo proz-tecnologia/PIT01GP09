@@ -38,12 +38,9 @@ class TransactionsPageSuccess extends StatelessWidget {
                     itemCount: listByDay.length,
                     itemBuilder: (BuildContext context, int index) {
                       int reverseIndex = listByDay.length - 1 - index;
-                      final title = listByDay.keys.elementAt(reverseIndex);
-                      final transactions =
-                          listByDay.values.elementAt(reverseIndex);
                       return TransactionsGroupWidget(
-                        title: title,
-                        transactions: transactions,
+                        index: reverseIndex,
+                        mapListByDay: listByDay,
                       );
                     },
                   );

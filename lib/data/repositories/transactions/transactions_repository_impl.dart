@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
@@ -31,6 +33,21 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
       result.id.isNotEmpty;
     } catch (e) {
       throw Exception();
+    }
+  }
+
+  @override
+  Future<bool> deleteTransaction(String transactionId) async {
+    try {
+      final transaction = _firestore.doc("transactions/$transactionId");
+      if (transaction.id.isNotEmpty) {
+        await transaction.delete();
+      }
+
+      return Future.value(true);
+    } catch (e) {
+      log("Não conseguiu deletar $e");
+      return Future.value(false);
     }
   }
 }
