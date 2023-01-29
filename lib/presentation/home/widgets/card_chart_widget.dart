@@ -40,9 +40,14 @@ class _CardChartWidgetState extends State<CardChartWidget> {
         totalExpense += transaction.value;
       }
     }
-    final currentBalance = totalIncome - totalExpense;
-    final incomePercentage = (currentBalance / totalIncome) * 100;
-    final expensePercentage = (totalExpense / totalIncome) * 100;
+    late double currentBalance = 0;
+    late double incomePercentage = 0;
+    late double expensePercentage = 0;
+    currentBalance = totalIncome - totalExpense;
+    if (currentBalance != 0) {
+      incomePercentage = (currentBalance / totalIncome) * 100;
+      expensePercentage = (totalExpense / totalIncome) * 100;
+    }
     return [incomePercentage, expensePercentage];
   }
 
@@ -122,50 +127,98 @@ class _CardChartWidgetState extends State<CardChartWidget> {
 
   Widget loadChart(String type, double percentageOne, double percentageTwo,
       double percentageShown, Color colorOne, Color colorTwo, Color colorType) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child: Container(
-        width: 314,
-        height: 222,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: AppColors.whiteSnow,
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            PieChartSample2(
-              percentageOne: percentageOne,
-              percentageTwo: percentageTwo,
-              colorOne: colorOne,
-              colorTwo: colorTwo,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    type,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                      color: colorType,
+    if (percentageOne == 0 && percentageTwo == 0) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Container(
+          width: 314,
+          height: 222,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: AppColors.whiteSnow,
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              PieChartSample2(
+                percentageOne: 0,
+                percentageTwo: 100,
+                colorOne: colorOne,
+                colorTwo: colorTwo,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Sem transações',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: colorType,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${percentageShown.toStringAsFixed(0)} %',
-                    style: AppTextStyles.percent,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '${percentageShown.toStringAsFixed(0)} %',
+                      style: AppTextStyles.percent,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Container(
+          width: 314,
+          height: 222,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: AppColors.whiteSnow,
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              PieChartSample2(
+                percentageOne: percentageOne,
+                percentageTwo: percentageTwo,
+                colorOne: colorOne,
+                colorTwo: colorTwo,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      type,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: colorType,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '${percentageShown.toStringAsFixed(0)} %',
+                      style: AppTextStyles.percent,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

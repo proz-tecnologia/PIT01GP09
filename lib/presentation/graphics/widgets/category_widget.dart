@@ -16,41 +16,80 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.circle,
-                color: color,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 8.0,
+    if (percentage.isNaN) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: color,
                 ),
-                child: Text(category, style: AppTextStyles.description),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                'R\$ ${totalValue.toStringAsFixed(2)}',
-                style: AppTextStyles.description,
-              ),
-              Text(
-                '${percentage.toStringAsFixed(2)} %',
-                style: AppTextStyles.percentGraphic,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 8.0,
+                  ),
+                  child: Text(category, style: AppTextStyles.description),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'R\$ ${totalValue.toStringAsFixed(2)}',
+                  style: AppTextStyles.description,
+                ),
+                const Text(
+                  '0 %',
+                  style: AppTextStyles.percentGraphic,
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: color,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 8.0,
+                  ),
+                  child: Text(category, style: AppTextStyles.description),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'R\$ ${totalValue.toStringAsFixed(2)}',
+                  style: AppTextStyles.description,
+                ),
+                Text(
+                  '${percentage.toStringAsFixed(2)} %',
+                  style: AppTextStyles.percentGraphic,
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

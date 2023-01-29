@@ -121,110 +121,153 @@ class _PieChartSample7State extends State<PieChartSample7> {
       Color colorSix,
       Color colorSeven,
       Color colorEight) {
-    return List.generate(8, (int index) {
-      final isTouched = index == touchedIndex;
-      final fontSize = isTouched ? 20.0 : 12.0;
-      final radius = isTouched ? 50.0 : 25.0;
-      switch (index) {
-        case 0:
-          return PieChartSectionData(
-            color: colorOne,
-            value: percentageOne,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: colorTwo,
-            value: percentageTwo,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: colorThree,
-            value: percentageThree,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 3:
-          return PieChartSectionData(
-            color: colorFour,
-            value: percentageFour,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 4:
-          return PieChartSectionData(
-            color: colorFive,
-            value: percentageFive,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 5:
-          return PieChartSectionData(
-            color: colorSix,
-            value: percentageSix,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 6:
-          return PieChartSectionData(
-            color: colorSeven,
-            value: percentageSeven,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        case 7:
-          return PieChartSectionData(
-            color: colorEight,
-            value: percentageEight,
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff),
-            ),
-          );
-        default:
-          throw Error();
-      }
-    });
+    if (percentageOne == 0 &&
+        percentageTwo == 0 &&
+        percentageThree == 0 &&
+        percentageFour == 0 &&
+        percentageFive == 0 &&
+        percentageSix == 0 &&
+        percentageSeven == 0 &&
+        percentageEight == 0) {
+      return List.generate(2, (int index) {
+        final isTouched = index == touchedIndex;
+        final fontSize = isTouched ? 20.0 : 12.0;
+        final radius = isTouched ? 50.0 : 25.0;
+        switch (index) {
+          case 0:
+            return PieChartSectionData(
+              color: colorEight,
+              value: 100,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 1:
+            return PieChartSectionData(
+              color: colorTwo,
+              value: percentageTwo,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          default:
+            throw Error();
+        }
+      });
+    } else {
+      return List.generate(8, (int index) {
+        final isTouched = index == touchedIndex;
+        final fontSize = isTouched ? 20.0 : 12.0;
+        final radius = isTouched ? 50.0 : 25.0;
+        switch (index) {
+          case 0:
+            return PieChartSectionData(
+              color: colorOne,
+              value: percentageOne,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 1:
+            return PieChartSectionData(
+              color: colorTwo,
+              value: percentageTwo,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 2:
+            return PieChartSectionData(
+              color: colorThree,
+              value: percentageThree,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 3:
+            return PieChartSectionData(
+              color: colorFour,
+              value: percentageFour,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 4:
+            return PieChartSectionData(
+              color: colorFive,
+              value: percentageFive,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 5:
+            return PieChartSectionData(
+              color: colorSix,
+              value: percentageSix,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 6:
+            return PieChartSectionData(
+              color: colorSeven,
+              value: percentageSeven,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          case 7:
+            return PieChartSectionData(
+              color: colorEight,
+              value: percentageEight,
+              title: '',
+              radius: radius,
+              titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff),
+              ),
+            );
+          default:
+            throw Error();
+        }
+      });
+    }
   }
 }
