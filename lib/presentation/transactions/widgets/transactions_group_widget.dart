@@ -2,6 +2,7 @@ import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/transactions/controller/delete_transaction_controller.dart';
 import 'package:finance_app/resources/colors.dart';
+import 'package:finance_app/resources/strings.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsGroupWidget extends StatefulWidget {
@@ -67,6 +68,12 @@ class _TransactionsGroupWidgetState extends State<TransactionsGroupWidget> {
                   setState(() {
                     widget.mapListByDay[date]!.remove(item);
                   });
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(Strings.successDeletedSnackBar),
+                    ),
+                  );
                 }
               },
               child: Container(
