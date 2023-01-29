@@ -1,3 +1,4 @@
+import 'package:finance_app/presentation/transactions/controller/delete_transaction_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:finance_app/data/repositories/transactions/transactions_repository_impl.dart';
@@ -16,6 +17,9 @@ import 'presentation/splash/controller/splash_controller.dart';
 final getIt = GetIt.instance;
 
 void setup() {
+  getIt.registerLazySingleton<DeleteTransactionController>(
+      () => DeleteTransactionController(transactionsRepository: getIt()));
+
   getIt.registerLazySingleton<AddTransactionController>(() =>
       AddTransactionController(
           transactionsRepository: getIt(), authRepository: getIt()));
