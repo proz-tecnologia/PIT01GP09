@@ -46,6 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
       );
       if (result.user != null) {
+        _firebaseAuth.currentUser?.updateDisplayName(name);
         return UserModel(name: name, email: email);
       }
       throw AuthException;
