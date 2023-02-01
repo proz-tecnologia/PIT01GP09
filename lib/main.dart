@@ -31,6 +31,7 @@ void main() async {
         Provider(
           create: (_) => UpdateTransactionController(
             transactionsRepository: getIt(),
+            authRepository:  getIt(),
           ),
         ),
         Provider(
