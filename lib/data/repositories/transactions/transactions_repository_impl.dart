@@ -25,7 +25,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   }
 
   @override
-  Future<void> addTransaction(transactionsModel) async {
+  Future<void> addTransaction(TransactionsModel transactionsModel) async {
     try {
       final result = await _firestore
           .collection("transactions")
@@ -46,20 +46,22 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
       return Future.value(true);
     } catch (e) {
-      throw Exception("Não conseguiu deletar $e");
+      throw Exception();
     }
   }
 
   @override
   Future<bool> updateTransaction(TransactionsModel transaction) async {
     try {
-      await _firestore
-          .doc("transactions/$transaction")
-          .update(transaction.toMap());
+      final docId = transaction.id;
+      final result =
+          _firestore.collection('transactions').doc(docId);
+      await result.update(transaction.toMap());
+      log('Deu bom e atualizou!');
       return Future.value(true);
     } catch (e) {
       log('Não atualizou!');
-      throw Exception("Não atualizou $e");
+      throw Exception();
     }
   }
 }
