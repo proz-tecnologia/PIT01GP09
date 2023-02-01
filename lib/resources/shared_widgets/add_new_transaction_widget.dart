@@ -2,16 +2,20 @@ import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
 import 'package:finance_app/presentation/income/controller/add_transaction_state.dart';
+import 'package:finance_app/presentation/transactions/controller/update_state.dart';
+import 'package:finance_app/presentation/transactions/controller/update_transaction_controller.dart';
 import 'package:finance_app/resources/colors.dart';
 import 'package:finance_app/resources/shared_widgets/numeric_keyboard_widget.dart';
 import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {
   final List<String> list;
+  final TransactionsModel? transaction;
   final Color color;
   final String type;
   const AddNewTransactionWidget({
@@ -19,6 +23,7 @@ class AddNewTransactionWidget extends StatefulWidget {
     required this.list,
     required this.color,
     required this.type,
+    required this.transaction,
   }) : super(key: key);
 
   @override
@@ -31,51 +36,84 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final DateTime firstDate = DateTime(2023, 1);
   final DateTime lastDate = DateTime(2023, 12);
   final DateTime _date = DateTime.now();
+  final MoneyMaskedTextController _keyboardValueController =
+      MoneyMaskedTextController(
+          decimalSeparator: ',', thousandSeparator: '.', precision: 1);
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _keyboardValueController =
-      TextEditingController();
 
   final addTransactionController = AddTransactionController(
       transactionsRepository: getIt(), authRepository: getIt());
 
-  void getInitialDate() async {
-    setState(() {
-      _dateController.text = DateFormat('dd-MM-yyyy').format(_date);
-    });
-  }
+  final updateTransactionController = UpdateTransactionController(
+      transactionsRepository: getIt(), authRepository: getIt());
 
   void _selectDate() async {
     final DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: _date,
-      firstDate: DateTime(2023, 1),
-      lastDate: DateTime(2023, 12, 31),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2025),
+      locale: const Locale('pt'),
     );
     if (newDate != null) {
       setState(() {
-        _dateController.text = DateFormat('   dd/MM/yyyy').format(newDate);
+        _dateController.text = DateFormat('dd/MM/yyyy').format(newDate);
       });
     }
   }
 
   late String dropdownValue;
 
+  bool get isEditing => widget.transaction != null;
+
+  TransactionsModel? transaction;
+
   @override
   void initState() {
-    super.initState();
     dropdownValue = widget.list.first;
     addTransactionController.notifier.addListener(() {
       if (addTransactionController.state is AddTransactionSuccessState) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/income', (route) => false);
+        if (widget.type == Strings.income) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/income', (route) => false);
+        }
+        if (widget.type == Strings.expense) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/expenses', (route) => false);
+        }
       }
     });
+
+    updateTransactionController.notifier.addListener(() {
+      if (updateTransactionController.state is UpdateSuccessState) {
+        if (widget.type == Strings.income) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/income', (route) => false);
+        }
+        if (widget.type == Strings.expense) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/expenses', (route) => false);
+        }
+      }
+    });
+
+    if (isEditing) {
+      transaction = widget.transaction;
+      _dateController.text = DateFormat('dd/MM/yyyy').format(transaction!.date);
+      _descriptionController.text = transaction!.description;
+      _keyboardValueController.text = transaction!.value.toString();
+
+      dropdownValue = transaction!.category;
+    }
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    String dateHintText = DateFormat('dd/MM/yyyy').format(_date);
+
     return SafeArea(
       child: Scaffold(
         key: _formKey,
@@ -136,6 +174,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                 height: 80,
                                                 width: 350,
                                                 child: TextFormField(
+                                                  readOnly: true,
                                                   textDirection:
                                                       ui.TextDirection.rtl,
                                                   keyboardType:
@@ -146,7 +185,12 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                                                       _keyboardValueController,
                                                   decoration:
                                                       const InputDecoration(
-                                                    hintText: '00,00',
+                                                    prefix: Text(
+                                                      'R\$ ',
+                                                      style:
+                                                          AppTextStyles.money,
+                                                    ),
+                                                    hintText: '0,00',
                                                     hintTextDirection:
                                                         ui.TextDirection.rtl,
                                                     hintStyle:
@@ -246,9 +290,11 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                             style: AppTextStyles.input,
                             readOnly: true,
                             controller: _dateController,
-                            decoration: const InputDecoration(
-                              suffixIcon: Icon(Icons.calendar_month),
-                              enabledBorder: OutlineInputBorder(
+                            decoration: InputDecoration(
+                              hintText: dateHintText,
+                              prefixIcon: const Text('   '),
+                              suffixIcon: const Icon(Icons.calendar_month),
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                     color: AppColors.grayDark, width: 1.0),
                               ),
@@ -272,28 +318,50 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                           backgroundColor: widget.color,
                         ),
                         onPressed: () {
-                          if (_keyboardValueController.text.isNotEmpty ||
-                              _descriptionController.text.isNotEmpty ||
-                              dropdownValue.isNotEmpty) {
-                            addTransactionController.addTransaction(
-                              TransactionsModel(
-                                description: _descriptionController.text,
-                                category: dropdownValue,
-                                date: _date,
-                                type: widget.type,
-                                value: _keyboardValueController.text.isNotEmpty
-                                    ? double.parse(
-                                        _keyboardValueController.text)
-                                    : 0,
-                                userId: '',
-                              ),
-                            );
+                          if (isEditing) {
+                            updateTransactionController
+                                .updateTransaction(TransactionsModel(
+                              id: transaction!.id,
+                              category: dropdownValue,
+                              date: DateFormat('dd/MM/yyyy')
+                                  .parse(_dateController.text),
+                              description: _descriptionController.text,
+                              type: widget.type,
+                              userId: widget.transaction!.userId,
+                              value: _keyboardValueController.text.isNotEmpty
+                                  ? double.parse(_keyboardValueController.text
+                                      .replaceAll('.', '')
+                                      .replaceAll(',', '.'))
+                                  : 0,
+                            ));
                           } else {
-                            return;
+                            if (_keyboardValueController.text.isNotEmpty ||
+                                _descriptionController.text.isNotEmpty ||
+                                dropdownValue.isNotEmpty) {
+                              addTransactionController.addTransaction(
+                                TransactionsModel(
+                                  description: _descriptionController.text,
+                                  category: dropdownValue,
+                                  date: _dateController.text.isNotEmpty
+                                      ? DateFormat('dd/MM/yyyy')
+                                          .parse(_dateController.text)
+                                      : DateTime.now(),
+                                  type: widget.type,
+                                  value:
+                                      _keyboardValueController.text.isNotEmpty
+                                          ? double.parse(
+                                              _keyboardValueController.text
+                                                  .replaceAll('.', '')
+                                                  .replaceAll(',', '.'))
+                                          : 0,
+                                  userId: '',
+                                ),
+                              );
+                            }
                           }
                         },
-                        child: const Text(
-                          Strings.add,
+                        child: Text(
+                          isEditing ? "Alterar" : Strings.add,
                           style: AppTextStyles.greeting,
                         )),
                   )

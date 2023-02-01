@@ -2,13 +2,36 @@ import 'package:finance_app/resources/strings.dart';
 import 'package:finance_app/resources/text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../../locator.dart';
+import '../../../resources/colors.dart';
+import '../../profile/controller/profile_controller.dart';
+import '../../profile/controller/profile_state.dart';
 import 'current_balance.dart';
 import 'earn_points.dart';
-import 'month_picker.dart';
 import 'profile.dart';
 
-class CardGradientWidget extends StatelessWidget {
+class CardGradientWidget extends StatefulWidget {
   const CardGradientWidget({super.key});
+
+  @override
+  State<CardGradientWidget> createState() => _CardGradientWidgetState();
+}
+
+class _CardGradientWidgetState extends State<CardGradientWidget> {
+  final profileController = ProfileController(authRepository: getIt());
+
+  @override
+  void initState() {
+    super.initState();
+    profileController.getUser();
+    getUserName();
+  }
+
+  Future<String> getUserName() async {
+    final user = await profileController.getUser();
+    final userName = user.name;
+    return userName;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +59,11 @@ class CardGradientWidget extends StatelessWidget {
           right: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Stack(
-              alignment: AlignmentDirectional.centerEnd,
-              children: [
-                const SizedBox(
-                  height: 67,
-                  child: MonthPicker(),
-                ),
-                InkWell(
-                    onTap: () => Navigator.of(context).pushNamed('/profile'),
-                    child: const Profile()),
-              ],
-            ),
+            InkWell(
+                onTap: () => Navigator.of(context).pushNamed('/profile'),
+                child: const Profile()),
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 1),
               child: Row(
@@ -64,10 +79,28 @@ class CardGradientWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                Strings.greeting,
-                                style: AppTextStyles.greeting,
-                              ),
+                              ValueListenableBuilder(
+                                  valueListenable: profileController.notifier,
+                                  builder: (_, state, __) {
+                                    if (state is ProfileLoadingState) {
+                                      return const Center(
+                                          child: CircularProgressIndicator(
+                                        color: AppColors.greenVibrant,
+                                      ));
+                                    }
+                                    if (state is ProfileErrorState) {
+                                      return Center(
+                                        child: Text(state.message),
+                                      );
+                                    }
+                                    if (state is ProfileSuccessState) {
+                                      return Text(
+                                        'Salve, ${state.user.name}!',
+                                        style: AppTextStyles.greeting,
+                                      );
+                                    }
+                                    return Container();
+                                  }),
                               Image.asset(
                                 'assets/images/pig-and-coins.png',
                                 width: 249,

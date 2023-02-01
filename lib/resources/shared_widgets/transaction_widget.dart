@@ -2,7 +2,6 @@ import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
 import 'package:finance_app/resources/colors.dart';
-import 'package:finance_app/resources/shared_widgets/month_carousel_widget.dart';
 import 'package:finance_app/resources/shared_widgets/transaction_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +29,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   @override
   void initState() {
     super.initState();
-    transactionsController.fetchTransactionListFromRepository();
+    //transactionsController.fetchTransactionListFromRepository();
   }
 
   @override
@@ -59,10 +58,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: [
-            MonthCarouselWidget(
-              onSelectMonthYear: transactionsController.filterTransactionList,
-              monthsList: transactionsController.monthsList,
-            ),
+            // MonthCarouselWidget(
+            //   onSelectMonthYear: transactionsController.filterTransactionList,
+            //   monthsList: transactionsController.monthsList,
+            // ),
             SizedBox(
               height: 33,
               child: Row(

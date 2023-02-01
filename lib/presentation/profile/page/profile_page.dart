@@ -26,6 +26,21 @@ class _ProfilePageState extends State<ProfilePage> {
             .pushNamedAndRemoveUntil('/login', (route) => false);
       }
     });
+    profileController.getUser();
+    getUserName();
+    getUserEmail();
+  }
+
+  Future<String> getUserName() async {
+    final user = await profileController.getUser();
+    final userName = user.name;
+    return userName;
+  }
+
+  Future<String> getUserEmail() async {
+    final user = await profileController.getUser();
+    final userEmail = user.email;
+    return userEmail;
   }
 
   @override
@@ -49,8 +64,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 420,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
@@ -62,81 +77,84 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                  Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 64),
-                          child: Column(
+                  ValueListenableBuilder<ProfileState>(
+                      valueListenable: profileController.notifier,
+                      builder: (_, state, __) {
+                        if (state is ProfileLoadingState) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                            color: AppColors.greenVibrant,
+                          ));
+                        }
+                        if (state is ProfileErrorState) {
+                          return Center(
+                            child: Text(state.message),
+                          );
+                        }
+                        if (state is ProfileSuccessState) {
+                          return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Profile(),
-                              SizedBox(
-                                height: 32,
-                              ),
-                              Text(
-                                'Mary',
-                                style: AppTextStyles.name1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 424),
-                        child: Container(
-                          color: AppColors.whiteSnow,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 355, left: 22, right: 22),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 94),
-                              child: Column(
+                            children: [
+                              Stack(
                                 children: [
-                                  infoChild(
-                                    width,
-                                    Icons.email,
-                                    'exemplo@gmail.com',
-                                  ),
-                                  infoChild(
-                                    width,
-                                    Icons.call,
-                                    '+12-1234567890',
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 150, left: 30.0, right: 30.0),
-                                    child: TextButton(
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: AppColors.purpleFlower,
-                                        minimumSize: const Size(369, 54),
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                        ),
-                                      ),
-                                      onPressed: () async {
-                                        await profileController.signOut();
-                                      },
-                                      child: const Text(
-                                        'Sair',
-                                        style: AppTextStyles.login,
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 64),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Profile(),
+                                          const SizedBox(
+                                            height: 32,
+                                          ),
+                                          Text(
+                                            state.user.name,
+                                            style: AppTextStyles.name1,
+                                          ),
+                                          const SizedBox(height: 80),
+                                          infoChild(
+                                            width,
+                                            Icons.email,
+                                            state.user.email,
+                                          ),
+                                          infoChild(
+                                            width,
+                                            Icons.call,
+                                            '+12-1234567890',
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                              const SizedBox(height: 120),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: AppColors.purpleFlower,
+                                  minimumSize: const Size(309, 54),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  await profileController.signOut();
+                                },
+                                child: const Text(
+                                  'Sair',
+                                  style: AppTextStyles.login,
+                                ),
+                              ),
+                            ],
+                          );
+                        }
+                        return Container();
+                      }),
                 ],
               ),
             ),
@@ -151,10 +169,8 @@ Widget infoChild(double width, IconData icon, data) => Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: InkWell(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              width: 43.0,
-            ),
             Icon(
               icon,
               color: AppColors.blueVibrant,
@@ -165,7 +181,11 @@ Widget infoChild(double width, IconData icon, data) => Padding(
             ),
             Text(
               data,
-              style: AppTextStyles.description,
+              style: const TextStyle(
+                color: AppColors.whiteSnow,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
             )
           ],
         ),

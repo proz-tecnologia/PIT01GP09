@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cloud_firestore: ^4.3.1
+  collection: ^1.16.0
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   fake_cloud_firestore: ^2.3.0+3
@@ -39,10 +40,13 @@ dependencies:
   fl_chart: ^0.55.2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_masked_text2: ^0.9.1
   flutter_speed_dial: ^6.2.0
   get_it: ^7.2.0
   google_fonts: ^3.0.1
-  intl: ^0.17.0
+  intl: any
   mock_exceptions: ^0.8.2
   mocktail: ^0.3.0
   month_year_picker: ^0.2.0+3
@@ -69,6 +73,10 @@ flutter:
     - assets/images/login-image.png
     - assets/images/cadastro-image.png
     - assets/images/forgot-image.png
+    - assets/images/01-guetonomia.png
+    - assets/images/02-tio-patinhas.jpg
+    - assets/images/03-pixando.jpg
+    - assets/images/4-monopoly.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

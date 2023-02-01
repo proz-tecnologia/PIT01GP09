@@ -57,7 +57,7 @@ class AppTextStyles {
   );
 
   static const currentBalance = TextStyle(
-    fontSize: 20.0,
+    fontSize: 32.0,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
@@ -101,6 +101,18 @@ class AppTextStyles {
   static const smallText = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.w600,
+    color: AppColors.grayTwo,
+  );
+
+  static const percent = TextStyle(
+    fontSize: 25.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackSwan,
+  );
+
+  static const percentGraphic = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.normal,
     color: AppColors.grayTwo,
   );
 }
