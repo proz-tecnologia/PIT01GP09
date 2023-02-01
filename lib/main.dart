@@ -1,3 +1,4 @@
+import 'package:finance_app/presentation/graphics/controller/graphics_controller.dart';
 import 'package:finance_app/presentation/home/controller/transactions_controller.dart';
 import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
 import 'package:finance_app/presentation/profile/controller/profile_controller.dart';
@@ -72,6 +73,12 @@ void main() async {
         ),
         Provider(
           create: (_) => TransactionsController(
+            transactionsRepository: getIt(),
+            authRepository: getIt(),
+          ),
+        ),
+        Provider(
+          create: (_) => GraphicsController(
             transactionsRepository: getIt(),
             authRepository: getIt(),
           ),
