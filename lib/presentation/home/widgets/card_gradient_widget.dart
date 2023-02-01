@@ -95,7 +95,7 @@ class _CardGradientWidgetState extends State<CardGradientWidget> {
                                     }
                                     if (state is ProfileSuccessState) {
                                       return Text(
-                                        'Salve, ${state.user.name} !',
+                                        'Salve, ${state.user.name}!',
                                         style: AppTextStyles.greeting,
                                       );
                                     }
