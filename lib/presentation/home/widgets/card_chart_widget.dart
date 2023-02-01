@@ -92,7 +92,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                             getPercentages(state.transactions.value)[1],
                             getPercentages(state.transactions.value)[0],
                             AppColors.greenVibrant,
-                            AppColors.grayTwo,
+                            AppColors.grayLight,
                             AppColors.greenVibrant,
                           ),
                           loadChart(
@@ -100,7 +100,7 @@ class _CardChartWidgetState extends State<CardChartWidget> {
                             getPercentages(state.transactions.value)[0],
                             getPercentages(state.transactions.value)[1],
                             getPercentages(state.transactions.value)[1],
-                            AppColors.grayTwo,
+                            AppColors.grayLight,
                             AppColors.redWine,
                             AppColors.redWine,
                           ),

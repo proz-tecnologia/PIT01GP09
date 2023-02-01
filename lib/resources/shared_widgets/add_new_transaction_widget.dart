@@ -38,7 +38,10 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   final DateTime _date = DateTime.now();
   final MoneyMaskedTextController _keyboardValueController =
       MoneyMaskedTextController(
-          decimalSeparator: ',', thousandSeparator: '.', precision: 1);
+          initialValue: 0.00,
+          decimalSeparator: ',',
+          thousandSeparator: '.',
+          precision: 2);
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -102,7 +105,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
       transaction = widget.transaction;
       _dateController.text = DateFormat('dd/MM/yyyy').format(transaction!.date);
       _descriptionController.text = transaction!.description;
-      _keyboardValueController.text = transaction!.value.toString();
+      _keyboardValueController.text = transaction!.value.toStringAsFixed(2);
 
       dropdownValue = transaction!.category;
     }
