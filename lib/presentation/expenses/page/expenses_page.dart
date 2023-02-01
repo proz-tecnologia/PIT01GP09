@@ -71,7 +71,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
         bottomSheet: const BottomSheetTransactionsWidget(),
         floatingActionButton: const Padding(
           padding: EdgeInsets.only(bottom: 60.0),
-          child: AddMenu(color: AppColors.redWine),
+          child: AddMenu(
+            color: AppColors.redWine,
+          ),
         ),
       ),
     );
