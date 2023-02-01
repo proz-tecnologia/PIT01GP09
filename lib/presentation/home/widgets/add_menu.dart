@@ -1,3 +1,5 @@
+import 'package:finance_app/presentation/expenses/page/add_expense_page.dart';
+import 'package:finance_app/presentation/income/page/add_income_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -31,7 +33,12 @@ class _AddMenuState extends State<AddMenu> {
             color: AppColors.whiteSnow,
           ),
           label: Strings.expense,
-          onTap: () => Navigator.pushNamed(context, '/add-expense'),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddExpensePage(transaction: null),
+            ),
+          ),
         ),
         SpeedDialChild(
           backgroundColor: AppColors.greenVibrant,
@@ -40,7 +47,12 @@ class _AddMenuState extends State<AddMenu> {
             color: AppColors.whiteSnow,
           ),
           label: Strings.income,
-          onTap: () => Navigator.pushNamed(context, '/add-income'),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddIncomePage(transaction: null),
+            ),
+          ),
         ),
       ],
     );
