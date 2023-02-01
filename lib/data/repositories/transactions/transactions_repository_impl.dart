@@ -46,8 +46,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
       return Future.value(true);
     } catch (e) {
-      log("Não conseguiu deletar $e");
-      return Future.value(false);
+      throw Exception("Não conseguiu deletar $e");
     }
   }
 
@@ -55,12 +54,12 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<bool> updateTransaction(TransactionsModel transaction) async {
     try {
       await _firestore
-          .collection("transactions")
-          .doc(transaction.id)
+          .doc("transactions/$transaction")
           .update(transaction.toMap());
-     return Future.value(true);
+      return Future.value(true);
     } catch (e) {
-      throw Exception('Erro update');
+      log('Não atualizou!');
+      throw Exception("Não atualizou $e");
     }
   }
 }
