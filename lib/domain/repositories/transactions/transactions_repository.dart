@@ -7,5 +7,5 @@ abstract class TransactionsRepository {
 
   Future<bool> deleteTransaction(String transactionId);
 
-  // Future<void> updateTransaction(TransactionsModel TransactionsModel);
+  Future<bool> updateTransaction(TransactionsModel transactionsModel);
 }

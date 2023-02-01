@@ -72,7 +72,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
         bottomSheet: const BottomSheetTransactionsWidget(),
         floatingActionButton: const Padding(
           padding: EdgeInsets.only(bottom: 60.0),
-          child: AddMenu(color: AppColors.purpleFlower),
+          child: AddMenu(
+            color: AppColors.purpleFlower,
+          ),
         ),
       ),
     );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
@@ -25,7 +23,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   }
 
   @override
-  Future<void> addTransaction(transactionsModel) async {
+  Future<void> addTransaction(TransactionsModel transactionsModel) async {
     try {
       final result = await _firestore
           .collection("transactions")
@@ -46,8 +44,21 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
       return Future.value(true);
     } catch (e) {
-      log("Não conseguiu deletar $e");
-      return Future.value(false);
+      throw Exception();
+    }
+  }
+
+  @override
+  Future<bool> updateTransaction(TransactionsModel transaction) async {
+    try {
+      _firestore
+          .collection('transactions')
+          .doc(transaction.id)
+          .update(transaction.toMap());
+
+      return Future.value(true);
+    } catch (e) {
+      throw Exception();
     }
   }
 }

@@ -71,7 +71,9 @@ class _IncomePageState extends State<IncomePage> {
         bottomSheet: const BottomSheetTransactionsWidget(),
         floatingActionButton: const Padding(
           padding: EdgeInsets.only(bottom: 60.0),
-          child: AddMenu(color: AppColors.greenVibrant),
+          child: AddMenu(
+            color: AppColors.greenVibrant,
+          ),
         ),
       ),
     );

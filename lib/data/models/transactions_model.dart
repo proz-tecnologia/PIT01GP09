@@ -21,6 +21,16 @@ class TransactionsModel {
     return (date.month == month) && (date.year == year);
   }
 
+  TransactionsModel.empty(
+      {this.id,
+      this.description = '',
+      this.category = '',
+      this.type = '',
+      this.value = 0.0,
+      this.userId = '',
+      date})
+      : date = (date ?? DateTime.now());
+
   TransactionsModel copyWith({
     String? id,
     String? description,
