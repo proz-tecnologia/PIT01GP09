@@ -52,7 +52,7 @@ class TransactionsModel {
 
   factory TransactionsModel.fromMap(String id, Map<String, dynamic> json) =>
       TransactionsModel(
-        id: json["id"],
+        id: id,
         description: json["description"],
         category: json["category"],
         type: json["type"],
@@ -62,7 +62,6 @@ class TransactionsModel {
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
         "description": description,
         "category": category,
         "type": type,

@@ -24,6 +24,7 @@ class UpdateTransactionController {
       final userId = authRepository.currentUser?.uid;
 
       final transactionModel = TransactionsModel(
+          id: transaction.id,
           description: transaction.description,
           category: transaction.category,
           type: transaction.type,

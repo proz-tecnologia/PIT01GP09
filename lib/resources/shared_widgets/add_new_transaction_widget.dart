@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/locator.dart';
 import 'package:finance_app/presentation/income/controller/add_transaction_controller.dart';
@@ -73,7 +71,6 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
 
   @override
   void initState() {
-    transaction = widget.transaction;
     dropdownValue = widget.list.first;
     addTransactionController.notifier.addListener(() {
       if (addTransactionController.state is AddTransactionSuccessState) {
@@ -116,9 +113,6 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     String dateHintText = DateFormat('dd/MM/yyyy').format(_date);
-
-    //log('${transaction.id}', name: 'Transaction ID >>>');
-    //log('$transaction', name: 'Transaction >>>');
 
     return SafeArea(
       child: Scaffold(
@@ -327,7 +321,7 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                           if (isEditing) {
                             updateTransactionController
                                 .updateTransaction(TransactionsModel(
-                              id: widget.transaction!.id,
+                              id: transaction!.id,
                               category: dropdownValue,
                               date: DateFormat('dd/MM/yyyy')
                                   .parse(_dateController.text),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/data/models/transactions_model.dart';
 import 'package:finance_app/domain/repositories/transactions/transactions_repository.dart';
@@ -53,14 +51,13 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   @override
   Future<bool> updateTransaction(TransactionsModel transaction) async {
     try {
-      final docId = transaction.id;
-      final result =
-          _firestore.collection('transactions').doc(docId);
-      await result.update(transaction.toMap());
-      log('Deu bom e atualizou!');
+      _firestore
+          .collection('transactions')
+          .doc(transaction.id)
+          .update(transaction.toMap());
+
       return Future.value(true);
     } catch (e) {
-      log('Não atualizou!');
       throw Exception();
     }
   }
