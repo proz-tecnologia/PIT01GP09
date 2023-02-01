@@ -50,4 +50,17 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
       return Future.value(false);
     }
   }
+
+  @override
+  Future<bool> updateTransaction(TransactionsModel transaction) async {
+    try {
+      await _firestore
+          .collection("transactions")
+          .doc(transaction.id)
+          .update(transaction.toMap());
+     return Future.value(true);
+    } catch (e) {
+      throw Exception('Erro update');
+    }
+  }
 }
