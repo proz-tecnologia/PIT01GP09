@@ -18,8 +18,9 @@ import 'presentation/splash/controller/splash_controller.dart';
 final getIt = GetIt.instance;
 
 void setup() {
-  getIt.registerLazySingleton<UpdateTransactionController>(
-      () => UpdateTransactionController(transactionsRepository: getIt()));
+  getIt.registerLazySingleton<UpdateTransactionController>(() =>
+      UpdateTransactionController(
+          transactionsRepository: getIt(), authRepository: getIt()));
 
   getIt.registerLazySingleton<DeleteTransactionController>(
       () => DeleteTransactionController(transactionsRepository: getIt()));
