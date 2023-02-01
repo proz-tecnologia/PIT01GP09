@@ -98,7 +98,9 @@ class _MyHomePageState extends State<HomePage> {
             ],
           ),
         ),
-        floatingActionButton: const AddMenu(color: AppColors.blueVibrant),
+        floatingActionButton: const AddMenu(
+          color: AppColors.blueVibrant,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: AppColors.blueVibrant,
           unselectedItemColor: AppColors.grayTwo,
