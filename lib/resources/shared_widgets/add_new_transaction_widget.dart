@@ -13,6 +13,7 @@ import 'dart:ui' as ui;
 
 class AddNewTransactionWidget extends StatefulWidget {
   final List<String> list;
+  final TransactionsModel? transaction;
   final Color color;
   final String type;
   const AddNewTransactionWidget({
@@ -20,6 +21,7 @@ class AddNewTransactionWidget extends StatefulWidget {
     required this.list,
     required this.color,
     required this.type,
+    required this.transaction,
   }) : super(key: key);
 
   @override
@@ -56,6 +58,8 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
   }
 
   late String dropdownValue;
+
+  bool get isEditing => widget.transaction != null;
 
   @override
   void initState() {
@@ -308,8 +312,8 @@ class _FormFieldsState extends State<AddNewTransactionWidget> {
                             return;
                           }
                         },
-                        child: const Text(
-                          Strings.add,
+                        child: Text(
+                         isEditing ? "Alterar" : Strings.add,
                           style: AppTextStyles.greeting,
                         )),
                   )
